@@ -1,0 +1,13 @@
+# Windows and editor files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Local editor configuration
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+~$*
