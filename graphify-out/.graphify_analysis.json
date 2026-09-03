@@ -1,0 +1,166 @@
+{
+  "communities": {
+    "0": [
+      "informatika_podgotovka_01firstlessonalgorithms_md",
+      "informatika_podgotovka_02lessonconditionsif_md",
+      "informatika_programma_bosova_9klass_md",
+      "informatika_readme"
+    ],
+    "1": [
+      "informatika_uroki_urok01_vvedenie_i_informacionnaya_bezopasnost_md",
+      "informatika_uroki_urok02_vspomogatelnie_algoritmi_md",
+      "obshiy_readme",
+      "obshiy_sverka_s_uchebnikami_start_9klass_md"
+    ],
+    "2": [
+      "himiya_readme",
+      "himiya_uroki_urok00_bystraia_proverka_yazyka_himii_md",
+      "himiya_uroki_urok01_klassifikaciya_himicheskih_soedineniy_md"
+    ],
+    "3": [
+      "fizika_readme",
+      "fizika_uroki_urok01_materialnaya_tochka_i_sistema_otscheta_md"
+    ],
+    "4": [
+      "readme_9klass"
+    ]
+  },
+  "cohesion": {
+    "0": 0.8333333333333334,
+    "1": 0.6666666666666666,
+    "2": 0.6666666666666666,
+    "3": 1.0,
+    "4": 1.0
+  },
+  "gods": [
+    {
+      "id": "obshiy_sverka_s_uchebnikami_start_9klass_md",
+      "label": "Сверка с учебниками - старт 9 класса",
+      "degree": 6
+    },
+    {
+      "id": "informatika_podgotovka_01firstlessonalgorithms_md",
+      "label": "Подготовительный урок A. Как решать задачи: алгоритм, данные, результат",
+      "degree": 4
+    },
+    {
+      "id": "informatika_programma_bosova_9klass_md",
+      "label": "Программа - Босова 9 класс",
+      "degree": 3
+    },
+    {
+      "id": "informatika_readme",
+      "label": "Информатика README",
+      "degree": 3
+    },
+    {
+      "id": "informatika_uroki_urok01_vvedenie_i_informacionnaya_bezopasnost_md",
+      "label": "Урок 01 - Введение и информационная безопасность",
+      "degree": 3
+    },
+    {
+      "id": "informatika_uroki_urok02_vspomogatelnie_algoritmi_md",
+      "label": "Урок 02 - Методы построения алгоритмов и вспомогательные алгоритмы",
+      "degree": 3
+    },
+    {
+      "id": "informatika_podgotovka_02lessonconditionsif_md",
+      "label": "Подготовительный урок B. Условия и ветвление if",
+      "degree": 2
+    },
+    {
+      "id": "himiya_readme",
+      "label": "Химия README",
+      "degree": 2
+    },
+    {
+      "id": "himiya_uroki_urok00_bystraia_proverka_yazyka_himii_md",
+      "label": "Урок 00. Быстрая проверка языка химии",
+      "degree": 2
+    },
+    {
+      "id": "himiya_uroki_urok01_klassifikaciya_himicheskih_soedineniy_md",
+      "label": "Урок 01. Классификация химических соединений",
+      "degree": 2
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Сверка с учебниками - старт 9 класса",
+      "target": "Урок 01. Материальная точка и система отсчета",
+      "source_files": [
+        "Общий/Сверка с учебниками - старт 9 класса.md",
+        "Физика/Уроки/Урок 01 - Материальная точка и система отсчета.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `Урок 01. Материальная точка и система отсчета` unexpectedly reaches hub `Сверка с учебниками - старт 9 класса`"
+    },
+    {
+      "source": "Сверка с учебниками - старт 9 класса",
+      "target": "Урок 00. Быстрая проверка языка химии",
+      "source_files": [
+        "Общий/Сверка с учебниками - старт 9 класса.md",
+        "Химия/Уроки/Урок 00 - Быстрая проверка языка химии.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `Урок 00. Быстрая проверка языка химии` unexpectedly reaches hub `Сверка с учебниками - старт 9 класса`"
+    },
+    {
+      "source": "Сверка с учебниками - старт 9 класса",
+      "target": "Урок 01. Классификация химических соединений",
+      "source_files": [
+        "Общий/Сверка с учебниками - старт 9 класса.md",
+        "Химия/Уроки/Урок 01 - Классификация химических соединений.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities; peripheral node `Урок 01. Классификация химических соединений` unexpectedly reaches hub `Сверка с учебниками - старт 9 класса`"
+    },
+    {
+      "source": "Сверка с учебниками - старт 9 класса",
+      "target": "Урок 01 - Введение и информационная безопасность",
+      "source_files": [
+        "Общий/Сверка с учебниками - старт 9 класса.md",
+        "Информатика/Уроки/Урок 01 - Введение и информационная безопасность.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "Сверка с учебниками - старт 9 класса",
+      "target": "Урок 02 - Методы построения алгоритмов и вспомогательные алгоритмы",
+      "source_files": [
+        "Общий/Сверка с учебниками - старт 9 класса.md",
+        "Информатика/Уроки/Урок 02 - Вспомогательные алгоритмы.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `Сверка с учебниками - старт 9 класса` connect `Introduction and Info Security` to `Chemistry Fundamentals`, `Physics Fundamentals`?",
+      "why": "High betweenness centrality (0.609) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Подготовительный урок A. Как решать задачи: алгоритм, данные, результат` connect `Programming Basics and Algorithms` to `Introduction and Info Security`?",
+      "why": "High betweenness centrality (0.346) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Урок 01 - Введение и информационная безопасность` connect `Introduction and Info Security` to `Programming Basics and Algorithms`?",
+      "why": "High betweenness centrality (0.179) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Общий раздел README`, `Физика README`, `9 КЛАСС README` to the rest of the system?",
+      "why": "3 weakly-connected nodes found - possible documentation gaps or missing edges."
+    }
+  ]
+}
