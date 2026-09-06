@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/Grade9Trainer.Core/Grade9Trainer.Core.csproj" />
+  <Project Path="src/Grade9Trainer.App/Grade9Trainer.App.csproj" />
+  <Project Path="tests/Grade9Trainer.SmokeTests/Grade9Trainer.SmokeTests.csproj" />
+  <Project Path="tests/Grade9Trainer.UiSmoke/Grade9Trainer.UiSmoke.csproj" />
+</Solution>

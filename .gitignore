@@ -15,3 +15,15 @@ Desktop.ini
 # Python caches
 __pycache__/
 *.py[cod]
+
+# .NET build outputs
+bin/
+obj/
+artifacts/
+
+# Local Graphify runtime state
+graphify-out/.graphify_python
+graphify-out/.vocab.txt
+graphify-out/cache/last_query_stamp
+graphify-out/cache/ast/
+graphify-out/20??-??-??/

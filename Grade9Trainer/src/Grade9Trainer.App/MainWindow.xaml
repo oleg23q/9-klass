@@ -1,0 +1,119 @@
+<Window x:Class="Grade9Trainer.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="9 КЛАСС — Тренажёр"
+        Width="1380"
+        Height="860"
+        MinWidth="1050"
+        MinHeight="680"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource CanvasBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="76" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="34" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#24213F" Padding="24,0">
+            <DockPanel LastChildFill="False">
+                <StackPanel DockPanel.Dock="Left" VerticalAlignment="Center">
+                    <TextBlock Text="9 КЛАСС" Foreground="White" FontSize="24" FontWeight="Bold" />
+                    <TextBlock Text="Учебный тренажёр" Foreground="#C8C5E8" FontSize="13" />
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="Добавить урок" Click="ImportLesson_Click" />
+                    <Button Content="Папка уроков" Click="OpenLessonFolder_Click" Background="#565071" />
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="18">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="210" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="{StaticResource SurfaceBrush}" CornerRadius="12" Padding="14" Margin="0,0,12,0">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="ПРЕДМЕТЫ" Foreground="{StaticResource MutedBrush}"
+                               FontSize="12" FontWeight="Bold" Margin="6,4,0,12" />
+                    <ListBox x:Name="SubjectList" SelectionChanged="SubjectList_SelectionChanged"
+                             BorderThickness="0" Background="Transparent" />
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="1" Background="{StaticResource SurfaceBrush}" CornerRadius="12" Padding="14">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="УРОКИ" Foreground="{StaticResource MutedBrush}"
+                               FontSize="12" FontWeight="Bold" Margin="6,4,0,12" />
+                    <ListBox x:Name="LessonList" SelectionChanged="LessonList_SelectionChanged"
+                             BorderThickness="0" Background="Transparent"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayTitle}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="3" Background="{StaticResource SurfaceBrush}" CornerRadius="12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Padding="24,20" BorderBrush="#EAECF0" BorderThickness="0,0,0,1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="220" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock x:Name="LessonTitle" Text="Выберите урок" Foreground="{StaticResource InkBrush}"
+                                           FontSize="25" FontWeight="Bold" TextWrapping="Wrap" />
+                                <TextBlock x:Name="LessonMeta" Foreground="{StaticResource MutedBrush}" Margin="0,6,0,0" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock x:Name="ProgressText" Text="Прогресс" Foreground="{StaticResource MutedBrush}"
+                                           HorizontalAlignment="Right" Margin="0,0,0,5" />
+                                <ProgressBar x:Name="LessonProgress" Height="8" Minimum="0" Maximum="1" Value="0"
+                                             Foreground="#22A06B" Background="#E7E9F2" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <ScrollViewer x:Name="LessonScroll" Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="24,20">
+                        <StackPanel x:Name="LessonContent">
+                            <Border x:Name="WelcomeCard" Background="#EEF2FF" CornerRadius="10" Padding="24">
+                                <StackPanel>
+                                    <TextBlock Text="Добро пожаловать" FontSize="22" FontWeight="Bold" Foreground="#3730A3" />
+                                    <TextBlock Margin="0,10,0,0" FontSize="16" TextWrapping="Wrap"
+                                               Text="Выберите предмет и урок слева. Ответы сохраняются автоматически только на этом компьютере." />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="2" Background="#E8EAF2" Padding="18,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="StatusText" VerticalAlignment="Center" Foreground="{StaticResource MutedBrush}"
+                           Text="Загрузка уроков…" TextTrimming="CharacterEllipsis" />
+                <TextBlock Grid.Column="1" Margin="18,0,0,0" VerticalAlignment="Center"
+                           Foreground="{StaticResource MutedBrush}" Text="Ответы сохраняются в профиле Windows" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
