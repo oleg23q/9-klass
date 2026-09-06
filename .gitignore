@@ -11,3 +11,7 @@ Desktop.ini
 *.tmp
 *.temp
 ~$*
+
+# Python caches
+__pycache__/
+*.py[cod]
