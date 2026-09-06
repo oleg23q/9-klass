@@ -1,16 +1,16 @@
 # Graph Report - 9 КЛАСС  (2026-09-06)
 
 ## Corpus Check
-- 57 files · ~37,912 words
+- 68 files · ~41,617 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 540 nodes · 693 edges · 30 communities
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 19 edges (avg confidence: 0.83)
+- 671 nodes · 966 edges · 34 communities
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 30 edges (avg confidence: 0.82)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0df7659b`
+- Built from commit: `f1c884ca`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -45,18 +45,22 @@
 - Q: возможно создать программу для обучения ученика 9 класса на основе наших уроков на с# с возможностью дальнейшего добавления уроков
 - Q: отлично тогда начнем; продолжи создание программы для обучения ученика 9 класса на C#
 - Q: опубликовать 9 КЛАСС — Тренажёр MVP на GitHub и закоммитить все изменения
+- MermaidDiagramParser
+- StudentProfileStore
+- LessonEditorWindow
+- Q: Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам
 
 ## God Nodes (most connected - your core abstractions)
-1. `LessonMarkdownParser` - 20 edges
-2. `MainWindow` - 19 edges
-3. `Урок 03 - Запись вспомогательных алгоритмов на Python` - 18 edges
-4. `Window` - 15 edges
-5. `ProgressStore` - 15 edges
-6. `PlainTextFormatter` - 13 edges
-7. `Урок 02. Путь, перемещение и координата` - 13 edges
-8. `Урок 03. Равномерное прямолинейное движение` - 13 edges
-9. `Урок 02. Классификация химических реакций` - 13 edges
-10. `Урок 03. Скорость химических реакций` - 12 edges
+1. `MainWindow` - 30 edges
+2. `LessonMarkdownParser` - 22 edges
+3. `ProgressStore` - 21 edges
+4. `Window` - 20 edges
+5. `Урок 03 - Запись вспомогательных алгоритмов на Python` - 18 edges
+6. `StudentProfileStore` - 17 edges
+7. `MermaidDiagramParser` - 15 edges
+8. `Grade9Trainer.Core.Services` - 14 edges
+9. `PlainTextFormatter` - 14 edges
+10. `LessonEditorWindow` - 13 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Сверка с учебниками - старт 9 класса` --references--> `Урок 01. Материальная точка и система отсчета`  [EXTRACTED]
@@ -73,31 +77,31 @@
 ## Import Cycles
 - None detected.
 
-## Communities (30 total, 0 thin omitted)
+## Communities (34 total, 0 thin omitted)
 
 ### Community 0 - "9 КЛАСС — Тренажёр"
 Cohesion: 0.11
-Nodes (21): Физика README, Урок 01. Материальная точка и система отсчета, Формат добавляемого урока, 9 КЛАСС — Тренажёр, Где хранятся данные, Готовая Windows-сборка, Запуск для разработки, Следующие этапы (+13 more)
+Nodes (21): Физика README, Урок 01. Материальная точка и система отсчета, Формат добавляемого урока, 9 КЛАСС — Тренажёр, Где хранятся данные, Готовая Windows-сборка, Границы версии 0.2 и следующие этапы, Запуск для разработки (+13 more)
 
 ### Community 1 - "MainWindow"
 Cohesion: 0.07
-Nodes (37): DisplayTitle, FrameworkElement, LessonContent, LessonList, LessonMeta, LessonProgress, LessonScroll, LessonTitle (+29 more)
+Nodes (31): DisplayTitle, FrameworkElement, LessonContent, LessonList, LessonMeta, LessonProgress, LessonScroll, LessonTitle (+23 more)
 
 ### Community 2 - "Урок 03 - Запись вспомогательных алгоритмов на Python"
 Cohesion: 0.05
 Nodes (40): 1. Функция без параметров, 2. Параметр и аргумент, 3. Возвращаемое значение, Алгоритм словами, Домашнее задание, Дополнительно, Дополнительно, Дополнительно (+32 more)
 
 ### Community 3 - "LessonMarkdownParser"
-Cohesion: 0.14
-Nodes (9): Body, ImportResult, LessonCatalogService, LessonImportService, Dictionary, GeneratedRegex, Regex, LessonMarkdownParser (+1 more)
+Cohesion: 0.12
+Nodes (15): Body, IReadOnlyList, CatalogLoadResult, ImportResult, LessonDocument, LessonMetadata, LessonStep, LessonCatalogService (+7 more)
 
 ### Community 4 - "Grade9Trainer.Core.Services"
-Cohesion: 0.10
-Nodes (13): Grade9Trainer.Core.Models, Grade9Trainer.Core.Services, Grade9Trainer.UiSmoke, Grade9Trainer.App, DependencyObject, Application, App, AppDataPaths (+5 more)
+Cohesion: 0.06
+Nodes (22): ComboBox, Grade9Trainer.Core.Models, Grade9Trainer.Core.Services, Grade9Trainer.UiSmoke, Grade9Trainer.App, DependencyObject, Application, App (+14 more)
 
 ### Community 5 - "ProgressStore"
 Cohesion: 0.15
-Nodes (13): DateTimeOffset, Dictionary, LessonProgress, LastOpenedUtc, Steps, ProgressStore, StepProgress, Answer (+5 more)
+Nodes (14): DateTimeOffset, Dictionary, JsonSerializerOptions, LessonProgress, LastOpenedUtc, Steps, ProgressStore, StepProgress (+6 more)
 
 ### Community 6 - "Тренировка по шагам"
 Cohesion: 0.08
@@ -137,7 +141,7 @@ Nodes (17): Вопросы ученика, Комментарий препода
 
 ### Community 15 - "PlainTextFormatter"
 Cohesion: 0.29
-Nodes (6): GeneratedRegex, IEnumerable, IReadOnlyList, Regex, PlainTextFormatter, List
+Nodes (5): GeneratedRegex, IEnumerable, IReadOnlyList, Regex, PlainTextFormatter
 
 ### Community 16 - "Тренировка по шагам"
 Cohesion: 0.12
@@ -195,33 +199,49 @@ Nodes (4): Answer, Outcome, Q: отлично тогда начнем; прод�
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: опубликовать 9 КЛАСС — Тренажёр MVP на GitHub и закоммитить все изменения, Source Nodes
 
+### Community 30 - "MermaidDiagramParser"
+Cohesion: 0.10
+Nodes (27): Border, Canvas, DiagramStyle, Dictionary, SolidColorBrush, DiagramView, IReadOnlyList, DiagramDirection (+19 more)
+
+### Community 31 - "StudentProfileStore"
+Cohesion: 0.11
+Nodes (18): DateTimeOffset, List, StudentProfile, StudentProfileRegistry, CurrentProfileId, Profiles, DateTimeOffset, JsonSerializerOptions (+10 more)
+
+### Community 32 - "LessonEditorWindow"
+Cohesion: 0.15
+Nodes (12): EditorText, ValidationText, Window, RoutedEventArgs, LessonEditorWindow, SavedLessonId, TextBlock, TextBox (+4 more)
+
+### Community 33 - "Q: Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам"
+Cohesion: 0.40
+Nodes (4): Answer, Outcome, Q: Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам, Source Nodes
+
 ## Knowledge Gaps
-- **293 isolated node(s):** `net10.0-windows`, `Microsoft.NET.Sdk`, `DisplayTitle`, `ProgressBar`, `ScrollViewer` (+288 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 338 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **312 isolated node(s):** `net10.0-windows`, `Microsoft.NET.Sdk`, `TextBox`, `TextBlock`, `SavedLessonId` (+307 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 378 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Work-memory lessons
 
 **Preferred sources** — corroborated by past sessions; start here.
-- `Программа - Босова 9 класс` (3× useful, score=2.990746067)
-- `Информатика README` (3× useful, score=2.990746067)
-- `Урок 02 - Методы построения алгоритмов и вспомогательные алгоритмы` (3× useful, score=2.990746067)
-- `Физика README` (2× useful, score=1.995435532)
-- `Химия README` (2× useful, score=1.995435532)
+- `Программа - Босова 9 класс` (4× useful, score=3.989099087)
+- `Информатика README` (4× useful, score=3.989099087)
+- `Физика README` (3× useful, score=2.994210436)
+- `Химия README` (3× useful, score=2.994210436)
+- `Урок 02 - Методы построения алгоритмов и вспомогательные алгоритмы` (3× useful, score=2.98947837)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `MainWindow` connect `MainWindow` to `LessonMarkdownParser`, `Grade9Trainer.Core.Services`, `ProgressStore`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
-- **Why does `LessonMarkdownParser` connect `LessonMarkdownParser` to `MainWindow`, `Grade9Trainer.Core.Services`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
-- **What connects `net10.0-windows`, `Microsoft.NET.Sdk`, `DisplayTitle` to the rest of the system?**
-  _293 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `MainWindow` connect `MainWindow` to `LessonEditorWindow`, `LessonMarkdownParser`, `Grade9Trainer.Core.Services`, `ProgressStore`, `MermaidDiagramParser`, `StudentProfileStore`?**
+  _High betweenness centrality (0.075) - this node is a cross-community bridge._
+- **Why does `LessonMarkdownParser` connect `LessonMarkdownParser` to `LessonEditorWindow`, `MainWindow`, `Grade9Trainer.Core.Services`?**
+  _High betweenness centrality (0.027) - this node is a cross-community bridge._
+- **Why does `MermaidDiagramParser` connect `MermaidDiagramParser` to `MainWindow`, `Grade9Trainer.Core.Services`?**
+  _High betweenness centrality (0.024) - this node is a cross-community bridge._
+- **What connects `net10.0-windows`, `Microsoft.NET.Sdk`, `TextBox` to the rest of the system?**
+  _312 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `9 КЛАСС — Тренажёр` be split into smaller, more focused modules?**
   _Cohesion score 0.1067193675889328 - nodes in this community are weakly interconnected._
 - **Should `MainWindow` be split into smaller, more focused modules?**
-  _Cohesion score 0.06509803921568627 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06894049346879536 - nodes in this community are weakly interconnected._
 - **Should `Урок 03 - Запись вспомогательных алгоритмов на Python` be split into smaller, more focused modules?**
   _Cohesion score 0.04878048780487805 - nodes in this community are weakly interconnected._
-- **Should `LessonMarkdownParser` be split into smaller, more focused modules?**
-  _Cohesion score 0.13911290322580644 - nodes in this community are weakly interconnected._

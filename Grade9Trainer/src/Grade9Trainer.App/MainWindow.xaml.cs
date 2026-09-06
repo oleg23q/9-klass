@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.IO;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,16 +13,35 @@ namespace Grade9Trainer.App;
 public partial class MainWindow : Window
 {
     private readonly LessonMarkdownParser _parser = new();
-    private readonly ProgressStore _progress = ProgressStore.CreateDefault();
+    private readonly MermaidDiagramParser _diagramParser = new();
+    private readonly StudentProfileStore _profiles = StudentProfileStore.CreateDefault();
+    private readonly ProfilePackageService _profilePackages = new();
     private readonly string _bundledRoot = Path.Combine(AppContext.BaseDirectory, "Lessons");
     private readonly string _userRoot = AppDataPaths.UserLessonsDirectory;
+    private ProgressStore _progress;
     private IReadOnlyList<LessonDocument> _lessons = [];
     private LessonDocument? _currentLesson;
+    private bool _updatingProfiles;
 
     public MainWindow()
     {
         InitializeComponent();
-        Loaded += (_, _) => ReloadCatalog();
+        _progress = ProgressStore.CreateForProfile(_profiles.Current.Id);
+        Loaded += (_, _) =>
+        {
+            ReloadProfiles();
+            ReloadCatalog();
+        };
+    }
+
+    private void ReloadProfiles(string? preferredProfileId = null)
+    {
+        _updatingProfiles = true;
+        ProfileList.ItemsSource = null;
+        ProfileList.ItemsSource = _profiles.Profiles;
+        ProfileList.SelectedItem = _profiles.Profiles.FirstOrDefault(profile =>
+            profile.Id.Equals(preferredProfileId ?? _profiles.Current.Id, StringComparison.OrdinalIgnoreCase));
+        _updatingProfiles = false;
     }
 
     private void ReloadCatalog(string? preferredLessonId = null)
@@ -78,13 +98,26 @@ public partial class MainWindow : Window
         LessonTitle.Text = lesson.Metadata.Title;
         LessonMeta.Text = $"{lesson.Metadata.Subject} · {lesson.Metadata.DurationMinutes} минут · {lesson.Steps.Count} шагов";
 
+        var theoryBody = new StackPanel();
+        var introduction = PlainTextFormatter.FormatWithoutDiagrams(lesson.IntroductionMarkdown);
+        if (!string.IsNullOrWhiteSpace(introduction)) theoryBody.Children.Add(ReadableText(introduction, 15));
+        foreach (var diagram in _diagramParser.ParseFromMarkdown(lesson.IntroductionMarkdown))
+        {
+            theoryBody.Children.Add(new ScrollViewer
+            {
+                HorizontalScrollBarVisibility = ScrollBarVisibility.Auto,
+                VerticalScrollBarVisibility = ScrollBarVisibility.Disabled,
+                Content = new DiagramView(diagram)
+            });
+        }
+
         var theory = new Expander
         {
             Header = "Теория и наглядная схема",
             IsExpanded = true,
             Margin = new Thickness(0, 0, 0, 16),
             FontWeight = FontWeights.SemiBold,
-            Content = ReadableText(PlainTextFormatter.Format(lesson.IntroductionMarkdown), 15)
+            Content = theoryBody
         };
         LessonContent.Children.Add(theory);
 
@@ -95,7 +128,7 @@ public partial class MainWindow : Window
 
         RefreshProgressHeader();
         LessonScroll.ScrollToTop();
-        StatusText.Text = "Ответы сохраняются автоматически.";
+        StatusText.Text = $"Ответы ученика «{_profiles.Current.Name}» сохраняются автоматически.";
     }
 
     private FrameworkElement CreateStepCard(LessonDocument lesson, LessonStep step)
@@ -219,6 +252,90 @@ public partial class MainWindow : Window
         ReloadCatalog();
     }
 
+    private void OpenEditor_Click(object sender, RoutedEventArgs e)
+    {
+        var editor = new LessonEditorWindow(_parser, _userRoot, _currentLesson?.Metadata.SourcePath)
+        {
+            Owner = this
+        };
+        if (editor.ShowDialog() == true)
+        {
+            ReloadCatalog(editor.SavedLessonId);
+            StatusText.Text = "Урок сохранён в пользовательской библиотеке.";
+        }
+    }
+
+    private void ProfileList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (_updatingProfiles || ProfileList.SelectedItem is not StudentProfile profile) return;
+        _profiles.Select(profile.Id);
+        _progress = ProgressStore.CreateForProfile(profile.Id);
+        if (_currentLesson is not null) RenderLesson(_currentLesson);
+        StatusText.Text = $"Выбран ученик: {profile.Name}.";
+    }
+
+    private void AddProfile_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new ProfileNameDialog { Owner = this };
+        if (dialog.ShowDialog() != true) return;
+        try
+        {
+            var profile = _profiles.Add(dialog.ProfileName);
+            _progress = ProgressStore.CreateForProfile(profile.Id);
+            ReloadProfiles(profile.Id);
+            if (_currentLesson is not null) RenderLesson(_currentLesson);
+            StatusText.Text = $"Создан профиль «{profile.Name}».";
+        }
+        catch (InvalidOperationException exception)
+        {
+            MessageBox.Show(this, exception.Message, "Профиль не создан", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+    }
+
+    private void ExportProfile_Click(object sender, RoutedEventArgs e)
+    {
+        var profile = _profiles.Current;
+        var dialog = new SaveFileDialog
+        {
+            Title = "Экспорт прогресса ученика",
+            Filter = "Пакет прогресса (*.zip)|*.zip",
+            FileName = $"Прогресс - {SafeFileName(profile.Name)} - {DateTime.Today:yyyy-MM-dd}.zip"
+        };
+        if (dialog.ShowDialog(this) != true) return;
+        try
+        {
+            _profilePackages.Export(dialog.FileName, profile, _progress.ExportSnapshot());
+            StatusText.Text = $"Прогресс ученика «{profile.Name}» экспортирован.";
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
+        {
+            MessageBox.Show(this, exception.Message, "Экспорт не выполнен", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private void ImportProfile_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFileDialog
+        {
+            Title = "Импорт прогресса ученика",
+            Filter = "Пакет прогресса (*.zip)|*.zip"
+        };
+        if (dialog.ShowDialog(this) != true) return;
+        try
+        {
+            var result = _profilePackages.Import(dialog.FileName, _profiles);
+            _profiles.Select(result.Profile.Id);
+            _progress = ProgressStore.CreateForProfile(result.Profile.Id);
+            ReloadProfiles(result.Profile.Id);
+            if (_currentLesson is not null) RenderLesson(_currentLesson);
+            StatusText.Text = $"Импортирован прогресс «{result.Profile.Name}»: уроков {result.MergedLessons}.";
+        }
+        catch (Exception exception) when (exception is IOException or InvalidDataException or UnauthorizedAccessException or JsonException)
+        {
+            MessageBox.Show(this, exception.Message, "Импорт не выполнен", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
     private void OpenLessonFolder_Click(object sender, RoutedEventArgs e)
     {
         Directory.CreateDirectory(_userRoot);
@@ -245,6 +362,12 @@ public partial class MainWindow : Window
 
     private static SolidColorBrush Brush(string hex) =>
         new((Color)ColorConverter.ConvertFromString(hex));
+
+    private static string SafeFileName(string value)
+    {
+        var invalid = Path.GetInvalidFileNameChars();
+        return new string(value.Where(character => !invalid.Contains(character)).ToArray()).Trim().TrimEnd('.');
+    }
 
     private sealed record LessonListItem(LessonDocument Document)
     {

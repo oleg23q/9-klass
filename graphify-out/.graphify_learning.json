@@ -1,11 +1,16 @@
 {
-  "generated_at": "2026-09-06T06:29:22.125926+00:00",
+  "generated_at": "2026-09-06T07:09:33.282067+00:00",
   "nodes": {
     "fizika_readme": {
       "code_fingerprint": "b28707b69e3b3afc509f0f60db8e3cd8c27d51d2eb18bfb105c38716b9b30706",
       "label": "Физика README",
-      "last": "2026-09-06T06:13:47.545847+00:00",
+      "last": "2026-09-06T06:32:08.934636+00:00",
       "provenance": [
+        {
+          "date": "2026-09-06T06:32:08.934636+00:00",
+          "outcome": "useful",
+          "q": "опубликовать 9 КЛАСС — Тренажёр MVP на GitHub и закоммитить все изменения"
+        },
         {
           "date": "2026-09-06T06:13:47.545847+00:00",
           "outcome": "useful",
@@ -17,16 +22,159 @@
           "q": "возможно создать программу для обучения ученика 9 класса на основе наших уроков на с# с возможностью дальнейшего добавления уроков"
         }
       ],
-      "score": 1.995435532,
+      "score": 2.993549318,
       "source_file": "Физика/README.md",
       "status": "preferred",
+      "uses": 3
+    },
+    "grade9trainer_src_grade9trainer_app_diagramview_grade9trainer_app_diagramview": {
+      "code_fingerprint": "0177226b0c8e1de81c53084a41dda9f6fe83e1f382a12f6fccfd69e476665513",
+      "label": "DiagramView",
+      "last": "2026-09-06T07:09:29.106634+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-06T07:09:29.106634+00:00",
+          "outcome": "useful",
+          "q": "работает отправь на GitHub"
+        }
+      ],
+      "score": 0.999998883,
+      "source_file": "Grade9Trainer/src/Grade9Trainer.App/DiagramView.cs",
+      "status": "tentative",
+      "uses": 1
+    },
+    "grade9trainer_src_grade9trainer_app_mainwindow_xaml_grade9trainer_app_mainwindow": {
+      "code_fingerprint": "bb9cf4c660ed20d84610c06d2bd898becc1c10632ce17ec2baaf14b3e5f8aed7",
+      "label": "MainWindow",
+      "last": "2026-09-06T07:09:29.106634+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-06T07:09:29.106634+00:00",
+          "outcome": "useful",
+          "q": "работает отправь на GitHub"
+        },
+        {
+          "date": "2026-09-06T06:55:46.154763+00:00",
+          "outcome": "useful",
+          "q": "Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам"
+        }
+      ],
+      "score": 1.999777719,
+      "source_file": "Grade9Trainer/src/Grade9Trainer.App/MainWindow.xaml.cs",
+      "status": "preferred",
       "uses": 2
+    },
+    "grade9trainer_src_grade9trainer_core_services_lessonmarkdownparser_grade9trainer_core_services_lessonmarkdownparser": {
+      "code_fingerprint": "89b5759105cc8fb455836a241a8c96da530ca62f10bd59986124991655037fc9",
+      "label": "LessonMarkdownParser",
+      "last": "2026-09-06T06:55:46.154763+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-06T06:55:46.154763+00:00",
+          "outcome": "useful",
+          "q": "Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам"
+        }
+      ],
+      "score": 0.999778836,
+      "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/LessonMarkdownParser.cs",
+      "status": "tentative",
+      "uses": 1
+    },
+    "grade9trainer_src_grade9trainer_core_services_mermaiddiagramparser_grade9trainer_core_services_mermaiddiagramparser": {
+      "code_fingerprint": "afa4e5a8a801e4309b8f1ea5ab8e52ae45c38059c1162352a2b20532d5776792",
+      "label": "MermaidDiagramParser",
+      "last": "2026-09-06T07:09:29.106634+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-06T07:09:29.106634+00:00",
+          "outcome": "useful",
+          "q": "работает отправь на GitHub"
+        }
+      ],
+      "score": 0.999998883,
+      "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/MermaidDiagramParser.cs",
+      "status": "tentative",
+      "uses": 1
+    },
+    "grade9trainer_src_grade9trainer_core_services_plaintextformatter_grade9trainer_core_services_plaintextformatter_mermaidleftregex": {
+      "code_fingerprint": "c08b2bcca14a92157d494b66773631462996a36c9620686461567bc528cd1f07",
+      "label": ".MermaidLeftRegex()",
+      "last": "2026-09-06T06:55:46.154763+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-06T06:55:46.154763+00:00",
+          "outcome": "useful",
+          "q": "Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам"
+        }
+      ],
+      "score": 0.999778836,
+      "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/PlainTextFormatter.cs",
+      "status": "tentative",
+      "uses": 1
+    },
+    "grade9trainer_src_grade9trainer_core_services_profilepackageservice_grade9trainer_core_services_profilepackageservice": {
+      "code_fingerprint": "0d5793d18d070e78ef2de2dbd3782bd3643c7768098cb1f7057cc76b6c998795",
+      "label": "ProfilePackageService",
+      "last": "2026-09-06T07:09:29.106634+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-06T07:09:29.106634+00:00",
+          "outcome": "useful",
+          "q": "работает отправь на GitHub"
+        }
+      ],
+      "score": 0.999998883,
+      "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/ProfilePackageService.cs",
+      "status": "tentative",
+      "uses": 1
+    },
+    "grade9trainer_src_grade9trainer_core_services_progressstore_grade9trainer_core_services_progressstore": {
+      "code_fingerprint": "1e0af84f269073a1e94cdfb541e342d0f10b0e1a83d026611559275f1ec2a3ec",
+      "label": "ProgressStore",
+      "last": "2026-09-06T07:09:29.106634+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-06T07:09:29.106634+00:00",
+          "outcome": "useful",
+          "q": "работает отправь на GitHub"
+        },
+        {
+          "date": "2026-09-06T06:55:46.154763+00:00",
+          "outcome": "useful",
+          "q": "Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам"
+        }
+      ],
+      "score": 1.999777719,
+      "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/ProgressStore.cs",
+      "status": "preferred",
+      "uses": 2
+    },
+    "grade9trainer_src_grade9trainer_core_services_studentprofilestore_grade9trainer_core_services_studentprofilestore": {
+      "code_fingerprint": "9a3c4c18929fe1fe80bfb784a5b0fc0ef3bd9e00d4066d68de149f5faf12cf33",
+      "label": "StudentProfileStore",
+      "last": "2026-09-06T07:09:29.106634+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-06T07:09:29.106634+00:00",
+          "outcome": "useful",
+          "q": "работает отправь на GitHub"
+        }
+      ],
+      "score": 0.999998883,
+      "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/StudentProfileStore.cs",
+      "status": "tentative",
+      "uses": 1
     },
     "himiya_readme": {
       "code_fingerprint": "34510d63fae759d98aa73cf8448a6a64d762ebc9eb675d2c1bbe5ee36c4f84e1",
       "label": "Химия README",
-      "last": "2026-09-06T06:13:47.545847+00:00",
+      "last": "2026-09-06T06:32:08.934636+00:00",
       "provenance": [
+        {
+          "date": "2026-09-06T06:32:08.934636+00:00",
+          "outcome": "useful",
+          "q": "опубликовать 9 КЛАСС — Тренажёр MVP на GitHub и закоммитить все изменения"
+        },
         {
           "date": "2026-09-06T06:13:47.545847+00:00",
           "outcome": "useful",
@@ -38,16 +186,21 @@
           "q": "возможно создать программу для обучения ученика 9 класса на основе наших уроков на с# с возможностью дальнейшего добавления уроков"
         }
       ],
-      "score": 1.995435532,
+      "score": 2.993549318,
       "source_file": "Химия/README.md",
       "status": "preferred",
-      "uses": 2
+      "uses": 3
     },
     "informatika_programma_bosova_9klass_md": {
       "code_fingerprint": "4628c4a5208a4db6a7e7a9b04651762986b76e5924a3e514cfe6d114fe1fc630",
       "label": "Программа - Босова 9 класс",
-      "last": "2026-09-06T06:13:47.545847+00:00",
+      "last": "2026-09-06T06:32:08.934636+00:00",
       "provenance": [
+        {
+          "date": "2026-09-06T06:32:08.934636+00:00",
+          "outcome": "useful",
+          "q": "опубликовать 9 КЛАСС — Тренажёр MVP на GitHub и закоммитить все изменения"
+        },
         {
           "date": "2026-09-06T06:13:47.545847+00:00",
           "outcome": "useful",
@@ -64,16 +217,21 @@
           "q": "добавь еще третий урок по информатике"
         }
       ],
-      "score": 2.990746067,
+      "score": 3.988218298,
       "source_file": "Информатика/Программа - Босова 9 класс.md",
       "status": "preferred",
-      "uses": 3
+      "uses": 4
     },
     "informatika_readme": {
       "code_fingerprint": "66b6114fe643378adc5863aa3832052881dedcf0a5652f9c62cd2325a1d5c0d8",
       "label": "Информатика README",
-      "last": "2026-09-06T06:13:47.545847+00:00",
+      "last": "2026-09-06T06:32:08.934636+00:00",
       "provenance": [
+        {
+          "date": "2026-09-06T06:32:08.934636+00:00",
+          "outcome": "useful",
+          "q": "опубликовать 9 КЛАСС — Тренажёр MVP на GitHub и закоммитить все изменения"
+        },
         {
           "date": "2026-09-06T06:13:47.545847+00:00",
           "outcome": "useful",
@@ -90,10 +248,10 @@
           "q": "добавь еще третий урок по информатике"
         }
       ],
-      "score": 2.990746067,
+      "score": 3.988218298,
       "source_file": "Информатика/README.md",
       "status": "preferred",
-      "uses": 3
+      "uses": 4
     },
     "informatika_uroki_urok02_vspomogatelnie_algoritmi_md": {
       "code_fingerprint": "e96f4d4863640bcfc3446d098afc063ffb3b38420150831af3e055faf554cce6",
@@ -116,7 +274,7 @@
           "q": "добавь еще третий урок по информатике"
         }
       ],
-      "score": 2.990746067,
+      "score": 2.988818297,
       "source_file": "Информатика/Уроки/Урок 02 - Вспомогательные алгоритмы.md",
       "status": "preferred",
       "uses": 3

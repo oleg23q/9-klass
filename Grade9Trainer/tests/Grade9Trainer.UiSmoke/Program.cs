@@ -42,9 +42,12 @@ internal static class Program
         var answer = Descendants<TextBox>(window).FirstOrDefault();
         var solutionButton = Descendants<Button>(window)
             .FirstOrDefault(button => Equals(button.Content, "Показать разбор"));
-        if (answer is null || solutionButton is null)
+        var diagram = Descendants<Grade9Trainer.App.DiagramView>(window).FirstOrDefault();
+        var profileList = Descendants<ComboBox>(window).FirstOrDefault(comboBox => comboBox.Name == "ProfileList");
+        var editorButton = Descendants<Button>(window).FirstOrDefault(button => Equals(button.Content, "Редактор"));
+        if (answer is null || solutionButton is null || diagram is null || profileList?.Items.Count < 1 || editorButton is null)
         {
-            throw new InvalidOperationException("Первый шаг урока не создал поле ответа и кнопку разбора.");
+            throw new InvalidOperationException("Интерфейс не создал поле ответа, схему, профиль ученика или кнопку редактора.");
         }
 
         answer.Text = "Проверочный ответ интерфейса";
@@ -75,6 +78,31 @@ internal static class Program
         {
             throw new InvalidOperationException("Ответ или раскрытие решения не сохранились через интерфейс.");
         }
+
+        var sourceLesson = Directory.EnumerateFiles(Path.Combine(AppContext.BaseDirectory, "Lessons"), "*.md", SearchOption.AllDirectories).First();
+        var editor = new Grade9Trainer.App.LessonEditorWindow(new LessonMarkdownParser(), AppDataPaths.UserLessonsDirectory, sourceLesson)
+        {
+            Owner = window,
+            Left = -10000,
+            Top = -10000,
+            ShowInTaskbar = false
+        };
+        editor.Show();
+        editor.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
+        var editorText = Descendants<TextBox>(editor).FirstOrDefault(textBox => textBox.Name == "EditorText");
+        var validateButton = Descendants<Button>(editor).FirstOrDefault(button => Equals(button.Content, "Проверить"));
+        var validationText = Descendants<TextBlock>(editor).FirstOrDefault(textBlock => textBlock.Name == "ValidationText");
+        if (editorText is null || validateButton is null || validationText is null)
+        {
+            throw new InvalidOperationException("Редактор урока не создал обязательные элементы управления.");
+        }
+        validateButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        editor.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
+        if (!validationText.Text.StartsWith("Готово:", StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException("Редактор не подтвердил корректный встроенный урок.");
+        }
+        editor.Close();
 
         window.Close();
         application.Shutdown();

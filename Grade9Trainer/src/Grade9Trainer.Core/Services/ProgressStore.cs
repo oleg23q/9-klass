@@ -18,6 +18,7 @@ public sealed class StepProgress
     public string Answer { get; set; } = string.Empty;
     public bool IsCompleted { get; set; }
     public bool IsSolutionVisible { get; set; }
+    public DateTimeOffset UpdatedUtc { get; set; }
 }
 
 public sealed class ProgressStore
@@ -38,6 +39,11 @@ public sealed class ProgressStore
         return new ProgressStore(AppDataPaths.ProgressFile);
     }
 
+    public static ProgressStore CreateForProfile(string profileId)
+    {
+        return new ProgressStore(AppDataPaths.ProgressFileFor(profileId));
+    }
+
     public StepProgress GetStep(string lessonId, string stepId)
     {
         lock (_sync)
@@ -51,6 +57,7 @@ public sealed class ProgressStore
         lock (_sync)
         {
             GetOrCreateStep(lessonId, stepId).Answer = answer;
+            GetOrCreateStep(lessonId, stepId).UpdatedUtc = DateTimeOffset.UtcNow;
             Touch(lessonId);
             Save();
         }
@@ -60,7 +67,9 @@ public sealed class ProgressStore
     {
         lock (_sync)
         {
-            GetOrCreateStep(lessonId, stepId).IsCompleted = completed;
+            var step = GetOrCreateStep(lessonId, stepId);
+            step.IsCompleted = completed;
+            step.UpdatedUtc = DateTimeOffset.UtcNow;
             Touch(lessonId);
             Save();
         }
@@ -70,7 +79,9 @@ public sealed class ProgressStore
     {
         lock (_sync)
         {
-            GetOrCreateStep(lessonId, stepId).IsSolutionVisible = visible;
+            var step = GetOrCreateStep(lessonId, stepId);
+            step.IsSolutionVisible = visible;
+            step.UpdatedUtc = DateTimeOffset.UtcNow;
             Touch(lessonId);
             Save();
         }
@@ -83,6 +94,41 @@ public sealed class ProgressStore
             return _state.Lessons.TryGetValue(lessonId, out var lesson)
                 ? lesson.Steps.Values.Count(step => step.IsCompleted)
                 : 0;
+        }
+    }
+
+    public StudentProgressState ExportSnapshot()
+    {
+        lock (_sync)
+        {
+            return Clone(_state);
+        }
+    }
+
+    public void Merge(StudentProgressState incoming)
+    {
+        ArgumentNullException.ThrowIfNull(incoming);
+        lock (_sync)
+        {
+            foreach (var (lessonId, incomingLesson) in incoming.Lessons)
+            {
+                if (!_state.Lessons.TryGetValue(lessonId, out var localLesson))
+                {
+                    _state.Lessons[lessonId] = Clone(incomingLesson);
+                    continue;
+                }
+
+                localLesson.LastOpenedUtc = Max(localLesson.LastOpenedUtc, incomingLesson.LastOpenedUtc);
+                foreach (var (stepId, incomingStep) in incomingLesson.Steps)
+                {
+                    if (!localLesson.Steps.TryGetValue(stepId, out var localStep) || IsIncomingNewer(localStep, incomingStep))
+                    {
+                        localLesson.Steps[stepId] = Clone(incomingStep);
+                    }
+                }
+            }
+
+            Save();
         }
     }
 
@@ -113,12 +159,36 @@ public sealed class ProgressStore
 
     private void Save()
     {
-        var directory = Path.GetDirectoryName(_path) ?? ".";
-        Directory.CreateDirectory(directory);
-        var temporary = _path + ".tmp";
-        File.WriteAllText(temporary, JsonSerializer.Serialize(_state, _options));
-        File.Move(temporary, _path, true);
+        AtomicJsonFile.Write(_path, _state, _options);
     }
+
+    private static bool IsIncomingNewer(StepProgress local, StepProgress incoming)
+    {
+        if (incoming.UpdatedUtc > local.UpdatedUtc) return true;
+        if (incoming.UpdatedUtc < local.UpdatedUtc) return false;
+        return string.IsNullOrWhiteSpace(local.Answer) && !string.IsNullOrWhiteSpace(incoming.Answer);
+    }
+
+    private static DateTimeOffset Max(DateTimeOffset left, DateTimeOffset right) => left >= right ? left : right;
+
+    private static StudentProgressState Clone(StudentProgressState source) => new()
+    {
+        Lessons = source.Lessons.ToDictionary(pair => pair.Key, pair => Clone(pair.Value), StringComparer.OrdinalIgnoreCase)
+    };
+
+    private static LessonProgress Clone(LessonProgress source) => new()
+    {
+        LastOpenedUtc = source.LastOpenedUtc,
+        Steps = source.Steps.ToDictionary(pair => pair.Key, pair => Clone(pair.Value), StringComparer.OrdinalIgnoreCase)
+    };
+
+    private static StepProgress Clone(StepProgress source) => new()
+    {
+        Answer = source.Answer,
+        IsCompleted = source.IsCompleted,
+        IsSolutionVisible = source.IsSolutionVisible,
+        UpdatedUtc = source.UpdatedUtc
+    };
 
     private static StudentProgressState Load(string path)
     {

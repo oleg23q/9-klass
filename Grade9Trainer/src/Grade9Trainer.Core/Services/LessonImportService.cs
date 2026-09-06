@@ -63,7 +63,7 @@ public sealed class LessonImportService(LessonMarkdownParser parser)
         return new ImportResult(imported, messages);
     }
 
-    private ImportResult ImportMarkdown(string markdown, string suggestedName, string userLessonRoot)
+    public ImportResult ImportMarkdown(string markdown, string suggestedName, string userLessonRoot)
     {
         if (Encoding.UTF8.GetByteCount(markdown) > MaximumLessonBytes)
         {

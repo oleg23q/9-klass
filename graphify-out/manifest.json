@@ -102,21 +102,21 @@
     "semantic_hash": ""
   },
   "Grade9Trainer/src/Grade9Trainer.App/Grade9Trainer.App.csproj": {
-    "mtime": 1788675169.4104195,
-    "seen": 1788676299.360931,
-    "ast_hash": "d3eb3b1c0a9e101a41e15f35b379ca19",
+    "mtime": 1788677807.3047879,
+    "seen": 1788678561.6758718,
+    "ast_hash": "7e9b84e2fcc13f2dca1b22dc24b10973",
     "semantic_hash": ""
   },
   "Grade9Trainer/src/Grade9Trainer.App/MainWindow.xaml": {
-    "mtime": 1788660769.145072,
-    "seen": 1788676299.3609326,
-    "ast_hash": "096294d37419f555135ec933e83c6def",
+    "mtime": 1788677371.0276532,
+    "seen": 1788677738.4294841,
+    "ast_hash": "486664e1a8053b92370e2eaf393fed13",
     "semantic_hash": ""
   },
   "Grade9Trainer/src/Grade9Trainer.App/MainWindow.xaml.cs": {
-    "mtime": 1788660769.145072,
-    "seen": 1788676299.3609347,
-    "ast_hash": "766550ed37fba8482ceb4bd070d295c0",
+    "mtime": 1788677409.3861609,
+    "seen": 1788677738.4294868,
+    "ast_hash": "1830e23b6c449cb415832e454a967d13",
     "semantic_hash": ""
   },
   "Grade9Trainer/src/Grade9Trainer.Core/Grade9Trainer.Core.csproj": {
@@ -132,9 +132,9 @@
     "semantic_hash": ""
   },
   "Grade9Trainer/src/Grade9Trainer.Core/Services/AppDataPaths.cs": {
-    "mtime": 1788660769.1430712,
-    "seen": 1788676299.3609421,
-    "ast_hash": "89c3583de8fab107e916eef8b09ded14",
+    "mtime": 1788677204.109586,
+    "seen": 1788677738.4295013,
+    "ast_hash": "ab8b9e53da141ac760c471b83d56db09",
     "semantic_hash": ""
   },
   "Grade9Trainer/src/Grade9Trainer.Core/Services/LessonCatalogService.cs": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "Grade9Trainer/src/Grade9Trainer.Core/Services/LessonImportService.cs": {
-    "mtime": 1788675052.6075468,
-    "seen": 1788676299.360946,
-    "ast_hash": "b48db1b7e6d0dcded0d1294dd935309e",
+    "mtime": 1788677246.6107974,
+    "seen": 1788677738.4295192,
+    "ast_hash": "32eec54d9313dd790d77a0c3f7324b2a",
     "semantic_hash": ""
   },
   "Grade9Trainer/src/Grade9Trainer.Core/Services/LessonMarkdownParser.cs": {
@@ -156,15 +156,15 @@
     "semantic_hash": ""
   },
   "Grade9Trainer/src/Grade9Trainer.Core/Services/PlainTextFormatter.cs": {
-    "mtime": 1788660592.9200995,
-    "seen": 1788676299.36095,
-    "ast_hash": "f4db34c6258e66eacac65ae00b1895bc",
+    "mtime": 1788677204.1106212,
+    "seen": 1788677738.4295266,
+    "ast_hash": "379a241e415ea0200e23bf42ff42577b",
     "semantic_hash": ""
   },
   "Grade9Trainer/src/Grade9Trainer.Core/Services/ProgressStore.cs": {
-    "mtime": 1788660769.1440718,
-    "seen": 1788676299.360952,
-    "ast_hash": "253ec80379def322a123062305e280d9",
+    "mtime": 1788677241.21548,
+    "seen": 1788677738.4295306,
+    "ast_hash": "d30911001012c65f1a3af2ef8ecf117e",
     "semantic_hash": ""
   },
   "Grade9Trainer/tests/Grade9Trainer.SmokeTests/Grade9Trainer.SmokeTests.csproj": {
@@ -174,9 +174,9 @@
     "semantic_hash": ""
   },
   "Grade9Trainer/tests/Grade9Trainer.SmokeTests/Program.cs": {
-    "mtime": 1788675052.6085453,
-    "seen": 1788676299.3609557,
-    "ast_hash": "443739775e81db035c77a9aa0cef31d5",
+    "mtime": 1788677482.9168248,
+    "seen": 1788677738.4295366,
+    "ast_hash": "5dcc8f9e79258c53beaf26ceaef91e52",
     "semantic_hash": ""
   },
   "Grade9Trainer/tests/Grade9Trainer.UiSmoke/Grade9Trainer.UiSmoke.csproj": {
@@ -186,9 +186,9 @@
     "semantic_hash": ""
   },
   "Grade9Trainer/tests/Grade9Trainer.UiSmoke/Program.cs": {
-    "mtime": 1788674811.5292888,
-    "seen": 1788676299.3609593,
-    "ast_hash": "4ba5f061d9c0e3f1bcec7831d02b4555",
+    "mtime": 1788677567.4846652,
+    "seen": 1788677738.4295406,
+    "ast_hash": "fbe288f2794b17871b882efc3efed686",
     "semantic_hash": ""
   },
   "tools/build_student_vault.py": {
@@ -204,9 +204,9 @@
     "semantic_hash": ""
   },
   "Grade9Trainer/Content/LESSON_FORMAT.md": {
-    "mtime": 1788660571.8767838,
-    "seen": 1788676299.3609974,
-    "ast_hash": "9d71b0933b920d8694e8cdac4fa59810",
+    "mtime": 1788677567.4881797,
+    "seen": 1788677738.429547,
+    "ast_hash": "0ee678a8fd023d4fbb412eb62a86f6d1",
     "semantic_hash": ""
   },
   "Grade9Trainer/Content/Lessons/\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0430/\u0423\u0440\u043e\u043a 01 - \u0412\u0432\u0435\u0434\u0435\u043d\u0438\u0435 \u0438 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u043e\u043d\u043d\u0430\u044f \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u044c.md": {
@@ -270,15 +270,15 @@
     "semantic_hash": ""
   },
   "Grade9Trainer/Content/Package/\u0418\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u044f.txt": {
-    "mtime": 1788675169.4094179,
-    "seen": 1788676299.3610325,
-    "ast_hash": "fcad720c641a0ab6aa432dbfa4fea3dd",
+    "mtime": 1788677617.70848,
+    "seen": 1788677738.4295733,
+    "ast_hash": "f7450e704e0e2b7d87457d29587c46f3",
     "semantic_hash": ""
   },
   "Grade9Trainer/README.md": {
-    "mtime": 1788676266.3003452,
-    "seen": 1788676299.3610356,
-    "ast_hash": "ad2cb6866e8c99ae2832a4cf7cecc994",
+    "mtime": 1788678553.0668104,
+    "seen": 1788678561.675942,
+    "ast_hash": "65e7ce73cfacc9d2b8a2e2f2eb3d32f6",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20260906_013624_\u0434\u043e\u0431\u0430\u0432\u044c_\u0435\u0449\u0435_\u0442\u0440\u0435\u0442\u0438\u0439_\u0443\u0440\u043e\u043a_\u043f\u043e_\u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0435.md": {
@@ -345,6 +345,72 @@
     "mtime": 1788676328.934802,
     "seen": 1788676349.6068118,
     "ast_hash": "08e5861137ceb9749c491afb2c1fe6d9",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/src/Grade9Trainer.App/DiagramView.cs": {
+    "mtime": 1788677298.3755553,
+    "seen": 1788677738.4294744,
+    "ast_hash": "a53b62fd232ed2775ec8bb1cb841ee7c",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/src/Grade9Trainer.App/LessonEditorWindow.xaml": {
+    "mtime": 1788677352.1404846,
+    "seen": 1788677738.4294798,
+    "ast_hash": "d98fc8b68a76b93c5c5eeed62bc1d1b4",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/src/Grade9Trainer.App/LessonEditorWindow.xaml.cs": {
+    "mtime": 1788677725.5314353,
+    "seen": 1788677738.429482,
+    "ast_hash": "71f4f6334f6bfac0398bd1eac6589af9",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/src/Grade9Trainer.App/ProfileNameDialog.cs": {
+    "mtime": 1788677352.1420188,
+    "seen": 1788677738.429489,
+    "ast_hash": "6093b00b1507280b38f89275f1fb0128",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/src/Grade9Trainer.Core/Models/DiagramModel.cs": {
+    "mtime": 1788677204.1045163,
+    "seen": 1788677738.429494,
+    "ast_hash": "df0a6c499de5be47f5ca3879044667a9",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/src/Grade9Trainer.Core/Models/StudentProfile.cs": {
+    "mtime": 1788677204.1061192,
+    "seen": 1788677738.4294987,
+    "ast_hash": "667b38f2e7eeb422aa88e8cd3669b867",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/src/Grade9Trainer.Core/Services/AtomicJsonFile.cs": {
+    "mtime": 1788677204.107762,
+    "seen": 1788677738.429503,
+    "ast_hash": "064945ea8fa4ffea30a606235dcf8ba1",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/src/Grade9Trainer.Core/Services/MermaidDiagramParser.cs": {
+    "mtime": 1788677445.6660938,
+    "seen": 1788677738.4295242,
+    "ast_hash": "6941882c0bcdf3e8ead6db231a56964e",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/src/Grade9Trainer.Core/Services/ProfilePackageService.cs": {
+    "mtime": 1788677241.2165277,
+    "seen": 1788677738.4295285,
+    "ast_hash": "e87ad7eeb698d056be0cd28f993e5174",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/src/Grade9Trainer.Core/Services/StudentProfileStore.cs": {
+    "mtime": 1788677204.1072156,
+    "seen": 1788677738.4295325,
+    "ast_hash": "50f37e23de9e90b604ffebd4e22d0809",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260906_065546_mermaid_\u043f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442\u0441\u044f_\u043a\u0430\u043a_\u043e\u0444\u043b\u0430\u0439\u043d_\u0441\u0445\u0435\u043c\u0430_\u0441\u043e_\u0441\u0442\u0440\u0435\u043b\u043a\u0430\u043c\u0438.md": {
+    "mtime": 1788677746.1546795,
+    "seen": 1788678561.675953,
+    "ast_hash": "01a66947f420e42044436b69ad6c213a",
     "semantic_hash": ""
   }
 }

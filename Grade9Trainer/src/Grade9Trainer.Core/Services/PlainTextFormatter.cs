@@ -7,6 +7,16 @@ public static partial class PlainTextFormatter
 {
     public static string Format(string markdown)
     {
+        return Format(markdown, includeDiagramFallback: true);
+    }
+
+    public static string FormatWithoutDiagrams(string markdown)
+    {
+        return Format(markdown, includeDiagramFallback: false);
+    }
+
+    private static string Format(string markdown, bool includeDiagramFallback)
+    {
         if (string.IsNullOrWhiteSpace(markdown)) return string.Empty;
 
         var output = new List<string>();
@@ -29,7 +39,7 @@ public static partial class PlainTextFormatter
 
                 if (isMermaid)
                 {
-                    output.AddRange(FormatMermaid(mermaid));
+                    if (includeDiagramFallback) output.AddRange(FormatMermaid(mermaid));
                     mermaid.Clear();
                 }
                 else if (code.Count > 0)

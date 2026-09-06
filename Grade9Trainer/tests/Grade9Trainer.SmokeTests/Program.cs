@@ -17,8 +17,10 @@ Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Химия") 
 Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Информатика") == 3, "Ожидалось 3 урока информатики.");
 
 var tempRoot = Path.Combine(Path.GetTempPath(), "Grade9Trainer-SmokeTests-" + Guid.NewGuid().ToString("N"));
+var previousDataRoot = Environment.GetEnvironmentVariable("GRADE9_TRAINER_DATA_DIR");
 try
 {
+    Environment.SetEnvironmentVariable("GRADE9_TRAINER_DATA_DIR", tempRoot);
     var progressPath = Path.Combine(tempRoot, "progress.json");
     var firstLesson = catalog.Lessons[0];
     var firstStep = firstLesson.Steps[0];
@@ -48,13 +50,38 @@ try
 
     var formattedDiagram = PlainTextFormatter.Format(firstLesson.IntroductionMarkdown);
     Assert(formattedDiagram.Contains('→'), "Mermaid-схема должна иметь читаемое офлайн-представление.");
+
+    var diagramParser = new MermaidDiagramParser();
+    var diagrams = catalog.Lessons.SelectMany(lesson => diagramParser.ParseFromMarkdown(lesson.IntroductionMarkdown)).ToArray();
+    Assert(diagrams.Length == 10, $"Ожидалось 10 графических схем, найдено {diagrams.Length}.");
+    Assert(diagrams.All(diagram => diagram.Nodes.Count >= 2 && diagram.Edges.Count >= 1), "Каждая схема должна содержать узлы и связи.");
+    Assert(diagrams.SelectMany(diagram => diagram.Nodes).Any(node => node.Shape == Grade9Trainer.Core.Models.DiagramNodeShape.Decision),
+        "Фигуры Mermaid-решений должны сохраняться в графической модели.");
+
+    var profileStore = new StudentProfileStore(Path.Combine(tempRoot, "profiles.json"));
+    Assert(profileStore.Profiles.Count == 1 && profileStore.Current.Id == "default", "Должен автоматически создаваться профиль первого ученика.");
+    var student = profileStore.Add("Анна");
+    profileStore.Select(student.Id);
+    var studentProgress = ProgressStore.CreateForProfile(student.Id);
+    studentProgress.UpdateAnswer(firstLesson.Metadata.Id, firstStep.Id, "Ответ Анны");
+    var remoteState = studentProgress.ExportSnapshot();
+    remoteState.Lessons[firstLesson.Metadata.Id].Steps[firstStep.Id].Answer = "Ответ после синхронизации";
+    remoteState.Lessons[firstLesson.Metadata.Id].Steps[firstStep.Id].UpdatedUtc = DateTimeOffset.UtcNow.AddMinutes(1);
+    var packagePath = Path.Combine(tempRoot, "student-progress.zip");
+    var packages = new ProfilePackageService();
+    packages.Export(packagePath, student, remoteState);
+    var importedProfile = packages.Import(packagePath, profileStore);
+    Assert(importedProfile.Profile.Id == student.Id, "Пакет прогресса должен сохранять идентификатор ученика.");
+    var merged = ProgressStore.CreateForProfile(student.Id).GetStep(firstLesson.Metadata.Id, firstStep.Id);
+    Assert(merged.Answer == "Ответ после синхронизации", "При импорте должна побеждать более новая версия ответа.");
 }
 finally
 {
+    Environment.SetEnvironmentVariable("GRADE9_TRAINER_DATA_DIR", previousDataRoot);
     if (Directory.Exists(tempRoot)) Directory.Delete(tempRoot, true);
 }
 
-Console.WriteLine("Smoke tests passed: 10 lessons, 74 steps, progress persistence, Markdown/ZIP import, diagram rendering.");
+Console.WriteLine("Smoke tests passed: 10 lessons, 74 steps, graphical diagrams, student profiles, progress merge, Markdown/ZIP import.");
 return;
 
 static void Assert(bool condition, string message)
