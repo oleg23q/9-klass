@@ -1,187 +1,195 @@
-# Graph Report - 9 КЛАСС  (2026-09-06)
+# Graph Report - 9 КЛАСС  (2026-09-12)
 
 ## Corpus Check
-- 68 files · ~41,617 words
-- Verdict: corpus is large enough that graph structure adds value.
+- cluster-only mode — file stats not available
 
 ## Summary
-- 671 nodes · 966 edges · 34 communities
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 30 edges (avg confidence: 0.82)
+- 720 nodes · 1093 edges · 38 communities (33 shown, 5 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.83)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f1c884ca`
+- Built from commit: `8798a501`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- 9 КЛАСС — Тренажёр
-- MainWindow
-- Урок 03 - Запись вспомогательных алгоритмов на Python
-- LessonMarkdownParser
-- Grade9Trainer.Core.Services
-- ProgressStore
-- Тренировка по шагам
+- StudentProfileStore
+- Урок 01. Материальная точка и система отсчета
 - Урок 00. Быстрая проверка языка химии
-- Тренировка по шагам
-- build_student_vault.py
-- Урок 03. Запись вспомогательных алгоритмов на Python
-- Урок 02. Вспомогательные алгоритмы
-- Тренировка по шагам
-- Тренировка по шагам
-- Тренировка по шагам
 - PlainTextFormatter
+- MermaidDiagramParser
+- LessonMarkdownParser
+- Урок 03. Запись вспомогательных алгоритмов на Python
+- Урок 03 - Запись вспомогательных алгоритмов на Python
 - Тренировка по шагам
 - Урок 02. Путь, перемещение и координата
-- Урок 03. Равномерное прямолинейное движение
-- Урок 01. Материальная точка и система отсчета
+- ProgressStore
 - Урок 02. Классификация химических реакций
-- Урок 03. Скорость химических реакций
-- Grade9Trainer.App.csproj
+- Window
+- .Main
+- Урок 01. Введение и информационная безопасность
+- build_student_vault.py
+- Урок 02. Вспомогательные алгоритмы
+- MainWindow
+- LessonEditorWindow
 - Настройка Syncthing на двух компьютерах Windows
-- Стартовый запас: физика и химия
+- .CreateStepCard
+- .AddProfile_Click
+- Grade9Trainer.App
+- LessonListItem
 - Проект «9 КЛАСС»
+- ProfileNameDialog
 - Q: добавь еще третий урок по информатике
 - Q: возможно создать программу для обучения ученика 9 класса на основе наших уроков на с# с возможностью дальнейшего добавления уроков
 - Q: отлично тогда начнем; продолжи создание программы для обучения ученика 9 класса на C#
 - Q: опубликовать 9 КЛАСС — Тренажёр MVP на GitHub и закоммитить все изменения
-- MermaidDiagramParser
-- StudentProfileStore
-- LessonEditorWindow
 - Q: Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам
+- Q: работает отправь на GitHub
+- Подготовительный урок A. Как решать задачи: алгоритм, данные, результат
+- Химия README
+- 9 КЛАСС - Тренажёр Инструкция
+- TextBlock
+- TextBlock
+- Урок 04 - Одномерные массивы на Python
 
 ## God Nodes (most connected - your core abstractions)
-1. `MainWindow` - 30 edges
-2. `LessonMarkdownParser` - 22 edges
-3. `ProgressStore` - 21 edges
-4. `Window` - 20 edges
-5. `Урок 03 - Запись вспомогательных алгоритмов на Python` - 18 edges
-6. `StudentProfileStore` - 17 edges
-7. `MermaidDiagramParser` - 15 edges
-8. `Grade9Trainer.Core.Services` - 14 edges
-9. `PlainTextFormatter` - 14 edges
-10. `LessonEditorWindow` - 13 edges
+1. `PlainTextFormatter` - 38 edges
+2. `MainWindow` - 33 edges
+3. `Window` - 28 edges
+4. `LessonMarkdownParser` - 22 edges
+5. `ProgressStore` - 21 edges
+6. `Урок 03 - Запись вспомогательных алгоритмов на Python` - 20 edges
+7. `StudentProfileStore` - 17 edges
+8. `MermaidDiagramParser` - 15 edges
+9. `Урок 02. Классификация химических реакций` - 15 edges
+10. `Урок 02. Путь, перемещение и координата` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Сверка с учебниками - старт 9 класса` --references--> `Урок 01. Материальная точка и система отсчета`  [EXTRACTED]
-  Общий/Сверка с учебниками - старт 9 класса.md → Физика/Уроки/Урок 01 - Материальная точка и система отсчета.md
-- `Сверка с учебниками - старт 9 класса` --references--> `Урок 00. Быстрая проверка языка химии`  [EXTRACTED]
-  Общий/Сверка с учебниками - старт 9 класса.md → Химия/Уроки/Урок 00 - Быстрая проверка языка химии.md
-- `Сверка с учебниками - старт 9 класса` --references--> `Урок 01. Классификация химических соединений`  [EXTRACTED]
-  Общий/Сверка с учебниками - старт 9 класса.md → Химия/Уроки/Урок 01 - Классификация химических соединений.md
-- `9 КЛАСС README` --references--> `Информатика README`  [EXTRACTED]
-  README.md → Информатика/README.md
-- `Сверка с учебниками - старт 9 класса` --references--> `Урок 01 - Введение и информационная безопасность`  [EXTRACTED]
-  Общий/Сверка с учебниками - старт 9 класса.md → Информатика/Уроки/Урок 01 - Введение и информационная безопасность.md
+- `Урок 02 - Вспомогательные алгоритмы` --conceptually_related_to--> `Урок 03 - Запись вспомогательных алгоритмов на Python`  [INFERRED]
+  Grade9Trainer/Content/Lessons/Информатика/Урок 02 - Вспомогательные алгоритмы.md → Информатика/Уроки/Урок 03 - Запись вспомогательных алгоритмов на Python.md
+- `Урок 03 - Запись вспомогательных алгоритмов на Python` --conceptually_related_to--> `Урок 04 - Одномерные массивы на Python`  [INFERRED]
+  Информатика/Уроки/Урок 03 - Запись вспомогательных алгоритмов на Python.md → Grade9Trainer/Content/Lessons/Информатика/Урок 04 - Одномерные массивы на Python.md
+- `Урок 01. Материальная точка и система отсчета` --references--> `Физика README`  [EXTRACTED]
+  Grade9Trainer/Content/Lessons/Физика/Урок 01 - Материальная точка и система отсчета.md → Физика/README.md
+- `Урок 01. Введение и информационная безопасность` --references--> `Информатика README`  [EXTRACTED]
+  Grade9Trainer/Content/Lessons/Информатика/Урок 01 - Введение и информационная безопасность.md → Информатика/README.md
+- `Сверка с учебниками - старт 9 класса` --conceptually_related_to--> `Урок 04 - Ускорение и равноускоренное движение`  [INFERRED]
+  Общий/Сверка с учебниками - старт 9 класса.md → Grade9Trainer/Content/Lessons/Физика/Урок 04 - Ускорение и равноускоренное движение.md
 
 ## Import Cycles
 - None detected.
 
-## Communities (34 total, 0 thin omitted)
+## Hyperedges (group relationships)
+- **Последовательность уроков по химии** — grade9trainer_content_lessons_химия_урок_00_быстрая_проверка_языка_химии_урок_00_быстрая_проверка_языка_химии, grade9trainer_content_lessons_химия_урок_01_классификация_химических_соединений_урок_01_классификация_химических_соединений, grade9trainer_content_lessons_химия_урок_02_классификация_химических_реакций_урок_02_классификация_химических_реакций, grade9trainer_content_lessons_химия_урок_03_скорость_химических_реакций_урок_03_скорость_химических_реакций, grade9trainer_content_lessons_химия_урок_04_обратимые_реакции_и_химическое_равновесие [EXTRACTED 1.00]
+- **Последовательность уроков по физике** — grade9trainer_content_lessons_физика_урок_01_материальная_точка_и_система_отсчета_урок_01_материальная_точка_и_система_отсчета, grade9trainer_content_lessons_физика_урок_02_путь_перемещение_и_координата_урок_02_путь_перемещение_и_координата, grade9trainer_content_lessons_физика_урок_03_равномерное_прямолинейное_движение_урок_03_равномерное_прямолинейное_движение [EXTRACTED 1.00]
+- **Последовательность уроков по информатике** — informatika_urok_01_vvedenie_i_informacionnaya_bezopasnost, informatika_urok_02_vspomogatelnie_algoritmi, информатика_уроки_урок_03_запись_вспомогательных_алгоритмов_на_python_урок_03_запись_вспомогательных_алгоритмов_на_python, informatika_urok_04_odnomernie_massivi_na_python [INFERRED 0.90]
 
-### Community 0 - "9 КЛАСС — Тренажёр"
+## Communities (38 total, 5 thin omitted)
+
+### Community 0 - "StudentProfileStore"
+Cohesion: 0.06
+Nodes (28): Grade9Trainer.Core.Models, Grade9Trainer.Core.Services, Grade9Trainer.App, DateTimeOffset, List, StudentProfile, StudentProfileRegistry, CurrentProfileId (+20 more)
+
+### Community 1 - "Урок 01. Материальная точка и система отсчета"
+Cohesion: 0.04
+Nodes (48): Физика README, Вопросы ученика, Комментарий преподавателя, Материальная точка, Механическое движение, Наглядная схема, Система отсчета, Тренировка по шагам (+40 more)
+
+### Community 2 - "Урок 00. Быстрая проверка языка химии"
+Cohesion: 0.04
+Nodes (45): Алгоритм расстановки коэффициентов, Вопросы ученика, Индекс и коэффициент, Как читать химическую формулу, Комментарий преподавателя, Наглядная схема, Пример 1, Пример 2 (+37 more)
+
+### Community 3 - "PlainTextFormatter"
+Cohesion: 0.13
+Nodes (8): GeneratedRegex, IEnumerable, IReadOnlyList, Regex, PlainTextFormatter, ICollection, IReadOnlyCollection, Match
+
+### Community 4 - "MermaidDiagramParser"
+Cohesion: 0.10
+Nodes (27): Border, Canvas, DiagramStyle, Dictionary, SolidColorBrush, DiagramView, IReadOnlyList, DiagramDirection (+19 more)
+
+### Community 5 - "LessonMarkdownParser"
 Cohesion: 0.11
-Nodes (21): Физика README, Урок 01. Материальная точка и система отсчета, Формат добавляемого урока, 9 КЛАСС — Тренажёр, Где хранятся данные, Готовая Windows-сборка, Границы версии 0.2 и следующие этапы, Запуск для разработки (+13 more)
-
-### Community 1 - "MainWindow"
-Cohesion: 0.07
-Nodes (31): DisplayTitle, FrameworkElement, LessonContent, LessonList, LessonMeta, LessonProgress, LessonScroll, LessonTitle (+23 more)
-
-### Community 2 - "Урок 03 - Запись вспомогательных алгоритмов на Python"
-Cohesion: 0.05
-Nodes (40): 1. Функция без параметров, 2. Параметр и аргумент, 3. Возвращаемое значение, Алгоритм словами, Домашнее задание, Дополнительно, Дополнительно, Дополнительно (+32 more)
-
-### Community 3 - "LessonMarkdownParser"
-Cohesion: 0.12
 Nodes (15): Body, IReadOnlyList, CatalogLoadResult, ImportResult, LessonDocument, LessonMetadata, LessonStep, LessonCatalogService (+7 more)
 
-### Community 4 - "Grade9Trainer.Core.Services"
-Cohesion: 0.06
-Nodes (22): ComboBox, Grade9Trainer.Core.Models, Grade9Trainer.Core.Services, Grade9Trainer.UiSmoke, Grade9Trainer.App, DependencyObject, Application, App (+14 more)
+### Community 6 - "Урок 03. Запись вспомогательных алгоритмов на Python"
+Cohesion: 0.05
+Nodes (37): Урок 04 - Ускорение и равноускоренное движение, Формат добавляемого урока, 1. Функция без параметров, 2. Параметр и аргумент, 3. Возвращаемое значение, Алгоритм словами, Вопросы ученика, Комментарий преподавателя (+29 more)
 
-### Community 5 - "ProgressStore"
-Cohesion: 0.15
-Nodes (14): DateTimeOffset, Dictionary, JsonSerializerOptions, LessonProgress, LastOpenedUtc, Steps, ProgressStore, StepProgress (+6 more)
-
-### Community 6 - "Тренировка по шагам"
-Cohesion: 0.08
-Nodes (23): Вопросы ученика, Кислоты, Комментарий преподавателя, Наглядная схема, Оксиды, Основания, Основные классы сложных веществ, Пример 1 (+15 more)
-
-### Community 7 - "Урок 00. Быстрая проверка языка химии"
-Cohesion: 0.09
-Nodes (22): Алгоритм расстановки коэффициентов, Вопросы ученика, Индекс и коэффициент, Как читать химическую формулу, Комментарий преподавателя, Наглядная схема, Пример 1, Пример 2 (+14 more)
+### Community 7 - "Урок 03 - Запись вспомогательных алгоритмов на Python"
+Cohesion: 0.05
+Nodes (39): Урок 04 - Одномерные массивы на Python, 1. Функция без параметров, 2. Параметр и аргумент, 3. Возвращаемое значение, Алгоритм словами, Домашнее задание, Дополнительно, Задание 1 (+31 more)
 
 ### Community 8 - "Тренировка по шагам"
-Cohesion: 0.09
-Nodes (21): Вопросы ученика, Информационная безопасность, Комментарий преподавателя, Личные данные, Наглядная схема, Обзор курса 9 класса, Пароли, Работа за компьютером (+13 more)
+Cohesion: 0.06
+Nodes (35): Вопросы ученика, Комментарий преподавателя, Наглядная схема, От вещества к реакции, Разобранный пример, Тренировка по шагам, Урок 02. Классификация химических реакций, Четыре типа по составу участников (+27 more)
 
-### Community 9 - "build_student_vault.py"
+### Community 9 - "Урок 02. Путь, перемещение и координата"
+Cohesion: 0.06
+Nodes (32): Урок 01. Материальная точка и система отсчета, 10. После занятия, 1. Разминка без оценки, 2. Объяснение через маршрут, 3. Разобранный пример, 4. Практика вместе, 5. Самостоятельная работа, 6. Выходной вопрос и решение о следующем уроке (+24 more)
+
+### Community 10 - "ProgressStore"
+Cohesion: 0.14
+Nodes (14): DateTimeOffset, Dictionary, JsonSerializerOptions, LessonProgress, LastOpenedUtc, Steps, ProgressStore, StepProgress (+6 more)
+
+### Community 11 - "Урок 02. Классификация химических реакций"
+Cohesion: 0.07
+Nodes (28): Урок 01. Классификация химических соединений, 10. Типичные ошибки и запись результата, 1. Мягкое вспоминание, 2. От вещества к реакции, 3. Четыре типа по составу участников, 4. Разобранный пример, 5. Практика вместе, 6. Самостоятельная работа (+20 more)
+
+### Community 12 - "Window"
+Cohesion: 0.10
+Nodes (25): DisplayTitle, ValidationText, LessonColumn, LessonContent, LessonMeta, LessonPanel, LessonProgress, LessonScroll (+17 more)
+
+### Community 13 - ".Main"
+Cohesion: 0.10
+Nodes (16): ComboBox, Grade9Trainer.UiSmoke, DependencyObject, Application, App, Border, Button, IEnumerable (+8 more)
+
+### Community 14 - "Урок 01. Введение и информационная безопасность"
+Cohesion: 0.09
+Nodes (22): Информатика README, Вопросы ученика, Информационная безопасность, Комментарий преподавателя, Личные данные, Наглядная схема, Обзор курса 9 класса, Пароли (+14 more)
+
+### Community 15 - "build_student_vault.py"
 Cohesion: 0.19
 Nodes (21): Path, build(), callout(), clean_section(), header(), learning_step(), lesson_path(), main() (+13 more)
 
-### Community 10 - "Урок 03. Запись вспомогательных алгоритмов на Python"
-Cohesion: 0.10
-Nodes (19): 1. Функция без параметров, 2. Параметр и аргумент, 3. Возвращаемое значение, Алгоритм словами, Вопросы ученика, Комментарий преподавателя, Наглядная схема, Программа (+11 more)
-
-### Community 11 - "Урок 02. Вспомогательные алгоритмы"
+### Community 16 - "Урок 02. Вспомогательные алгоритмы"
 Cohesion: 0.11
 Nodes (17): Вариант через исполнителя, Вопросы ученика, Вспомогательный алгоритм, Комментарий преподавателя, Наглядная схема, Новая идея, Пример на Python, Трассировка запуска (+9 more)
 
-### Community 12 - "Тренировка по шагам"
-Cohesion: 0.11
-Nodes (17): Вопросы ученика, Дополнительный блок: таблица и график, Комментарий преподавателя, Модель и формулы, Наглядная схема, Перевод единиц, Разобранный пример, Тренировка по шагам (+9 more)
+### Community 17 - "MainWindow"
+Cohesion: 0.20
+Nodes (7): FocusModeButton, IReadOnlyList, RoutedEventArgs, MainWindow, KeyEventArgs, LessonListItem, Button
 
-### Community 13 - "Тренировка по шагам"
-Cohesion: 0.11
-Nodes (17): Вопросы ученика, Комментарий преподавателя, Наглядная схема, От вещества к реакции, Разобранный пример, Тренировка по шагам, Урок 02. Классификация химических реакций, Четыре типа по составу участников (+9 more)
+### Community 18 - "LessonEditorWindow"
+Cohesion: 0.27
+Nodes (6): EditorText, Window, RoutedEventArgs, LessonEditorWindow, SavedLessonId, TextBox
 
-### Community 14 - "Тренировка по шагам"
-Cohesion: 0.11
-Nodes (17): Вопросы ученика, Комментарий преподавателя, Наглядная схема, Разобранный пример: сравниваем одно условие, Тренировка по шагам, Урок 03. Скорость химических реакций, Что значит «быстрее», Что может влиять на скорость (+9 more)
-
-### Community 15 - "PlainTextFormatter"
-Cohesion: 0.29
-Nodes (5): GeneratedRegex, IEnumerable, IReadOnlyList, Regex, PlainTextFormatter
-
-### Community 16 - "Тренировка по шагам"
-Cohesion: 0.12
-Nodes (15): Вопросы ученика, Комментарий преподавателя, Координата и проекция, Наглядная схема, Объяснение через маршрут, Разобранный пример, Тренировка по шагам, Урок 02. Путь, перемещение и координата (+7 more)
-
-### Community 17 - "Урок 02. Путь, перемещение и координата"
-Cohesion: 0.13
-Nodes (14): 10. После занятия, 1. Разминка без оценки, 2. Объяснение через маршрут, 3. Разобранный пример, 4. Практика вместе, 5. Самостоятельная работа, 6. Выходной вопрос и решение о следующем уроке, 7. Домашнее задание на 10–15 минут (+6 more)
-
-### Community 18 - "Урок 03. Равномерное прямолинейное движение"
-Cohesion: 0.13
-Nodes (14): 10. Типичные ошибки и запись результата, 1. Разминка, 2. Модель и формулы, 3. Разобранный пример, 4. Практика вместе, 5. Самостоятельная работа, 6. Дополнительный блок: таблица и график, 7. Выходной вопрос и критерий перехода (+6 more)
-
-### Community 19 - "Урок 01. Материальная точка и система отсчета"
-Cohesion: 0.14
-Nodes (13): Вопросы ученика, Комментарий преподавателя, Материальная точка, Механическое движение, Наглядная схема, Система отсчета, Тренировка по шагам, Урок 01. Материальная точка и система отсчета (+5 more)
-
-### Community 20 - "Урок 02. Классификация химических реакций"
-Cohesion: 0.14
-Nodes (13): 10. Типичные ошибки и запись результата, 1. Мягкое вспоминание, 2. От вещества к реакции, 3. Четыре типа по составу участников, 4. Разобранный пример, 5. Практика вместе, 6. Самостоятельная работа, 7. Выходной вопрос и критерий перехода (+5 more)
-
-### Community 21 - "Урок 03. Скорость химических реакций"
-Cohesion: 0.14
-Nodes (13): 1. Разминка, 2. Что значит «быстрее», 3. Разобранный пример: сравниваем одно условие, 4. Практика вместе, 5. Самостоятельная работа, 6. Выходной вопрос и критерий успеха, 7. Домашнее задание на 10–15 минут, 8. Ключ для взрослого — после попытки (+5 more)
-
-### Community 22 - "Grade9Trainer.App.csproj"
-Cohesion: 0.19
-Nodes (8): net10.0-windows, Microsoft.NET.Sdk, net10.0, Microsoft.NET.Sdk, net10.0, Microsoft.NET.Sdk, net10.0-windows, Microsoft.NET.Sdk
-
-### Community 23 - "Настройка Syncthing на двух компьютерах Windows"
+### Community 19 - "Настройка Syncthing на двух компьютерах Windows"
 Cohesion: 0.18
 Nodes (10): 1. Установка и первое открытие, 2. Связать компьютеры, 3. Добавить общую папку на компьютере преподавателя, 4. Принять папку на компьютере ученика, 5. Как проходить урок по шагам, 6. Автозапуск, 7. Правила работы без конфликтов, 8. Контрольная проверка (+2 more)
 
-### Community 24 - "Стартовый запас: физика и химия"
-Cohesion: 0.29
-Nodes (6): Выбрать занятие, Границы набора, Как начать без дополнительной подготовки, Короткая запись после занятия, На что смотреть при переходе, Стартовый запас: физика и химия
+### Community 20 - ".CreateStepCard"
+Cohesion: 0.31
+Nodes (4): FrameworkElement, Button, SolidColorBrush, TextBox
 
-### Community 25 - "Проект «9 КЛАСС»"
+### Community 21 - ".AddProfile_Click"
+Cohesion: 0.27
+Nodes (3): ProfileList, ProfilePackageManifest, ComboBox
+
+### Community 22 - "Grade9Trainer.App"
+Cohesion: 0.54
+Nodes (7): Grade9Trainer.App, net10.0-windows, Microsoft.NET.Sdk, Grade9Trainer.Core, net10.0, Grade9Trainer.SmokeTests, Grade9Trainer.UiSmoke
+
+### Community 23 - "LessonListItem"
+Cohesion: 0.29
+Nodes (6): LessonList, SubjectList, LessonListItem, DisplayTitle, SelectionChangedEventArgs, ListBox
+
+### Community 24 - "Проект «9 КЛАСС»"
 Cohesion: 0.40
 Nodes (4): Автоматическое сохранение итогов, Границы, Проект «9 КЛАСС», Чтение памяти
+
+### Community 25 - "ProfileNameDialog"
+Cohesion: 0.40
+Nodes (4): TextBox, ProfileNameDialog, ProfileName, Window
 
 ### Community 26 - "Q: добавь еще третий урок по информатике"
 Cohesion: 0.40
@@ -199,49 +207,50 @@ Nodes (4): Answer, Outcome, Q: отлично тогда начнем; прод�
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: опубликовать 9 КЛАСС — Тренажёр MVP на GitHub и закоммитить все изменения, Source Nodes
 
-### Community 30 - "MermaidDiagramParser"
-Cohesion: 0.10
-Nodes (27): Border, Canvas, DiagramStyle, Dictionary, SolidColorBrush, DiagramView, IReadOnlyList, DiagramDirection (+19 more)
-
-### Community 31 - "StudentProfileStore"
-Cohesion: 0.11
-Nodes (18): DateTimeOffset, List, StudentProfile, StudentProfileRegistry, CurrentProfileId, Profiles, DateTimeOffset, JsonSerializerOptions (+10 more)
-
-### Community 32 - "LessonEditorWindow"
-Cohesion: 0.15
-Nodes (12): EditorText, ValidationText, Window, RoutedEventArgs, LessonEditorWindow, SavedLessonId, TextBlock, TextBox (+4 more)
-
-### Community 33 - "Q: Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам"
+### Community 30 - "Q: Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам"
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам, Source Nodes
 
+### Community 31 - "Q: работает отправь на GitHub"
+Cohesion: 0.40
+Nodes (4): Answer, Outcome, Q: работает отправь на GitHub, Source Nodes
+
+### Community 32 - "Подготовительный урок A. Как решать задачи: алгоритм, данные, результат"
+Cohesion: 0.50
+Nodes (4): Подготовительный урок A. Как решать задачи: алгоритм, данные, результат, Подготовительный урок B. Условия и ветвление if, Программа - Босова 9 класс, Урок 02 - Методы построения алгоритмов и вспомогательные алгоритмы
+
 ## Knowledge Gaps
-- **312 isolated node(s):** `net10.0-windows`, `Microsoft.NET.Sdk`, `TextBox`, `TextBlock`, `SavedLessonId` (+307 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 378 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **321 isolated node(s):** `CurrentProfileId`, `Profiles`, `ProfilesFile`, `ProgressFile`, `Root` (+316 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 385 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
 **Preferred sources** — corroborated by past sessions; start here.
-- `Программа - Босова 9 класс` (4× useful, score=3.989099087)
-- `Информатика README` (4× useful, score=3.989099087)
-- `Физика README` (3× useful, score=2.994210436)
-- `Химия README` (3× useful, score=2.994210436)
-- `Урок 02 - Методы построения алгоритмов и вспомогательные алгоритмы` (3× useful, score=2.98947837)
+- `MainWindow` (5× useful, score=4.807709032)
+- `Программа - Босова 9 класс` (4× useful, score=3.623541441)
+- `Информатика README` (4× useful, score=3.623541441)
+- `Физика README` (3× useful, score=2.71982354)
+- `Химия README` (3× useful, score=2.71982354)
+- `Урок 02 - Методы построения алгоритмов и вспомогательные алгоритмы` (3× useful, score=2.715525117)
+- `.RenderLesson()` (2× useful, score=1.9909556)
+- `Физика/Урок 02 - Путь, перемещение и координата.md` (2× useful, score=1.825688532)
+- `ProgressStore` (2× useful, score=1.816920965)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `MainWindow` connect `MainWindow` to `LessonEditorWindow`, `LessonMarkdownParser`, `Grade9Trainer.Core.Services`, `ProgressStore`, `MermaidDiagramParser`, `StudentProfileStore`?**
-  _High betweenness centrality (0.075) - this node is a cross-community bridge._
-- **Why does `LessonMarkdownParser` connect `LessonMarkdownParser` to `LessonEditorWindow`, `MainWindow`, `Grade9Trainer.Core.Services`?**
-  _High betweenness centrality (0.027) - this node is a cross-community bridge._
-- **Why does `MermaidDiagramParser` connect `MermaidDiagramParser` to `MainWindow`, `Grade9Trainer.Core.Services`?**
-  _High betweenness centrality (0.024) - this node is a cross-community bridge._
-- **What connects `net10.0-windows`, `Microsoft.NET.Sdk`, `TextBox` to the rest of the system?**
-  _312 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `9 КЛАСС — Тренажёр` be split into smaller, more focused modules?**
-  _Cohesion score 0.1067193675889328 - nodes in this community are weakly interconnected._
-- **Should `MainWindow` be split into smaller, more focused modules?**
-  _Cohesion score 0.06894049346879536 - nodes in this community are weakly interconnected._
-- **Should `Урок 03 - Запись вспомогательных алгоритмов на Python` be split into smaller, more focused modules?**
-  _Cohesion score 0.04878048780487805 - nodes in this community are weakly interconnected._
+- **Why does `MainWindow` connect `MainWindow` to `StudentProfileStore`, `MermaidDiagramParser`, `LessonMarkdownParser`, `ProgressStore`, `Window`, `.Main`, `.CreateStepCard`, `.AddProfile_Click`, `LessonListItem`, `ProfileNameDialog`?**
+  _High betweenness centrality (0.088) - this node is a cross-community bridge._
+- **Why does `Window` connect `Window` to `MainWindow`, `.AddProfile_Click`, `LessonListItem`?**
+  _High betweenness centrality (0.033) - this node is a cross-community bridge._
+- **Why does `PlainTextFormatter` connect `PlainTextFormatter` to `StudentProfileStore`?**
+  _High betweenness centrality (0.028) - this node is a cross-community bridge._
+- **What connects `CurrentProfileId`, `Profiles`, `ProfilesFile` to the rest of the system?**
+  _321 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `StudentProfileStore` be split into smaller, more focused modules?**
+  _Cohesion score 0.057329462989840346 - nodes in this community are weakly interconnected._
+- **Should `Урок 01. Материальная точка и система отсчета` be split into smaller, more focused modules?**
+  _Cohesion score 0.041666666666666664 - nodes in this community are weakly interconnected._
+- **Should `Урок 00. Быстрая проверка языка химии` be split into smaller, more focused modules?**
+  _Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected._

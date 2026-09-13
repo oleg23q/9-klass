@@ -6,15 +6,15 @@ var parser = new LessonMarkdownParser();
 var catalog = new LessonCatalogService(parser).Load(lessonRoot);
 
 Assert(catalog.Warnings.Count == 0, "Каталог содержит предупреждения: " + string.Join("; ", catalog.Warnings));
-Assert(catalog.Lessons.Count == 10, $"Ожидалось 10 уроков, найдено {catalog.Lessons.Count}.");
-Assert(catalog.Lessons.Sum(lesson => lesson.Steps.Count) == 74, "Ожидалось 74 последовательных шага.");
-Assert(catalog.Lessons.Select(lesson => lesson.Metadata.Id).Distinct().Count() == 10, "Идентификаторы уроков должны быть уникальными.");
+Assert(catalog.Lessons.Count == 13, $"Ожидалось 13 уроков, найдено {catalog.Lessons.Count}.");
+Assert(catalog.Lessons.Sum(lesson => lesson.Steps.Count) == 96, "Ожидалось 96 последовательных шагов.");
+Assert(catalog.Lessons.Select(lesson => lesson.Metadata.Id).Distinct().Count() == 13, "Идентификаторы уроков должны быть уникальными.");
 Assert(catalog.Lessons.All(lesson => lesson.Steps.All(step =>
     !string.IsNullOrWhiteSpace(step.PromptMarkdown) && !string.IsNullOrWhiteSpace(step.SolutionMarkdown))),
     "У каждого шага должны быть задание и решение.");
-Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Физика") == 3, "Ожидалось 3 урока физики.");
-Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Химия") == 4, "Ожидалось 4 урока химии.");
-Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Информатика") == 3, "Ожидалось 3 урока информатики.");
+Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Физика") == 4, "Ожидалось 4 урока физики.");
+Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Химия") == 5, "Ожидалось 5 уроков химии с учётом подготовительного урока 00.");
+Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Информатика") == 4, "Ожидалось 4 урока информатики.");
 
 var tempRoot = Path.Combine(Path.GetTempPath(), "Grade9Trainer-SmokeTests-" + Guid.NewGuid().ToString("N"));
 var previousDataRoot = Environment.GetEnvironmentVariable("GRADE9_TRAINER_DATA_DIR");
@@ -51,9 +51,72 @@ try
     var formattedDiagram = PlainTextFormatter.Format(firstLesson.IntroductionMarkdown);
     Assert(formattedDiagram.Contains('→'), "Mermaid-схема должна иметь читаемое офлайн-представление.");
 
+    var formattedTable = PlainTextFormatter.Format("""
+        | Ситуация | Можно считать точкой? | Почему |
+        |---|---|---|
+        | Поезд между городами | Да | Размер мал по сравнению с расстоянием |
+        """);
+    Assert(formattedTable.Contains("• Ситуация: Поезд между городами", StringComparison.Ordinal),
+        "Markdown-таблица должна превращаться в читаемую карточку.");
+    Assert(!formattedTable.Contains("|---", StringComparison.Ordinal) && !formattedTable.Contains("| Ситуация", StringComparison.Ordinal),
+        "Служебные разделители Markdown-таблицы не должны показываться ученику.");
+
+    var formattedMath = PlainTextFormatter.Format("""
+        Для движения вдоль оси $Ox$:
+
+        $$
+        s_x=x-x_0, \qquad v=\frac{l}{t}, \qquad a=2\ \mathrm{м/с^2}.
+        $$
+        """);
+    Assert(formattedMath.Contains("sₓ = x-x₀", StringComparison.Ordinal), "Индексы формулы должны быть читаемыми.");
+    Assert(formattedMath.Contains("v = l/t", StringComparison.Ordinal), "Дробь LaTeX должна отображаться обычной дробной записью.");
+    Assert(formattedMath.Contains("м/с²", StringComparison.Ordinal), "Степень единицы измерения должна отображаться верхним индексом.");
+    Assert(!formattedMath.Contains('$') && !formattedMath.Contains('\\'),
+        "Служебные символы LaTeX не должны показываться ученику.");
+
+    var formattedExtendedMath = PlainTextFormatter.Format(
+        @"$\vec{s}$, $\operatorname{len}(a)$, $t\uparrow$, $p\downarrow$, $N_2+3H_2\rightleftharpoons2NH_3$");
+    Assert(formattedExtendedMath.Contains("s⃗", StringComparison.Ordinal) &&
+           formattedExtendedMath.Contains("len(a)", StringComparison.Ordinal) &&
+           formattedExtendedMath.Contains('↑') && formattedExtendedMath.Contains('↓') &&
+           formattedExtendedMath.Contains('⇌') && !formattedExtendedMath.Contains('\\'),
+        "Векторы, функции и стрелки должны отображаться понятными символами.");
+
+    var formattedUnitFraction = PlainTextFormatter.Format(
+        @"$$1\ \text{км/ч}=\frac{1000\ \text{м}}{3600\ \text{с}}=\frac{1}{3{,}6}\ \text{м/с}.$$ ");
+    Assert(formattedUnitFraction.Contains("(1000 м)/(3600 с)", StringComparison.Ordinal) &&
+           formattedUnitFraction.Contains("1/3,6", StringComparison.Ordinal) &&
+           !formattedUnitFraction.Contains("frac", StringComparison.OrdinalIgnoreCase),
+        "Дроби с единицами измерения должны преобразовываться без обломков команд LaTeX.");
+
+    var formattedChemistryTable = PlainTextFormatter.Format("""
+        | Формула | Состав |
+        |---|---|
+        | H2O | 2 атома H и 1 атом O |
+        """);
+    Assert(formattedChemistryTable.Contains("Формула: H₂O", StringComparison.Ordinal),
+        "Индексы химической формулы в таблице должны отображаться снизу.");
+
+    var renderedLessonBlocks = catalog.Lessons.SelectMany(lesson =>
+        new[] { PlainTextFormatter.FormatWithoutDiagrams(lesson.IntroductionMarkdown) }
+            .Concat(lesson.Steps.SelectMany(step => new[]
+            {
+                PlainTextFormatter.Format(step.PromptMarkdown),
+                PlainTextFormatter.Format(step.SolutionMarkdown)
+            })));
+    foreach (var renderedBlock in renderedLessonBlocks)
+    {
+        Assert(!renderedBlock.Contains("$$", StringComparison.Ordinal) &&
+               !renderedBlock.Contains("\\qquad", StringComparison.Ordinal) &&
+               !renderedBlock.Contains("\\frac", StringComparison.Ordinal),
+            "Во встроенных уроках не должны оставаться служебные команды LaTeX.");
+        Assert(!renderedBlock.Split(Environment.NewLine).Any(line => line.TrimStart().StartsWith("|---", StringComparison.Ordinal)),
+            "Во встроенных уроках не должны оставаться разделители Markdown-таблиц.");
+    }
+
     var diagramParser = new MermaidDiagramParser();
     var diagrams = catalog.Lessons.SelectMany(lesson => diagramParser.ParseFromMarkdown(lesson.IntroductionMarkdown)).ToArray();
-    Assert(diagrams.Length == 10, $"Ожидалось 10 графических схем, найдено {diagrams.Length}.");
+    Assert(diagrams.Length == 13, $"Ожидалось 13 графических схем, найдено {diagrams.Length}.");
     Assert(diagrams.All(diagram => diagram.Nodes.Count >= 2 && diagram.Edges.Count >= 1), "Каждая схема должна содержать узлы и связи.");
     Assert(diagrams.SelectMany(diagram => diagram.Nodes).Any(node => node.Shape == Grade9Trainer.Core.Models.DiagramNodeShape.Decision),
         "Фигуры Mermaid-решений должны сохраняться в графической модели.");
@@ -81,7 +144,7 @@ finally
     if (Directory.Exists(tempRoot)) Directory.Delete(tempRoot, true);
 }
 
-Console.WriteLine("Smoke tests passed: 10 lessons, 74 steps, graphical diagrams, student profiles, progress merge, Markdown/ZIP import.");
+Console.WriteLine("Smoke tests passed: 13 lessons, 96 steps, graphical diagrams, student profiles, progress merge, Markdown/ZIP import.");
 return;
 
 static void Assert(bool condition, string message)

@@ -3,6 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using Grade9Trainer.Core.Models;
 using Grade9Trainer.Core.Services;
@@ -22,16 +23,53 @@ public partial class MainWindow : Window
     private IReadOnlyList<LessonDocument> _lessons = [];
     private LessonDocument? _currentLesson;
     private bool _updatingProfiles;
+    private bool _focusMode;
+    private string _statusBeforeFocusMode = string.Empty;
 
     public MainWindow()
     {
         InitializeComponent();
         _progress = ProgressStore.CreateForProfile(_profiles.Current.Id);
+        PreviewKeyDown += MainWindow_PreviewKeyDown;
         Loaded += (_, _) =>
         {
             ReloadProfiles();
             ReloadCatalog();
         };
+    }
+
+    private void ToggleFocusMode_Click(object sender, RoutedEventArgs e) => SetFocusMode(!_focusMode);
+
+    private void MainWindow_PreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.F11)
+        {
+            SetFocusMode(!_focusMode);
+            e.Handled = true;
+        }
+        else if (_focusMode && e.Key == Key.Escape)
+        {
+            SetFocusMode(false);
+            e.Handled = true;
+        }
+    }
+
+    private void SetFocusMode(bool enabled)
+    {
+        if (enabled) _statusBeforeFocusMode = StatusText.Text;
+        _focusMode = enabled;
+        SubjectPanel.Visibility = enabled ? Visibility.Collapsed : Visibility.Visible;
+        LessonPanel.Visibility = enabled ? Visibility.Collapsed : Visibility.Visible;
+        SubjectColumn.Width = enabled ? new GridLength(0) : new GridLength(210);
+        LessonColumn.Width = enabled ? new GridLength(0) : new GridLength(300);
+        SidebarGapColumn.Width = enabled ? new GridLength(0) : new GridLength(12);
+        FocusModeButton.Content = enabled ? "Вернуть панели" : "Развернуть урок";
+        FocusModeButton.ToolTip = enabled
+            ? "Вернуть панели «Предметы» и «Уроки» (F11 или Esc)"
+            : "Скрыть панели «Предметы» и «Уроки» (F11)";
+        StatusText.Text = enabled
+            ? "Режим урока: панели скрыты. F11 или Esc — вернуть."
+            : _statusBeforeFocusMode;
     }
 
     private void ReloadProfiles(string? preferredProfileId = null)
@@ -134,6 +172,7 @@ public partial class MainWindow : Window
     private FrameworkElement CreateStepCard(LessonDocument lesson, LessonStep step)
     {
         var state = _progress.GetStep(lesson.Metadata.Id, step.Id);
+        var showSolution = state.IsSolutionVisible || !string.IsNullOrWhiteSpace(state.Answer);
         var body = new StackPanel { Margin = new Thickness(0, 12, 0, 4) };
         body.Children.Add(ReadableText(PlainTextFormatter.Format(step.PromptMarkdown), 16));
         body.Children.Add(new TextBlock
@@ -146,6 +185,7 @@ public partial class MainWindow : Window
 
         var answer = new TextBox
         {
+            Tag = "StudentAnswer",
             Text = state.Answer,
             AcceptsReturn = true,
             TextWrapping = TextWrapping.Wrap,
@@ -164,18 +204,19 @@ public partial class MainWindow : Window
 
         var solution = new Border
         {
+            Tag = "StepSolution",
             Background = Brush("#ECFDF3"),
             BorderBrush = Brush("#ABEFC6"),
             BorderThickness = new Thickness(1),
             CornerRadius = new CornerRadius(8),
             Padding = new Thickness(14),
             Margin = new Thickness(0, 10, 0, 0),
-            Visibility = state.IsSolutionVisible ? Visibility.Visible : Visibility.Collapsed,
+            Visibility = showSolution ? Visibility.Visible : Visibility.Collapsed,
             Child = ReadableText(PlainTextFormatter.Format(step.SolutionMarkdown), 15)
         };
 
         var buttons = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 10, 0, 0) };
-        var solutionButton = SecondaryButton(state.IsSolutionVisible ? "Скрыть разбор" : "Показать разбор");
+        var solutionButton = SecondaryButton(showSolution ? "Скрыть разбор" : "Показать разбор");
         solutionButton.Click += (_, _) =>
         {
             var visible = solution.Visibility != Visibility.Visible;
@@ -342,15 +383,33 @@ public partial class MainWindow : Window
         Process.Start(new ProcessStartInfo("explorer.exe", _userRoot) { UseShellExecute = true });
     }
 
-    private static TextBlock ReadableText(string value, double size) => new()
+    private static TextBox ReadableText(string value, double size)
     {
-        Text = value,
-        TextWrapping = TextWrapping.Wrap,
-        FontWeight = FontWeights.Normal,
-        FontSize = size,
-        LineHeight = size * 1.48,
-        Foreground = Brush("#172033")
-    };
+        var textBox = new TextBox
+        {
+            Tag = "SelectableLessonText",
+            Text = value,
+            IsReadOnly = true,
+            IsReadOnlyCaretVisible = true,
+            AcceptsReturn = true,
+            TextWrapping = TextWrapping.Wrap,
+            HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled,
+            VerticalScrollBarVisibility = ScrollBarVisibility.Disabled,
+            BorderThickness = new Thickness(0),
+            Padding = new Thickness(0),
+            Background = Brushes.Transparent,
+            FontWeight = FontWeights.Normal,
+            FontSize = size,
+            Foreground = Brush("#172033"),
+            ToolTip = "Выделите текст мышью и нажмите Ctrl+C"
+        };
+
+        var copyItem = new MenuItem { Header = "Копировать выделенное" };
+        copyItem.Click += (_, _) => textBox.Copy();
+        textBox.ContextMenu = new ContextMenu();
+        textBox.ContextMenu.Items.Add(copyItem);
+        return textBox;
+    }
 
     private static Button SecondaryButton(string text) => new()
     {
