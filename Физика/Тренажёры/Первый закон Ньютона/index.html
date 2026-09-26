@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Первый закон Ньютона — тренажёр</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><div><h1>Первый закон Ньютона</h1><p>Интерактивный тренажёр · физика · урок 06</p></div><button id="themeToggle" class="icon-btn" aria-label="Переключить тему">◐</button></div></header>
+<nav class="section-nav" aria-label="Разделы">
+  <button class="nav-btn active" data-target="theory">Смысл закона</button>
+  <button class="nav-btn" data-target="lab">Модель движения</button>
+  <button class="nav-btn" data-target="tasks">Задания</button>
+</nav>
+<main>
+<section id="theory" class="content-section active">
+  <div class="hero"><div><span class="eyebrow">Главная идея</span><h2>Если равнодействующая равна нулю, скорость не изменяется</h2><p>В инерциальной системе отсчёта тело сохраняет покой или движется прямолинейно и равномерно, когда действия других тел отсутствуют или скомпенсированы.</p></div><div class="formula">F<sub>рез</sub> = 0<br><span>⇒ v⃗ = const</span></div></div>
+  <div class="cards">
+    <article><h3>Не обязательно покой</h3><p>Автомобиль может двигаться с постоянной скоростью. Нулевая равнодействующая означает отсутствие ускорения, а не обязательную остановку.</p></article>
+    <article><h3>Силы могут быть</h3><p>На книгу действуют сила тяжести вниз и реакция опоры вверх. Они равны по модулю, поэтому книга покоится.</p></article>
+    <article><h3>Смотри на векторы</h3><p>Силы одного направления складываются, противоположных — вычитаются. Направление равнодействующей задаёт направление изменения скорости.</p></article>
+  </div>
+  <div class="algorithm"><h3>Алгоритм рассуждения</h3><ol><li>Выбери тело и ось.</li><li>Перечисли силы и их направления.</li><li>Найди равнодействующую.</li><li>Если она равна нулю — скорость постоянна; если нет — скорость изменяется.</li></ol></div>
+</section>
+<section id="lab" class="content-section">
+  <div class="section-title"><div><span class="eyebrow">Эксперимент</span><h2>Скомпенсируй силы</h2></div><span class="badge" id="lawBadge">Fрез = 0</span></div>
+  <div class="lab-grid">
+    <div class="panel controls">
+      <label>Сила вправо: <strong><span id="rightLabel">4</span> Н</strong><input id="rightForce" type="range" min="0" max="10" value="4"></label>
+      <label>Сила влево: <strong><span id="leftLabel">4</span> Н</strong><input id="leftForce" type="range" min="0" max="10" value="4"></label>
+      <label>Начальная скорость<input id="velocity" type="number" min="-8" max="8" step="1" value="3"><small>Плюс — вправо, минус — влево, м/с.</small></label>
+      <div class="prediction"><strong>Сначала прогноз:</strong><label><input type="radio" name="prediction" value="constant"> скорость сохранится</label><label><input type="radio" name="prediction" value="right"> скорость изменяется вправо</label><label><input type="radio" name="prediction" value="left"> скорость изменяется влево</label></div>
+      <button id="runBtn" class="btn primary">Проверить прогноз</button><button id="balanceBtn" class="btn">Уравнять силы</button>
+    </div>
+    <div class="panel scene"><div class="track"><div id="cart" class="cart">тележка</div><div class="arrow left" id="leftArrow">← <span>4 Н</span></div><div class="arrow right" id="rightArrow"><span>4 Н</span> →</div></div><div class="meters"><div><span>Равнодействующая</span><strong id="netMeter">0 Н</strong></div><div><span>Ускорение</span><strong id="accelMeter">0</strong></div><div><span>Движение</span><strong id="motionMeter">равномерное</strong></div></div><div id="labFeedback" class="feedback">Настрой силы, сделай прогноз и проверь.</div></div>
+  </div>
+</section>
+<section id="tasks" class="content-section"><div class="section-title"><div><span class="eyebrow">Самостоятельно</span><h2>Шесть коротких задач</h2></div><span class="badge">Верно: <span id="score">0/6</span></span></div><p>Сначала ответь сам. После ошибки открой подсказку и объясни, почему изменил ответ.</p><div id="taskGrid" class="task-grid"></div><button id="resetProgress" class="btn danger">Сбросить прогресс</button></section>
+</main>
+<footer>Модель одномерная; сопротивлением и вращением колёс пренебрегаем.</footer>
+<script src="app.js"></script>
+</body></html>

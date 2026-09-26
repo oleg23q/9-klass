@@ -215,6 +215,25 @@ internal static class Program
         }
         editor.Close();
 
+        if (lessonList.Items.Count != 8)
+        {
+            throw new InvalidOperationException($"В разделе физики ожидалось 8 уроков, найдено {lessonList.Items.Count}.");
+        }
+        lessonList.SelectedIndex = lessonList.Items.Count - 1;
+        window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
+        var freeFallTitle = Descendants<TextBlock>(window).FirstOrDefault(textBlock => textBlock.Name == "LessonTitle");
+        var freeFallSteps = Descendants<Border>(window).Count(border => Equals(border.Tag, "StepSolution"));
+        var freeFallText = Descendants<TextBox>(window)
+            .Where(textBox => Equals(textBox.Tag, "SelectableLessonText"))
+            .Select(textBox => textBox.Text ?? string.Empty)
+            .ToArray();
+        if (freeFallTitle?.Text != "Урок 08. Свободное падение тел" || freeFallSteps != 8 ||
+            !freeFallText.Any(text => text.Replace(" ", string.Empty, StringComparison.Ordinal)
+                .Contains("v=gt", StringComparison.Ordinal)))
+        {
+            throw new InvalidOperationException("Урок 08 о свободном падении не отобразился полностью или потерял формулу v=gt.");
+        }
+
         window.Close();
         application.Shutdown();
         Directory.Delete(dataRoot, true);

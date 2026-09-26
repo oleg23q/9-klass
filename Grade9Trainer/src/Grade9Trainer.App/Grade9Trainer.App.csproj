@@ -21,6 +21,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Include="..\..\Content\Lessons\**\*.svg">
+      <Link>Lessons\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="..\..\Content\Package\Инструкция.txt">
       <Link>Инструкция.txt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -1,11 +1,84 @@
 {
-  "generated_at": "2026-09-10T10:46:00.890844+00:00",
+  "generated_at": "2026-09-19T06:03:03.829823+00:00",
   "nodes": {
-    "fizika_readme": {
-      "code_fingerprint": "786996f08ba4d9bbb00097d53c39d3a598f55f15723d55b12a0cd9c7b639578e",
-      "label": "Физика README",
-      "last": "2026-09-06T06:32:08.934636+00:00",
+    "agents": {
+      "code_fingerprint": "bcda16a018f7c624280e5b7a84d1abe784f095ac96574723a672698069692a74",
+      "label": "AGENTS.md",
+      "last": "2026-09-19T05:55:43.630066+00:00",
       "provenance": [
+        {
+          "date": "2026-09-19T05:55:43.630066+00:00",
+          "outcome": "useful",
+          "q": "Да сделай сейчас и на будущее запиши правило пересобирать ученический комплект при значимых изменениях"
+        },
+        {
+          "date": "2026-09-19T05:42:30.045725+00:00",
+          "outcome": "useful",
+          "q": "ты можешь запускать docker.desktop сам при необходимости запись в OB1 ? я сейчас запустил docker.desktop а ты сам можешь если можешь добавь себе правило"
+        }
+      ],
+      "score": 1.999552408,
+      "source_file": "AGENTS.md",
+      "status": "preferred",
+      "uses": 2
+    },
+    "agents_автоматическое_сохранение_итогов": {
+      "code_fingerprint": "bcda16a018f7c624280e5b7a84d1abe784f095ac96574723a672698069692a74",
+      "label": "Автоматическое сохранение итогов",
+      "last": "2026-09-19T05:42:30.045725+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-19T05:42:30.045725+00:00",
+          "outcome": "useful",
+          "q": "ты можешь запускать docker.desktop сам при необходимости запись в OB1 ? я сейчас запустил docker.desktop а ты сам можешь если можешь добавь себе правило"
+        }
+      ],
+      "score": 0.999670118,
+      "source_file": "AGENTS.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "agents_проект_9_класс": {
+      "code_fingerprint": "bcda16a018f7c624280e5b7a84d1abe784f095ac96574723a672698069692a74",
+      "label": "Проект «9 КЛАСС»",
+      "last": "2026-09-19T05:55:43.630066+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-19T05:55:43.630066+00:00",
+          "outcome": "useful",
+          "q": "Да сделай сейчас и на будущее запиши правило пересобирать ученический комплект при значимых изменениях"
+        },
+        {
+          "date": "2026-09-19T05:45:29.772892+00:00",
+          "outcome": "useful",
+          "q": "а ученический комплект сделал?"
+        },
+        {
+          "date": "2026-09-19T05:42:30.045725+00:00",
+          "outcome": "useful",
+          "q": "ты можешь запускать docker.desktop сам при необходимости запись в OB1 ? я сейчас запустил docker.desktop а ты сам можешь если можешь добавь себе правило"
+        }
+      ],
+      "score": 2.999270574,
+      "source_file": "AGENTS.md",
+      "status": "preferred",
+      "uses": 3
+    },
+    "grade9trainer_content_lessons_информатика_readme": {
+      "code_fingerprint": "4ea170744282df86316aa2a45bf9a07e2fab4146f02c7b4ede15acd7f27298f5",
+      "label": "Информатика README",
+      "last": "2026-09-19T05:35:29.890502+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-19T05:35:29.890502+00:00",
+          "outcome": "useful",
+          "q": "можешь дополнить 5 урок по информатике этими объяснениями и примерами а то без твоих нынешних объяснений было nelyj разобраться"
+        },
+        {
+          "date": "2026-09-18T04:35:29.433794+00:00",
+          "outcome": "useful",
+          "q": "Как добавить урок по знаковым и табличным моделям с веб-тренажёром в проект 9 КЛАСС?"
+        },
         {
           "date": "2026-09-06T06:32:08.934636+00:00",
           "outcome": "useful",
@@ -22,60 +95,90 @@
           "q": "возможно создать программу для обучения ученика 9 класса на основе наших уроков на с# с возможностью дальнейшего добавления уроков"
         }
       ],
-      "score": 2.71982354,
-      "source_file": "Физика/README.md",
+      "score": 4.931968484,
+      "source_file": "Информатика/README.md",
       "status": "preferred",
-      "uses": 3
+      "uses": 6
     },
-    "grade9trainer_content_lessons_физика_урок_02_путь_перемещение_и_координата": {
-      "code_fingerprint": "c15a02caaa514e068830fed6042f191d6f9cd33beaf09ea1d19d3c3a1dfdcf6f",
-      "label": "Физика/Урок 02 - Путь, перемещение и координата.md",
-      "last": "2026-09-06T12:23:40.875904+00:00",
+    "grade9trainer_content_lessons_физика_readme": {
+      "code_fingerprint": "dc63f47fc6757758dd935e8c9f03f73b2f5e97db4ffccefa2429a121198c45fe",
+      "label": "Физика README",
+      "last": "2026-09-17T00:23:10.262021+00:00",
       "provenance": [
         {
-          "date": "2026-09-06T12:23:40.875904+00:00",
+          "date": "2026-09-17T00:23:10.262021+00:00",
           "outcome": "useful",
-          "q": "что то изменилось в тренажере по физике"
+          "q": "Как устроены текущие уроки физики и какие темы должны идти после проверочной работы по кинематике?"
         },
         {
-          "date": "2026-09-06T11:41:36.850203+00:00",
+          "date": "2026-09-06T06:32:08.934636+00:00",
           "outcome": "useful",
-          "q": "Какие существующие материалы связаны с первыми тремя уроками физики и как сохранить их последовательность при дополнении?"
-        }
-      ],
-      "score": 1.825688532,
-      "source_file": "Grade9Trainer/Content/Lessons/Физика/Урок 02 - Путь, перемещение и координата.md",
-      "status": "preferred",
-      "uses": 2
-    },
-    "grade9trainer_content_lessons_физика_урок_03_равномерное_прямолинейное_движение": {
-      "code_fingerprint": "e23cae6f696c304e0794865e418fa7eafb026e3eed1d6005785e5ef35cee3159",
-      "label": "Физика/Урок 03 - Равномерное прямолинейное движение.md",
-      "last": "2026-09-06T11:41:36.850203+00:00",
-      "provenance": [
+          "q": "опубликовать 9 КЛАСС — Тренажёр MVP на GitHub и закоммитить все изменения"
+        },
         {
-          "date": "2026-09-06T11:41:36.850203+00:00",
+          "date": "2026-09-06T06:13:47.545847+00:00",
           "outcome": "useful",
-          "q": "Какие существующие материалы связаны с первыми тремя уроками физики и как сохранить их последовательность при дополнении?"
+          "q": "отлично тогда начнем; продолжи создание программы для обучения ученика 9 класса на C#"
+        },
+        {
+          "date": "2026-09-06T01:59:53.010209+00:00",
+          "outcome": "useful",
+          "q": "возможно создать программу для обучения ученика 9 класса на основе наших уроков на с# с возможностью дальнейшего добавления уроков"
         }
       ],
-      "score": 0.912536195,
-      "source_file": "Grade9Trainer/Content/Lessons/Физика/Урок 03 - Равномерное прямолинейное движение.md",
-      "status": "tentative",
-      "uses": 1
+      "score": 3.168884064,
+      "source_file": "Физика/README.md",
+      "status": "preferred",
+      "uses": 4
     },
     "grade9trainer_readme_9_класс_тренажёр": {
-      "code_fingerprint": "8c4eb0da03e787ad469ad52a1318a22517533a70fed2e69dcf6e9ca3c27e6b87",
+      "code_fingerprint": "113f4409e2cc957dbab2a1a4dea5c1eb9e7e56e755b058af206ce629f90bf6da",
       "label": "9 КЛАСС — Тренажёр",
-      "last": "2026-09-06T12:23:40.875904+00:00",
+      "last": "2026-09-19T05:55:43.630066+00:00",
       "provenance": [
         {
-          "date": "2026-09-06T12:23:40.875904+00:00",
+          "date": "2026-09-19T05:55:43.630066+00:00",
           "outcome": "useful",
-          "q": "что то изменилось в тренажере по физике"
+          "q": "Да сделай сейчас и на будущее запиши правило пересобирать ученический комплект при значимых изменениях"
+        },
+        {
+          "date": "2026-09-19T05:45:29.772892+00:00",
+          "outcome": "useful",
+          "q": "а ученический комплект сделал?"
+        },
+        {
+          "date": "2026-09-19T05:35:29.890502+00:00",
+          "outcome": "useful",
+          "q": "можешь дополнить 5 урок по информатике этими объяснениями и примерами а то без твоих нынешних объяснений было nelyj разобраться"
+        },
+        {
+          "date": "2026-09-18T05:03:18.300896+00:00",
+          "outcome": "useful",
+          "q": "student ученика package trainer тренажёр lessons уроки build сборка vault"
+        },
+        {
+          "date": "2026-09-18T04:35:29.433794+00:00",
+          "outcome": "useful",
+          "q": "Как добавить урок по знаковым и табличным моделям с веб-тренажёром в проект 9 КЛАСС?"
         }
       ],
-      "score": 0.913152337,
+      "score": 5.69625482,
+      "source_file": "Grade9Trainer/README.md",
+      "status": "preferred",
+      "uses": 6
+    },
+    "grade9trainer_readme_готовая_windows_сборка": {
+      "code_fingerprint": "113f4409e2cc957dbab2a1a4dea5c1eb9e7e56e755b058af206ce629f90bf6da",
+      "label": "Готовая Windows-сборка",
+      "last": "2026-09-18T05:03:18.300896+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-18T05:03:18.300896+00:00",
+          "outcome": "useful",
+          "q": "student ученика package trainer тренажёр lessons уроки build сборка vault"
+        }
+      ],
+      "score": 0.976223483,
       "source_file": "Grade9Trainer/README.md",
       "status": "tentative",
       "uses": 1
@@ -91,7 +194,7 @@
           "q": "работает отправь на GitHub"
         }
       ],
-      "score": 0.908560446,
+      "score": 0.741338425,
       "source_file": "Grade9Trainer/src/Grade9Trainer.App/DiagramView.cs",
       "status": "tentative",
       "uses": 1
@@ -107,7 +210,7 @@
           "q": "возможно доработать тренажер чтобы можно было сам урок разворачивать на все окно или формировать дополнительное окно много места отнимают вкладки уроки предметы"
         }
       ],
-      "score": 0.999832467,
+      "score": 0.815811683,
       "source_file": "Grade9Trainer/src/Grade9Trainer.App/MainWindow.xaml",
       "status": "tentative",
       "uses": 1
@@ -115,18 +218,23 @@
     "grade9trainer_src_grade9trainer_app_mainwindow_lessoncontent": {
       "code_fingerprint": "a250030ad8898843c9c32b97ee8e30bbdc0c5e4680508bca20ff23767cad5554",
       "label": "LessonContent",
-      "last": "2026-09-10T10:35:34.355916+00:00",
+      "last": "2026-09-18T04:35:29.433794+00:00",
       "provenance": [
+        {
+          "date": "2026-09-18T04:35:29.433794+00:00",
+          "outcome": "useful",
+          "q": "Как добавить урок по знаковым и табличным моделям с веб-тренажёром в проект 9 КЛАСС?"
+        },
         {
           "date": "2026-09-10T10:35:34.355916+00:00",
           "outcome": "useful",
           "q": "возможно доработать тренажер чтобы можно было сам урок разворачивать на все окно или формировать дополнительное окно много места отнимают вкладки уроки предметы"
         }
       ],
-      "score": 0.999832467,
+      "score": 1.791599589,
       "source_file": "Grade9Trainer/src/Grade9Trainer.App/MainWindow.xaml",
-      "status": "tentative",
-      "uses": 1
+      "status": "preferred",
+      "uses": 2
     },
     "grade9trainer_src_grade9trainer_app_mainwindow_lessonlist": {
       "code_fingerprint": "a250030ad8898843c9c32b97ee8e30bbdc0c5e4680508bca20ff23767cad5554",
@@ -139,7 +247,7 @@
           "q": "возможно доработать тренажер чтобы можно было сам урок разворачивать на все окно или формировать дополнительное окно много места отнимают вкладки уроки предметы"
         }
       ],
-      "score": 0.999832467,
+      "score": 0.815811683,
       "source_file": "Grade9Trainer/src/Grade9Trainer.App/MainWindow.xaml",
       "status": "tentative",
       "uses": 1
@@ -155,7 +263,7 @@
           "q": "возможно доработать тренажер чтобы можно было сам урок разворачивать на все окно или формировать дополнительное окно много места отнимают вкладки уроки предметы"
         }
       ],
-      "score": 0.999832467,
+      "score": 0.815811683,
       "source_file": "Grade9Trainer/src/Grade9Trainer.App/MainWindow.xaml",
       "status": "tentative",
       "uses": 1
@@ -163,8 +271,14 @@
     "grade9trainer_src_grade9trainer_app_mainwindow_xaml_grade9trainer_app_mainwindow": {
       "code_fingerprint": "cdc319425ebe94ec65164a01e31b7f9d4c85ed9277478d5bddb632e7b9109801",
       "label": "MainWindow",
-      "last": "2026-09-10T10:35:34.355916+00:00",
+      "last": "2026-09-10T10:49:38.059100+00:00",
+      "neg": 1,
       "provenance": [
+        {
+          "date": "2026-09-10T10:49:38.059100+00:00",
+          "outcome": "corrected",
+          "q": "тренажер не запускается"
+        },
         {
           "date": "2026-09-10T10:35:34.355916+00:00",
           "outcome": "useful",
@@ -184,17 +298,13 @@
           "date": "2026-09-06T07:09:29.106634+00:00",
           "outcome": "useful",
           "q": "работает отправь на GitHub"
-        },
-        {
-          "date": "2026-09-06T06:55:46.154763+00:00",
-          "outcome": "useful",
-          "q": "Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам"
         }
       ],
-      "score": 4.807709032,
+      "score": 3.106846634,
       "source_file": "Grade9Trainer/src/Grade9Trainer.App/MainWindow.xaml.cs",
-      "status": "preferred",
-      "uses": 5
+      "status": "contested",
+      "uses": 5,
+      "verdict": "useful"
     },
     "grade9trainer_src_grade9trainer_app_mainwindow_xaml_grade9trainer_app_mainwindow_readabletext": {
       "code_fingerprint": "cdc319425ebe94ec65164a01e31b7f9d4c85ed9277478d5bddb632e7b9109801",
@@ -207,7 +317,7 @@
           "q": "продолжи и если возможно в тренажёре добавить возможность копировать некоторые части текста слова чтобы можно было вставлять в ответы или куда ни будь в блокнот"
         }
       ],
-      "score": 0.999483922,
+      "score": 0.815527288,
       "source_file": "Grade9Trainer/src/Grade9Trainer.App/MainWindow.xaml.cs",
       "status": "tentative",
       "uses": 1
@@ -228,7 +338,7 @@
           "q": "Но тренажер нужно доработать: какие-то символы непонятные, прямые черточки и т.п.; в 9 класс — ученик всё классно."
         }
       ],
-      "score": 1.9909556,
+      "score": 1.624516999,
       "source_file": "Grade9Trainer/src/Grade9Trainer.App/MainWindow.xaml.cs",
       "status": "preferred",
       "uses": 2
@@ -244,7 +354,7 @@
           "q": "Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам"
         }
       ],
-      "score": 0.908360519,
+      "score": 0.741175295,
       "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/LessonMarkdownParser.cs",
       "status": "tentative",
       "uses": 1
@@ -260,7 +370,7 @@
           "q": "работает отправь на GitHub"
         }
       ],
-      "score": 0.908560446,
+      "score": 0.741338425,
       "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/MermaidDiagramParser.cs",
       "status": "tentative",
       "uses": 1
@@ -276,7 +386,7 @@
           "q": "Но тренажер нужно доработать: какие-то символы непонятные, прямые черточки и т.п.; в 9 класс — ученик всё классно."
         }
       ],
-      "score": 0.991471678,
+      "score": 0.808989711,
       "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/PlainTextFormatter.cs",
       "status": "tentative",
       "uses": 1
@@ -292,7 +402,7 @@
           "q": "Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам"
         }
       ],
-      "score": 0.908360519,
+      "score": 0.741175295,
       "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/PlainTextFormatter.cs",
       "status": "tentative",
       "uses": 1
@@ -308,7 +418,7 @@
           "q": "работает отправь на GitHub"
         }
       ],
-      "score": 0.908560446,
+      "score": 0.741338425,
       "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/ProfilePackageService.cs",
       "status": "tentative",
       "uses": 1
@@ -329,7 +439,7 @@
           "q": "Mermaid показывается как офлайн-схема со стрелками. Полноценные графические диаграммы, редактор преподавателя, несколько учеников и синхронизация — следующие этапы. давай перейдем к следующим этапам"
         }
       ],
-      "score": 1.816920965,
+      "score": 1.48251372,
       "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/ProgressStore.cs",
       "status": "preferred",
       "uses": 2
@@ -345,7 +455,7 @@
           "q": "работает отправь на GitHub"
         }
       ],
-      "score": 0.908560446,
+      "score": 0.741338425,
       "source_file": "Grade9Trainer/src/Grade9Trainer.Core/Services/StudentProfileStore.cs",
       "status": "tentative",
       "uses": 1
@@ -371,16 +481,26 @@
           "q": "возможно создать программу для обучения ученика 9 класса на основе наших уроков на с# с возможностью дальнейшего добавления уроков"
         }
       ],
-      "score": 2.71982354,
+      "score": 2.219235615,
       "source_file": "Химия/README.md",
       "status": "preferred",
       "uses": 3
     },
     "informatika_programma_bosova_9klass_md": {
-      "code_fingerprint": "4628c4a5208a4db6a7e7a9b04651762986b76e5924a3e514cfe6d114fe1fc630",
+      "code_fingerprint": "224bb1aa5e22672f1b164b898fccc7b31c6a6f4384e7928a6fdc9f1337796b79",
       "label": "Программа - Босова 9 класс",
-      "last": "2026-09-06T06:32:08.934636+00:00",
+      "last": "2026-09-19T05:35:29.890502+00:00",
       "provenance": [
+        {
+          "date": "2026-09-19T05:35:29.890502+00:00",
+          "outcome": "useful",
+          "q": "можешь дополнить 5 урок по информатике этими объяснениями и примерами а то без твоих нынешних объяснений было nelyj разобраться"
+        },
+        {
+          "date": "2026-09-18T04:35:29.433794+00:00",
+          "outcome": "useful",
+          "q": "Как добавить урок по знаковым и табличным моделям с веб-тренажёром в проект 9 КЛАСС?"
+        },
         {
           "date": "2026-09-06T06:32:08.934636+00:00",
           "outcome": "useful",
@@ -395,48 +515,12 @@
           "date": "2026-09-06T01:59:53.010209+00:00",
           "outcome": "useful",
           "q": "возможно создать программу для обучения ученика 9 класса на основе наших уроков на с# с возможностью дальнейшего добавления уроков"
-        },
-        {
-          "date": "2026-09-06T01:36:24.789840+00:00",
-          "outcome": "useful",
-          "q": "добавь еще третий урок по информатике"
         }
       ],
-      "score": 3.623541441,
+      "score": 4.931968484,
       "source_file": "Информатика/Программа - Босова 9 класс.md",
       "status": "preferred",
-      "uses": 4
-    },
-    "informatika_readme": {
-      "code_fingerprint": "1a21fca6d0642f4983e73ce0bc741b77d8be6499aa75cf8105e255a1a416b51a",
-      "label": "Информатика README",
-      "last": "2026-09-06T06:32:08.934636+00:00",
-      "provenance": [
-        {
-          "date": "2026-09-06T06:32:08.934636+00:00",
-          "outcome": "useful",
-          "q": "опубликовать 9 КЛАСС — Тренажёр MVP на GitHub и закоммитить все изменения"
-        },
-        {
-          "date": "2026-09-06T06:13:47.545847+00:00",
-          "outcome": "useful",
-          "q": "отлично тогда начнем; продолжи создание программы для обучения ученика 9 класса на C#"
-        },
-        {
-          "date": "2026-09-06T01:59:53.010209+00:00",
-          "outcome": "useful",
-          "q": "возможно создать программу для обучения ученика 9 класса на основе наших уроков на с# с возможностью дальнейшего добавления уроков"
-        },
-        {
-          "date": "2026-09-06T01:36:24.789840+00:00",
-          "outcome": "useful",
-          "q": "добавь еще третий урок по информатике"
-        }
-      ],
-      "score": 3.623541441,
-      "source_file": "Информатика/README.md",
-      "status": "preferred",
-      "uses": 4
+      "uses": 6
     },
     "informatika_uroki_urok02_vspomogatelnie_algoritmi_md": {
       "code_fingerprint": "e96f4d4863640bcfc3446d098afc063ffb3b38420150831af3e055faf554cce6",
@@ -459,10 +543,58 @@
           "q": "добавь еще третий урок по информатике"
         }
       ],
-      "score": 2.715525117,
+      "score": 2.215728323,
       "source_file": "Информатика/Уроки/Урок 02 - Вспомогательные алгоритмы.md",
       "status": "preferred",
       "uses": 3
+    },
+    "tools_build_student_vault": {
+      "code_fingerprint": "7378a34af15764db18864c57e4a6a52970f32dcd1141d8dd662eb57149099346",
+      "label": "build_student_vault.py",
+      "last": "2026-09-18T05:03:18.300896+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-18T05:03:18.300896+00:00",
+          "outcome": "useful",
+          "q": "student ученика package trainer тренажёр lessons уроки build сборка vault"
+        }
+      ],
+      "score": 0.976223483,
+      "source_file": "tools/build_student_vault.py",
+      "status": "tentative",
+      "uses": 1
+    },
+    "tools_build_student_vault_build": {
+      "code_fingerprint": "7378a34af15764db18864c57e4a6a52970f32dcd1141d8dd662eb57149099346",
+      "label": "build()",
+      "last": "2026-09-18T05:03:18.300896+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-18T05:03:18.300896+00:00",
+          "outcome": "useful",
+          "q": "student ученика package trainer тренажёр lessons уроки build сборка vault"
+        }
+      ],
+      "score": 0.976223483,
+      "source_file": "tools/build_student_vault.py",
+      "status": "tentative",
+      "uses": 1
+    },
+    "физика_уроки_урок_04_ускорениеираноускоренноедвижение": {
+      "code_fingerprint": "f3f90b354d05cb9ac5191dd3a9e1399e6d51203814b1833e670a1ab5364faa03",
+      "label": "Урок 04. Ускорение и равноускоренное движение",
+      "last": "2026-09-17T00:23:10.262021+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-17T00:23:10.262021+00:00",
+          "outcome": "useful",
+          "q": "Как устроены текущие уроки физики и какие темы должны идти после проверочной работы по кинематике?"
+        }
+      ],
+      "score": 0.949648449,
+      "source_file": "Физика/Уроки/Урок 04 - Ускорение и равноускоренное движение.md",
+      "status": "tentative",
+      "uses": 1
     }
   },
   "version": 1

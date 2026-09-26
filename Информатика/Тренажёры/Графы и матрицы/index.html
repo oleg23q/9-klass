@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тренажёр: Знаковые и табличные модели</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-area">
+      <svg class="logo-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="5" fill="currentColor" opacity="0.9"/>
+        <circle cx="36" cy="12" r="5" fill="currentColor" opacity="0.6"/>
+        <circle cx="24" cy="36" r="5" fill="currentColor" opacity="0.75"/>
+        <line x1="12" y1="12" x2="36" y2="12" stroke="currentColor" stroke-width="2"/>
+        <line x1="12" y1="12" x2="24" y2="36" stroke="currentColor" stroke-width="2"/>
+        <line x1="36" y1="12" x2="24" y2="36" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <div>
+        <h1 class="site-title">Графы и матрицы</h1>
+        <p class="site-subtitle">Интерактивный тренажёр · 9 класс · Информатика</p>
+      </div>
+    </div>
+    <button class="theme-toggle" data-theme-toggle aria-label="Переключить тему">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ==================== NAV ==================== -->
+<nav class="section-nav" id="sectionNav">
+  <button class="nav-btn active" data-target="theory">Теория</button>
+  <button class="nav-btn" data-target="trainer">Генератор задач</button>
+  <button class="nav-btn" data-target="algorithm">Алгоритм решения</button>
+  <button class="nav-btn" data-target="oge">Задания ОГЭ</button>
+  <button class="nav-btn" data-target="ege">ЕГЭ — сложнее</button>
+</nav>
+
+<main class="main-content">
+
+<!-- ==================== THEORY ==================== -->
+<section id="theory" class="content-section active">
+  <div class="theory-grid">
+    <article class="theory-card">
+      <div class="theory-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="7" y1="9" x2="11" y2="15"/><line x1="17" y1="9" x2="13" y2="15"/></svg>
+      </div>
+      <h2>Знаковая модель</h2>
+      <p>Граф — это знаковая модель системы объектов и связей между ними. Состоит из <strong>вершин</strong> (объекты) и <strong>рёбер</strong> (связи). Рёбра могут быть <em>ориентированными</em> (дуги, есть направление) или <em>неориентированными</em> (связи без направления).</p>
+    </article>
+
+    <article class="theory-card">
+      <div class="theory-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+      </div>
+      <h2>Табличная модель</h2>
+      <p>Матрица смежности и весовая матрица — это <strong>табличные модели</strong> графа. В таблице строки и столбцы соответствуют вершинам, а в ячейках записана информация о связях.</p>
+    </article>
+
+    <article class="theory-card">
+      <div class="theory-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="6" height="6"/></svg>
+      </div>
+      <h2>Матрица смежности</h2>
+      <p>Квадратная таблица размера N×N (N — число вершин). В ячейке <code>M[i][j]</code> стоит <strong>1</strong>, если есть ребро из вершины i в вершину j, и <strong>0</strong>, если ребра нет. Для неориентированного графа матрица симметрична: <code>M[i][j] = M[j][i]</code>.</p>
+    </article>
+
+    <article class="theory-card">
+      <div class="theory-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+      </div>
+      <h2>Весовая матрица</h2>
+      <p>Если у рёбер есть веса (расстояния, стоимости, пропускная способность), то в ячейке <code>W[i][j]</code> записывается <strong>вес ребра</strong> (число). Если прямого ребра нет — ставится <strong>0</strong> или прочерк. По диагонали всегда 0 (путь из вершины в саму себя).</p>
+    </article>
+
+    <article class="theory-card theory-card--wide">
+      <div class="theory-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <h2>Почему в ячейках нули или числа?</h2>
+      <div class="theory-explanation">
+        <p><strong>Ноль на диагонали (M[i][i]):</strong> путь из вершины в саму себя не рассматривается — поэтому по диагонали всегда 0.</p>
+        <p><strong>Ноль вне диагонали:</strong> между вершинами i и j нет прямого ребра — нет связи, поэтому 0.</p>
+        <p><strong>Единица (1):</strong> в матрице смежности — ребро существует (просто факт связи).</p>
+        <p><strong>Число (вес):</strong> в весовой матрице — ребро существует и его вес равен этому числу (например, расстояние 7 км, стоимость 5 рублей).</p>
+        <p><strong>Симметрия:</strong> в неориентированном графе M[i][j] = M[j][i] — если есть дорога из A в B, она же ведёт и из B в A. В ориентированном графе это не так: может быть дорога из A в B, но не обратно.</p>
+      </div>
+    </article>
+
+    <article class="theory-card theory-card--wide">
+      <div class="theory-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h2>Кратчайший путь по весовой матрице</h2>
+      <p>По весовой матрице можно найти кратчайший маршрут между городами. Для этого перебирают все возможные маршруты и суммируют веса рёбер. Маршрут с наименьшей суммой — кратчайший. В небольших графах (4–5 вершин) это делается вручную перебором. Важно: вес «0» означает «нет дороги», а не «бесплатно».</p>
+    </article>
+  </div>
+</section>
+
+<!-- ==================== TRAINER ==================== -->
+<section id="trainer" class="content-section">
+  <div class="trainer-layout">
+    <!-- Controls -->
+    <div class="trainer-controls">
+      <h2 class="section-heading">Генератор задач</h2>
+      <div class="control-group">
+        <label class="control-label">Тип графа</label>
+        <div class="toggle-group">
+          <button class="toggle-btn active" data-graph-type="undirected-unweighted">Неориентированный<br>(невзвешенный)</button>
+          <button class="toggle-btn" data-graph-type="directed-unweighted">Ориентированный<br>(невзвешенный)</button>
+          <button class="toggle-btn" data-graph-type="undirected-weighted">Неориентированный<br>(взвешенный)</button>
+          <button class="toggle-btn" data-graph-type="directed-weighted">Ориентированный<br>(взвешенный)</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">Количество вершин: <span id="vertexCountLabel">5</span></label>
+        <input type="range" id="vertexCount" min="4" max="6" value="5" class="slider">
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">Режим ответа</label>
+        <div class="toggle-group">
+          <button class="toggle-btn active" data-answer-mode="adjacency">Матрица смежности</button>
+          <button class="toggle-btn" data-answer-mode="weight">Весовая матрица</button>
+        </div>
+        <p class="control-hint" id="modeHint">Заполняйте матрицу: 1 — есть ребро, 0 — нет ребра.</p>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">Задача</label>
+        <div class="task-box" id="taskBox">
+          <p id="taskText">Нажмите «Новая задача»</p>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="action-buttons">
+          <button class="btn btn-primary" id="newTaskBtn">Новая задача</button>
+          <button class="btn btn-secondary" id="checkBtn">Проверить</button>
+          <button class="btn btn-tertiary" id="hintBtn">Подсказка</button>
+          <button class="btn btn-tertiary" id="solveBtn">Пошаговое решение</button>
+          <button class="btn btn-ghost" id="clearBtn">Очистить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Graph visualization -->
+    <div class="trainer-visual">
+      <div class="graph-container">
+        <h3 class="visual-heading">Граф</h3>
+        <svg id="graphSvg" viewBox="0 0 400 400" class="graph-svg"></svg>
+        <div class="graph-legend" id="graphLegend"></div>
+      </div>
+
+      <!-- Matrix input -->
+      <div class="matrix-container">
+        <h3 class="visual-heading" id="matrixTitle">Матрица смежности</h3>
+        <div class="matrix-wrapper">
+          <table class="matrix-table" id="matrixTable"></table>
+        </div>
+        <div class="result-box" id="resultBox"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hint overlay -->
+  <div class="hint-panel" id="hintPanel" hidden>
+    <div class="hint-content" id="hintContent"></div>
+  </div>
+
+  <!-- Step-by-step solution -->
+  <div class="steps-panel" id="stepsPanel" hidden>
+    <h3 class="steps-heading">Пошаговое решение</h3>
+    <div class="steps-content" id="stepsContent"></div>
+  </div>
+</section>
+
+<!-- ==================== ALGORITHM ==================== -->
+<section id="algorithm" class="content-section">
+  <div class="algorithm-layout">
+    <h2 class="section-heading">Пошаговый алгоритм построения матрицы</h2>
+    <p class="algo-intro">Следуйте этим шагам, чтобы правильно заполнить матрицу смежности или весовую матрицу по графу.</p>
+
+    <div class="steps-algorithm">
+      <div class="algo-step">
+        <div class="step-number">1</div>
+        <div class="step-body">
+          <h3>Определите вершины</h3>
+          <p>Выпишите все вершины графа в одинаковом порядке для строк и столбцов. Например: A, B, C, D, E. Строки и столбцы матрицы будут иметь те же заголовки.</p>
+        </div>
+      </div>
+
+      <div class="algo-step">
+        <div class="step-number">2</div>
+        <div class="step-body">
+          <h3>Определите тип графа</h3>
+          <p>Узнайте: граф ориентированный или нет? Взвешенный или нет? От этого зависит, что писать в ячейках и нужно ли соблюдать симметрию.</p>
+        </div>
+      </div>
+
+      <div class="algo-step">
+        <div class="step-number">3</div>
+        <div class="step-body">
+          <h3>Заполните диагональ нулями</h3>
+          <p>По диагонали (где номер строки равен номеру столбца) всегда ставьте 0. Путь из вершины в саму себя не учитывается.</p>
+        </div>
+      </div>
+
+      <div class="algo-step">
+        <div class="step-number">4</div>
+        <div class="step-body">
+          <h3>Проверьте каждую пару вершин</h3>
+          <p>Для каждой ячейки M[i][j] (где i &ne; j) посмотрите на граф: есть ли ребро из вершины i в вершину j?</p>
+          <ul>
+            <li><strong>Ребро есть →</strong> поставьте 1 (для матрицы смежности) или вес ребра (для весовой матрицы)</li>
+            <li><strong>Ребра нет →</strong> поставьте 0</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="algo-step">
+        <div class="step-number">5</div>
+        <div class="step-body">
+          <h3>Проверьте симметрию (для неориентированного графа)</h3>
+          <p>Если граф неориентированный, убедитесь что M[i][j] = M[j][i]. Каждое ребро даёт две симметричные единицы (или два одинаковых веса). Если граф ориентированный — направление имеет значение: M[i][j] может быть 1, а M[j][i] — 0.</p>
+        </div>
+      </div>
+
+      <div class="algo-step">
+        <div class="step-number">6</div>
+        <div class="step-body">
+          <h3>Проверьте результат</h3>
+          <p>Пересчитайте количество рёбер: каждое неориентированное ребро даёт две единицы в матрице, каждое ориентированное — одну. Сумма всех единиц в матрице смежности неориентированного графа = 2 × (число рёбер).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive algorithm demo -->
+    <div class="algo-demo">
+      <h3 class="algo-demo-heading">Интерактивная демонстрация</h3>
+      <p class="algo-demo-text">Просмотрите пошаговое построение матрицы для текущей задачи из генератора.</p>
+      <button class="btn btn-primary" id="demoStartBtn">Запустить демонстрацию</button>
+      <div class="demo-area" id="demoArea" hidden>
+        <div class="demo-graph">
+          <svg id="demoSvg" viewBox="0 0 400 400" class="graph-svg"></svg>
+        </div>
+        <div class="demo-matrix">
+          <table class="matrix-table" id="demoMatrixTable"></table>
+        </div>
+        <div class="demo-controls">
+          <button class="btn btn-secondary" id="demoPrevBtn">← Назад</button>
+          <span class="demo-step-label" id="demoStepLabel">Шаг 0</span>
+          <button class="btn btn-secondary" id="demoNextBtn">Вперёд →</button>
+        </div>
+        <div class="demo-explanation" id="demoExplanation"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== OGE ==================== -->
+<section id="oge" class="content-section">
+  <div class="oge-layout">
+    <h2 class="section-heading">Типовые задания в формате ОГЭ</h2>
+    <p class="oge-intro">Задания составлены по образцу ОГЭ по информатике по теме «Графы. Поиск путей». Каждое задание можно решить прямо здесь и проверить ответ.</p>
+
+    <div class="oge-tasks" id="ogeTasks">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ==================== EGE ADVANCED ==================== -->
+<section id="ege" class="content-section">
+  <div class="oge-layout">
+    <h2 class="section-heading">Задачи повышенной сложности в стиле ЕГЭ</h2>
+    <p class="oge-intro">Это отдельная ступень после базовых заданий ОГЭ: подсчёт путей динамическим программированием и маршруты с дополнительным условием. Задачи учебные, а не копии официального банка.</p>
+    <div class="ege-note"><strong>Перед стартом:</strong> в ориентированном ациклическом графе запиши у каждой вершины число способов попасть в неё. Для старта поставь 1, затем складывай значения всех непосредственных предшественников.</div>
+    <div class="oge-tasks" id="egeTasks"></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Тренажёр по информатике · Знаковые и табличные модели · 9 класс</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

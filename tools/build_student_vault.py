@@ -1,4 +1,4 @@
-"""Build the reviewed student edition from thirteen explicit Obsidian lesson notes.
+"""Build the reviewed student edition from eighteen explicit lesson notes.
 
 No vault-wide copy: only reviewed sections and fresh templates enter the ZIP.
 Existing student work and local settings are never overwritten by this builder.
@@ -15,7 +15,7 @@ import zipfile
 
 HERE = Path(__file__).resolve().parent
 TEMPLATES = HERE.parent / 'student-template'
-DAY = '2026-09-07'
+DAY = '2026-09-23'
 VAULT_NAME = '9 класс — ученик'
 
 # Explicit allowlist: never discover additional teacher notes automatically.
@@ -24,6 +24,10 @@ SPECS = [
     ('Физика', 2, 'Путь, перемещение и координата', [2, 3]),
     ('Физика', 3, 'Равномерное прямолинейное движение', [2, 3, 6]),
     ('Физика', 4, 'Ускорение и равноускоренное движение', [2, 3]),
+    ('Физика', 5, 'Проверочная работа по кинематике', ['__prebuilt__']),
+    ('Физика', 6, 'Инерция и первый закон Ньютона', ['__prebuilt__']),
+    ('Физика', 7, 'Сила, масса и второй закон Ньютона', ['__prebuilt__']),
+    ('Физика', 8, 'Свободное падение тел', ['__prebuilt__']),
     ('Химия', 0, 'Быстрая проверка языка химии', [2, 3, 4, 5, 6, 7]),
     ('Химия', 1, 'Классификация химических соединений', [2, 3, 4]),
     ('Химия', 2, 'Классификация химических реакций', [2, 3, 4]),
@@ -33,12 +37,24 @@ SPECS = [
     ('Информатика', 2, 'Вспомогательные алгоритмы', ['Новая идея', 'Вспомогательный алгоритм', 'Пример на Python', 'Трассировка запуска', 'Вариант через исполнителя']),
     ('Информатика', 3, 'Запись вспомогательных алгоритмов на Python', ['1. Функция без параметров', '2. Параметр и аргумент', '3. Возвращаемое значение', 'Разобранный пример']),
     ('Информатика', 4, 'Одномерные массивы на Python', ['1. Создание списка', '2. Индексы элементов', '3. Заполнение и вывод', 'Разобранный пример']),
+    ('Информатика', 5, 'Знаковые и табличные модели. Графы и матрицы', ['__prebuilt__']),
 ]
+
+# These lesson files are already written as the reviewed student edition used by
+# the desktop trainer. Keeping a single copy prevents the portable app and the
+# Obsidian package from drifting apart.
+PREBUILT_STEPS = {
+    ('Физика', 5): 10,
+    ('Физика', 6): 7,
+    ('Физика', 7): 7,
+    ('Физика', 8): 8,
+    ('Информатика', 5): 8,
+}
 
 GOALS = {
     ('Физика', 1): 'Научиться выбирать тело отсчёта, объяснять модель материальной точки, называть три части системы отсчёта и узнавать простое поступательное движение.',
     ('Физика', 2): 'Различать путь и перемещение, учитывать зависимость траектории от системы отсчёта; находить конечную координату и объяснять знак проекции перемещения.',
-    ('Физика', 3): 'Объяснять строгий признак равномерного движения, решать задачи, переводить единицы скорости, находить координату и читать простой график $x(t)$.',
+    ('Физика', 3): 'Объяснять равномерное движение, находить координату, переходить от графика $x(t)$ к уравнению и обратно, а также находить место и время встречи двух тел графически и аналитически.',
     ('Физика', 4): 'Понимать ускорение как изменение скорости, находить $a_x$ и $v_x$, читать единицу м/с² и объяснять разгон или замедление по знакам.',
     ('Химия', 0): 'Вспомнить формулы, индексы и коэффициенты. Это дополнительная подготовка перед основными уроками.',
     ('Химия', 1): 'Различать простые и сложные вещества, узнавать оксиды, кислоты, основания и соли по формуле.',
@@ -60,7 +76,7 @@ MATERIALS = {
 EXIT_QUESTIONS = {
     ('Физика', 1): 'Объясни в 3–5 предложениях, зачем нужна система отсчёта. Книга лежит на парте: относительно каких тел она движется или покоится?',
     ('Физика', 2): 'Можно ли пройти 10 м и получить нулевое перемещение? Объясни примером.',
-    ('Физика', 3): 'Два тела имеют проекции скорости +3 и −3 м/с. Кто движется быстрее и чем различается движение?',
+    ('Физика', 3): 'По графику прямая проходит через точки $(0\\ \text{с};6\\ \text{м})$ и $(3\\ \text{с};0\\ \text{м})$. Найди $x_0$, $v_x$ и запиши $x(t)$.',
     ('Физика', 4): 'Тело движется вдоль оси: $v_x=+5$ м/с, $a_x=-1\\ \\text{м/с}^2$. Что означают знаки и как меняется модуль скорости?',
     ('Химия', 0): 'Почему при уравнивании реакции можно менять коэффициенты, но нельзя менять индексы?',
     ('Химия', 1): 'Чем простое вещество отличается от сложного? По какому признаку ты узнаёшь каждый из четырёх классов соединений?',
@@ -98,7 +114,11 @@ STEPS = {
         ('Минуты в секунды', 'Тело движется со скоростью 4 м/с в течение 2 мин. Найди путь.', '$2$ мин $=120$ с. $l=4\\cdot120=480$ м.'),
         ('Отрицательная проекция скорости', 'При $x_0=8$ м и $v_x=-3$ м/с найди координату через 4 с и путь.', '$x=8+(-3)\\cdot4=-4$ м. Модуль скорости 3 м/с, поэтому путь $l=3\\cdot4=12$ м.'),
         ('Найди время', 'Пешеход проходит 150 м со скоростью 1,5 м/с. Найди время.', '$t=l/v=150/1{,}5=100$ с.'),
-        ('Итог урока', 'Два тела имеют $v_x=+3$ м/с и $v_x=-3$ м/с. Кто движется быстрее и чем различается их движение?', 'Модули скоростей одинаковы, поэтому тела движутся одинаково быстро. Знаки различаются, потому что направления движения противоположны.'),
+        ('Считай уравнения с графика', 'На рисунке две прямые. Для тела 1 видны точки $(0;8)$ и $(4;0)$, для тела 2 — $(0;2)$ и $(4;6)$. Найди $x_{01}$, $v_{1x}$, $x_{02}$, $v_{2x}$ и запиши оба уравнения.', 'Для тела 1: $x_{01}=8$ м, $v_{1x}=(0-8)/(4-0)=-2$ м/с, поэтому $x_1=8-2t$. Для тела 2: $x_{02}=2$ м, $v_{2x}=(6-2)/(4-0)=1$ м/с, поэтому $x_2=2+t$.'),
+        ('Встреча по графику и формулам', 'Для $x_1=8-2t$ и $x_2=2+t$ прочитай по рисунку время и место встречи, затем проверь их аналитически.', 'Пересечение графиков: $t=2$ с, $x=4$ м. Проверка: $8-2t=2+t$, откуда $t=2$ с; затем $x=8-2\\cdot2=4$ м.'),
+        ('Построй графики по уравнениям', 'Даны $x_1=4+3t$ и $x_2=1+6t$. Составь таблицу для $t=0$, 1 и 2 с, построй обе прямые на одних осях и найди встречу.', 'Таблица: для первого тела $x_1=4,7,10$ м; для второго $x_2=1,7,13$ м. Прямые пересекаются при $t=1$ с и $x=7$ м.'),
+        ('Аналитическая проверка построения', 'Проверь точку встречи для $x_1=4+3t$ и $x_2=1+6t$ решением уравнения.', '$4+3t=1+6t$, значит $3=3t$ и $t=1$ с. Подставляем: $x=4+3\\cdot1=7$ м. Результат совпадает с графиком.'),
+        ('Итог урока', 'Прямая на графике проходит через точки $(0\\ \text{с};6\\ \text{м})$ и $(3\\ \text{с};0\\ \text{м})$. Найди $x_0$, $v_x$ и запиши $x(t)$.', '$x_0=6$ м. $v_x=(0-6)/(3-0)=-2$ м/с. Уравнение: $x=6-2t$.'),
     ],
     ('Физика', 4): [
         ('Смысл единицы ускорения', 'Объясни словами, что означает $a_x=2\\ \\text{м/с}^2$.', 'Каждую секунду проекция скорости увеличивается на 2 м/с. Это описание изменения скорости, а не путь, пройденный за секунду.'),
@@ -462,6 +482,19 @@ _Нажми `Ctrl+E` и замени эту строку своим ходом �
 
 def student_lesson(source: Path, subject: str, n: int, title: str, allowed: list[int | str]) -> str:
     text = source.read_text(encoding='utf-8-sig')
+    if allowed == ['__prebuilt__']:
+        required = [
+            'edition: student',
+            f'subject: {subject}',
+            f'lesson: {n}',
+            f'# Урок {n:02d}. {title}',
+            '## Наглядная схема',
+            '## Тренировка по шагам',
+        ]
+        missing = [marker for marker in required if marker not in text]
+        if missing:
+            raise ValueError(f'Invalid prebuilt student lesson {source}: missing {missing}')
+        return text.replace('\r\n', '\n')
     if text.startswith('---\n'):
         text = text.split('\n---\n', 1)[1]
     sections = numbered_sections(text, source) if all(isinstance(section, int) for section in allowed) else named_sections(text, source)
@@ -476,9 +509,13 @@ def student_lesson(source: Path, subject: str, n: int, title: str, allowed: list
         if subject == 'Химия' and n == 1 and section == 4:
             heading = 'Разобранные примеры'
         parts.append('## ' + heading + '\n\n' + body)
-    result = header('lesson', f'subject: {subject}\nlesson: {n}\nduration: {35 if n == 0 else 45}\nstatus: not-started\n')
+    duration = 35 if n == 0 else 60 if (subject, n) == ('Физика', 3) else 45
+    result = header('lesson', f'subject: {subject}\nlesson: {n}\nduration: {duration}\nstatus: not-started\n')
     result += f'# Урок {n:02d}. {title}\n\n{GOALS[subject,n]}\n\n'
-    result += MATERIALS[subject] + '\n\n'
+    materials = MATERIALS[subject]
+    if (subject, n) == ('Физика', 3):
+        materials = 'Понадобятся тетрадь в клетку, ручка, карандаш и линейка.'
+    result += materials + '\n\n'
     result += wiki('Занятия/Начать занятия.md', 'Все уроки') + ' · [[#Тренировка по шагам|Перейти к заданиям]]\n\n'
     result += '\n\n'.join(parts)
     result += '\n\n## Наглядная схема\n\n' + VISUALS[subject, n]
@@ -520,9 +557,15 @@ def make_payload(source_root: Path) -> tuple[dict[str, str], dict[str, str], dic
     seeds = {}
     sources = {}
     for subject, n, title, allowed in SPECS:
-        source = source_root / subject / 'Уроки' / f'Урок {n:02d} - {title}.md'
+        if allowed == ['__prebuilt__']:
+            source = HERE.parent / 'Grade9Trainer' / 'Content' / 'Lessons' / subject / f'Урок {n:02d} - {title}.md'
+        else:
+            source = source_root / subject / 'Уроки' / f'Урок {n:02d} - {title}.md'
         managed[lesson_path(subject, n, title)] = student_lesson(source, subject, n, title, allowed)
         sources[f'{subject}/{source.name}'] = sha(source.read_bytes())
+    graph_source = source_root / 'Физика' / 'Вложения' / 'physics03-meeting-graph.svg'
+    managed['Занятия/Вложения/physics03-meeting-graph.svg'] = graph_source.read_text(encoding='utf-8-sig')
+    sources['Физика/physics03-meeting-graph.svg'] = sha(graph_source.read_bytes())
     table = '| Урок | Физика | Химия | Информатика |\n|---|---|---|---|\n'
     for n in range(1, 5):
         cells = []
@@ -531,11 +574,17 @@ def make_payload(source_root: Path) -> tuple[dict[str, str], dict[str, str], dic
             cells.append(wiki(lesson_path(*spec[:3]), spec[2]).replace('|', '\\|'))
         table += f'| {n:02d} | ' + ' | '.join(cells) + ' |\n'
     prep = next(s for s in SPECS if s[0] == 'Химия' and s[1] == 0)
+    extras = [s for s in SPECS if s[1] > 4]
+    extra_links = '\n'.join('- ' + wiki(lesson_path(*spec[:3]), f'{spec[0]} {spec[1]:02d} — {spec[2]}') for spec in extras)
     managed['Занятия/Начать занятия.md'] = header('course-index') + '''# Начать занятия
 
-Здесь по четыре основных урока физики, химии и информатики. Выбери предмет, начни с урока 01 и двигайся дальше после обсуждения с преподавателем.
+Здесь по четыре основных урока физики, химии и информатики, а также дополнительные проверенные уроки. Выбери предмет, начни с урока 01 и двигайся дальше после обсуждения с преподавателем.
 
 ''' + table + '\nПодготовка при затруднениях с формулами: ' + wiki(lesson_path(*prep[:3]), 'Химия 00 — язык химии') + '''.
+
+## Дополнительные уроки
+
+''' + extra_links + '''
 
 ## Как заниматься
 
@@ -613,7 +662,10 @@ def validate_payload(payload: dict[str, str]) -> dict:
         content = payload[path]
         subject = next(name for name in ('Физика', 'Химия', 'Информатика') if f'/{name}/' in path)
         lesson_number = int(re.search(r'/Урок (\d{2}) -', path).group(1))
-        expected_steps = len(STEPS[subject, lesson_number])
+        key = (subject, lesson_number)
+        expected_steps = PREBUILT_STEPS.get(key, len(STEPS.get(key, [])))
+        if expected_steps == 0:
+            errors.append(f'Expected step count is not configured: {path}')
         if content.count('> [!solution]- Правильный ответ к шагу') != expected_steps:
             errors.append(f'Hidden solution blocks: {path}')
         if '- [ ] Показать правильный ответ к шагу' in content:

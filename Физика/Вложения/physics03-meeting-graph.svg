@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="520" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+  <title id="title">Графики движения двух тел</title>
+  <desc id="desc">Тело 1 движется по закону x=8-2t, тело 2 — по закону x=2+t. Графики пересекаются при t=2 с и x=4 м.</desc>
+  <rect width="760" height="520" fill="#ffffff"/>
+  <text x="380" y="28" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Координата двух тел</text>
+  <g stroke="#d0d7de" stroke-width="1">
+    <line x1="100" y1="50" x2="660" y2="50"/><line x1="100" y1="100" x2="660" y2="100"/>
+    <line x1="100" y1="150" x2="660" y2="150"/><line x1="100" y1="200" x2="660" y2="200"/>
+    <line x1="100" y1="250" x2="660" y2="250"/><line x1="100" y1="300" x2="660" y2="300"/>
+    <line x1="100" y1="350" x2="660" y2="350"/><line x1="100" y1="400" x2="660" y2="400"/>
+    <line x1="100" y1="450" x2="660" y2="450"/>
+    <line x1="100" y1="50" x2="100" y2="450"/><line x1="240" y1="50" x2="240" y2="450"/>
+    <line x1="380" y1="50" x2="380" y2="450"/><line x1="520" y1="50" x2="520" y2="450"/>
+    <line x1="660" y1="50" x2="660" y2="450"/>
+  </g>
+  <g stroke="#111827" stroke-width="3" fill="none">
+    <line x1="100" y1="450" x2="700" y2="450"/><polyline points="686,441 700,450 686,459"/>
+    <line x1="100" y1="470" x2="100" y2="40"/><polyline points="91,54 100,40 109,54"/>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#111827">
+    <text x="707" y="456">t, с</text><text x="70" y="35">x, м</text>
+    <text x="96" y="476">0</text><text x="236" y="476">1</text><text x="376" y="476">2</text><text x="516" y="476">3</text><text x="656" y="476">4</text>
+    <text x="74" y="455">0</text><text x="74" y="355">2</text><text x="74" y="255">4</text><text x="74" y="155">6</text><text x="74" y="55">8</text>
+  </g>
+  <line x1="100" y1="50" x2="660" y2="450" stroke="#1d4ed8" stroke-width="5"/>
+  <line x1="100" y1="350" x2="660" y2="150" stroke="#c2410c" stroke-width="5" stroke-dasharray="12 8"/>
+  <circle cx="380" cy="250" r="9" fill="#15803d" stroke="#ffffff" stroke-width="3"/>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">
+    <text x="132" y="80" fill="#1d4ed8">1</text><text x="620" y="135" fill="#c2410c">2</text>
+    <text x="400" y="236" fill="#15803d">встреча: t = 2 с, x = 4 м</text>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#111827">
+    <text x="120" y="505">Линия 1: x₁ = 8 − 2t</text><text x="430" y="505">Линия 2: x₂ = 2 + t</text>
+  </g>
+</svg>

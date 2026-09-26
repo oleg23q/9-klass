@@ -1,15 +1,15 @@
 {
   "README.md": {
-    "mtime": 1788747721.2153058,
-    "seen": 1789210984.5046055,
-    "ast_hash": "43a24fc7d99a74fcac2ba4c16e33d6fe",
-    "semantic_hash": "43a24fc7d99a74fcac2ba4c16e33d6fe"
+    "mtime": 1790178122.3278046,
+    "seen": 1790182779.3735511,
+    "ast_hash": "51530c13416c33691ea07cf278685ea8",
+    "semantic_hash": ""
   },
   "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0430/README.md": {
-    "mtime": 1788747721.2133045,
-    "seen": 1789210883.518859,
-    "ast_hash": "eff1ac7115915a9d610dc18ec6f4330e",
-    "semantic_hash": "eff1ac7115915a9d610dc18ec6f4330e"
+    "mtime": 1790181943.0675938,
+    "seen": 1790182779.373584,
+    "ast_hash": "9e89084671c438fd24b25a94091c27b4",
+    "semantic_hash": ""
   },
   "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0430/\u041f\u043e\u0434\u0433\u043e\u0442\u043e\u0432\u043a\u0430/01-first-lesson-algorithms.md": {
     "mtime": 1788281815.505378,
@@ -24,10 +24,10 @@
     "semantic_hash": "0ec411f367292a5ec7d279474f751ab2"
   },
   "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0430/\u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0430 - \u0411\u043e\u0441\u043e\u0432\u0430 9 \u043a\u043b\u0430\u0441\u0441.md": {
-    "mtime": 1788281892.1010618,
-    "seen": 1788322845.0506957,
-    "ast_hash": "b32414cf9594022cd80633d96423859d",
-    "semantic_hash": "b32414cf9594022cd80633d96423859d"
+    "mtime": 1789705960.6531537,
+    "seen": 1790182779.3735893,
+    "ast_hash": "c6478f4e6619b408cb36e6ae87f453a8",
+    "semantic_hash": ""
   },
   "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0430/\u0423\u0440\u043e\u043a\u0438/\u0423\u0440\u043e\u043a 01 - \u0412\u0432\u0435\u0434\u0435\u043d\u0438\u0435 \u0438 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u043e\u043d\u043d\u0430\u044f \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u044c.md": {
     "mtime": 1788404552.9877293,
@@ -54,10 +54,10 @@
     "semantic_hash": "1f2484a1e7c23f6c0c05859ae1039a01"
   },
   "\u0424\u0438\u0437\u0438\u043a\u0430/README.md": {
-    "mtime": 1788747721.2112958,
-    "seen": 1789210883.5188622,
-    "ast_hash": "9a7b54a941fc3bb8a0d1c39c5ad04055",
-    "semantic_hash": "9a7b54a941fc3bb8a0d1c39c5ad04055"
+    "mtime": 1790181737.5913813,
+    "seen": 1790182779.3736067,
+    "ast_hash": "e2843b89b57ac6fbc0abfd02a37d81a6",
+    "semantic_hash": ""
   },
   "\u0424\u0438\u0437\u0438\u043a\u0430/\u0423\u0440\u043e\u043a\u0438/\u0423\u0440\u043e\u043a 01 - \u041c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044c\u043d\u0430\u044f \u0442\u043e\u0447\u043a\u0430 \u0438 \u0441\u0438\u0441\u0442\u0435\u043c\u0430 \u043e\u0442\u0441\u0447\u0435\u0442\u0430.md": {
     "mtime": 1788694441.5711262,
@@ -102,10 +102,10 @@
     "semantic_hash": "12c1f6ad94108fbfd686e16a1736bd32"
   },
   "Grade9Trainer/src/Grade9Trainer.App/Grade9Trainer.App.csproj": {
-    "mtime": 1788677807.3047879,
-    "seen": 1789210883.5187545,
-    "ast_hash": "7e9b84e2fcc13f2dca1b22dc24b10973",
-    "semantic_hash": "7e9b84e2fcc13f2dca1b22dc24b10973"
+    "mtime": 1789798733.8685567,
+    "seen": 1790182779.373457,
+    "ast_hash": "7bd747ae74688c881e20c90860886d69",
+    "semantic_hash": ""
   },
   "Grade9Trainer/src/Grade9Trainer.App/MainWindow.xaml": {
     "mtime": 1789036299.9111075,
@@ -168,16 +168,16 @@
     "semantic_hash": "d30911001012c65f1a3af2ef8ecf117e"
   },
   "Grade9Trainer/tests/Grade9Trainer.SmokeTests/Grade9Trainer.SmokeTests.csproj": {
-    "mtime": 1788660444.919746,
-    "seen": 1789210883.5188048,
-    "ast_hash": "e67cfc4ab322f1094b41145fde5f6a54",
-    "semantic_hash": "e67cfc4ab322f1094b41145fde5f6a54"
+    "mtime": 1789798856.666206,
+    "seen": 1790182779.3734932,
+    "ast_hash": "7f47af204d894047ca4ca761818aab0b",
+    "semantic_hash": ""
   },
   "Grade9Trainer/tests/Grade9Trainer.SmokeTests/Program.cs": {
-    "mtime": 1789005073.4317245,
-    "seen": 1789210883.518806,
-    "ast_hash": "906cd21e7e345162ec7a447aa6b89805",
-    "semantic_hash": "906cd21e7e345162ec7a447aa6b89805"
+    "mtime": 1790178122.329805,
+    "seen": 1790182779.373495,
+    "ast_hash": "7808253a048cc07107274e2bea54ddc3",
+    "semantic_hash": ""
   },
   "Grade9Trainer/tests/Grade9Trainer.UiSmoke/Grade9Trainer.UiSmoke.csproj": {
     "mtime": 1788660675.5162954,
@@ -186,21 +186,21 @@
     "semantic_hash": "1adeaff0af5e638a3accd1ecfe572e5b"
   },
   "Grade9Trainer/tests/Grade9Trainer.UiSmoke/Program.cs": {
-    "mtime": 1789036396.5014613,
-    "seen": 1789210883.5188093,
-    "ast_hash": "c6453b5dc5c6b4506c8abde56bcda9e4",
-    "semantic_hash": "c6453b5dc5c6b4506c8abde56bcda9e4"
+    "mtime": 1790178470.6086998,
+    "seen": 1790182779.3734984,
+    "ast_hash": "cb9d37693d2230bd817d3209712d827b",
+    "semantic_hash": ""
   },
   "tools/build_student_vault.py": {
-    "mtime": 1788747675.0014136,
-    "seen": 1789210883.518811,
-    "ast_hash": "0443b9e33fd578cd75350bde2ca532de",
-    "semantic_hash": "0443b9e33fd578cd75350bde2ca532de"
+    "mtime": 1790178122.329805,
+    "seen": 1790182779.3735037,
+    "ast_hash": "aa524fa61fed5289f57dbd3af11b400d",
+    "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1788569563.68872,
-    "seen": 1788676299.3609848,
-    "ast_hash": "547ecfe1971ff0fee076a9ec21c12420",
+    "mtime": 1790178828.8331532,
+    "seen": 1790182779.37351,
+    "ast_hash": "bf3884e4406f98a816963973072ef658",
     "semantic_hash": ""
   },
   "Grade9Trainer/Content/LESSON_FORMAT.md": {
@@ -240,10 +240,10 @@
     "semantic_hash": "43e29fa399b7a32838a8562a9c174f44"
   },
   "Grade9Trainer/Content/Lessons/\u0424\u0438\u0437\u0438\u043a\u0430/\u0423\u0440\u043e\u043a 03 - \u0420\u0430\u0432\u043d\u043e\u043c\u0435\u0440\u043d\u043e\u0435 \u043f\u0440\u044f\u043c\u043e\u043b\u0438\u043d\u0435\u0439\u043d\u043e\u0435 \u0434\u0432\u0438\u0436\u0435\u043d\u0438\u0435.md": {
-    "mtime": 1788694633.306636,
-    "seen": 1789210883.5188365,
-    "ast_hash": "8aa01b935eb5c36f29dd72979fd240a9",
-    "semantic_hash": "8aa01b935eb5c36f29dd72979fd240a9"
+    "mtime": 1789798628.8453372,
+    "seen": 1790182779.3735266,
+    "ast_hash": "ceedfd44949b24100a87ccc3131f0e03",
+    "semantic_hash": ""
   },
   "Grade9Trainer/Content/Lessons/\u0425\u0438\u043c\u0438\u044f/\u0423\u0440\u043e\u043a 00 - \u0411\u044b\u0441\u0442\u0440\u0430\u044f \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u044f\u0437\u044b\u043a\u0430 \u0445\u0438\u043c\u0438\u0438.md": {
     "mtime": 1788659146.2937593,
@@ -276,10 +276,10 @@
     "semantic_hash": "f7450e704e0e2b7d87457d29587c46f3"
   },
   "Grade9Trainer/README.md": {
-    "mtime": 1789037262.2807074,
-    "seen": 1789210883.5188575,
-    "ast_hash": "41927474e4a572537149b67b083e86d4",
-    "semantic_hash": "41927474e4a572537149b67b083e86d4"
+    "mtime": 1790178122.3288085,
+    "seen": 1790182779.3735492,
+    "ast_hash": "fc534393f61440e4ce55ee944a799b2b",
+    "semantic_hash": ""
   },
   "graphify-out/memory/query_20260906_013624_\u0434\u043e\u0431\u0430\u0432\u044c_\u0435\u0449\u0435_\u0442\u0440\u0435\u0442\u0438\u0439_\u0443\u0440\u043e\u043a_\u043f\u043e_\u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0435.md": {
     "mtime": 1788658584.789688,
@@ -324,10 +324,10 @@
     "semantic_hash": "bdca29f96c1ac854ddbf9066b2f85f32"
   },
   "\u0424\u0438\u0437\u0438\u043a\u0430/\u0423\u0440\u043e\u043a\u0438/\u0423\u0440\u043e\u043a 03 - \u0420\u0430\u0432\u043d\u043e\u043c\u0435\u0440\u043d\u043e\u0435 \u043f\u0440\u044f\u043c\u043e\u043b\u0438\u043d\u0435\u0439\u043d\u043e\u0435 \u0434\u0432\u0438\u0436\u0435\u043d\u0438\u0435.md": {
-    "mtime": 1788694583.7455525,
-    "seen": 1789210883.518868,
-    "ast_hash": "848b4fe1ac216bb6d58a5f32ef8d7fc0",
-    "semantic_hash": "848b4fe1ac216bb6d58a5f32ef8d7fc0"
+    "mtime": 1789798423.2746358,
+    "seen": 1790182779.3736193,
+    "ast_hash": "f7db95a36c241c5b613b5f09a0184fd6",
+    "semantic_hash": ""
   },
   "\u0425\u0438\u043c\u0438\u044f/\u0423\u0440\u043e\u043a\u0438/\u0423\u0440\u043e\u043a 02 - \u041a\u043b\u0430\u0441\u0441\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f \u0445\u0438\u043c\u0438\u0447\u0435\u0441\u043a\u0438\u0445 \u0440\u0435\u0430\u043a\u0446\u0438\u0439.md": {
     "mtime": 1788570377.0693262,
@@ -450,9 +450,249 @@
     "semantic_hash": "0aae7692df1313beb31fab7564808eec"
   },
   "Grade9Trainer/Content/Lessons/\u0424\u0438\u0437\u0438\u043a\u0430/\u0423\u0440\u043e\u043a 04 - \u0423\u0441\u043a\u043e\u0440\u0435\u043d\u0438\u0435 \u0438 \u0440\u0430\u0432\u043d\u043e\u0443\u0441\u043a\u043e\u0440\u0435\u043d\u043d\u043e\u0435 \u0434\u0432\u0438\u0436\u0435\u043d\u0438\u0435.md": {
-    "mtime": 1788748624.8997104,
-    "seen": 1789210984.5046008,
-    "ast_hash": "bdf4a08ac1376d0b907c9ca13067afc0",
-    "semantic_hash": "bdf4a08ac1376d0b907c9ca13067afc0"
+    "mtime": 1789236018.4130974,
+    "seen": 1790182779.3735282,
+    "ast_hash": "2361ed1f2ad10a8e5bcb66948f18dc56",
+    "semantic_hash": ""
+  },
+  "backups/rdp-repair/repair-rdp-key-acl.ps1": {
+    "mtime": 1789617870.7093408,
+    "seen": 1790182779.3735003,
+    "ast_hash": "b1dd0996666922ba98cc68983497e0ef",
+    "semantic_hash": ""
+  },
+  "backups/rdp-repair/repair-rdp-listener.ps1": {
+    "mtime": 1789617604.4473639,
+    "seen": 1790182779.373502,
+    "ast_hash": "ab752153430c0412f3ff51e75ca0afe2",
+    "semantic_hash": ""
+  },
+  "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0430/\u0422\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u044b/\u0413\u0440\u0430\u0444\u044b \u0438 \u043c\u0430\u0442\u0440\u0438\u0446\u044b/app.js": {
+    "mtime": 1790181856.2077422,
+    "seen": 1790182779.373505,
+    "ast_hash": "79bdf1eb1d55c149a99aa154882e8aa3",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0422\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u044b/\u0412\u0442\u043e\u0440\u043e\u0439 \u0437\u0430\u043a\u043e\u043d \u041d\u044c\u044e\u0442\u043e\u043d\u0430/app.js": {
+    "mtime": 1790181737.5983212,
+    "seen": 1790182779.3735063,
+    "ast_hash": "20b5c26788e2f9eef9ba56e8c0a418c8",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0422\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u044b/\u041f\u0435\u0440\u0432\u044b\u0439 \u0437\u0430\u043a\u043e\u043d \u041d\u044c\u044e\u0442\u043e\u043d\u0430/app.js": {
+    "mtime": 1790181737.5945969,
+    "seen": 1790182779.3735073,
+    "ast_hash": "810f538c7c92453df01d423b1e1bef36",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0422\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u044b/\u0421\u0432\u043e\u0431\u043e\u0434\u043d\u043e\u0435 \u043f\u0430\u0434\u0435\u043d\u0438\u0435/app.js": {
+    "mtime": 1790178059.7460954,
+    "seen": 1790182779.3735087,
+    "ast_hash": "2006e986f6a2e7a33c75ffb7651892d6",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/Content/Lessons/\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0430/\u0423\u0440\u043e\u043a 05 - \u0417\u043d\u0430\u043a\u043e\u0432\u044b\u0435 \u0438 \u0442\u0430\u0431\u043b\u0438\u0447\u043d\u044b\u0435 \u043c\u043e\u0434\u0435\u043b\u0438. \u0413\u0440\u0430\u0444\u044b \u0438 \u043c\u0430\u0442\u0440\u0438\u0446\u044b.md": {
+    "mtime": 1789795828.155053,
+    "seen": 1790182779.3735213,
+    "ast_hash": "d5e93e2a048f09d1061cae2a275a94ae",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/Content/Lessons/\u0424\u0438\u0437\u0438\u043a\u0430/\u0423\u0440\u043e\u043a 05 - \u041f\u0440\u043e\u0432\u0435\u0440\u043e\u0447\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430 \u043f\u043e \u043a\u0438\u043d\u0435\u043c\u0430\u0442\u0438\u043a\u0435.md": {
+    "mtime": 1789604400.754316,
+    "seen": 1790182779.3735301,
+    "ast_hash": "0b9e2c21a16167fc43534ce9e358686f",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/Content/Lessons/\u0424\u0438\u0437\u0438\u043a\u0430/\u0423\u0440\u043e\u043a 06 - \u0418\u043d\u0435\u0440\u0446\u0438\u044f \u0438 \u043f\u0435\u0440\u0432\u044b\u0439 \u0437\u0430\u043a\u043e\u043d \u041d\u044c\u044e\u0442\u043e\u043d\u0430.md": {
+    "mtime": 1789604326.2099059,
+    "seen": 1790182779.3735313,
+    "ast_hash": "4b6961b7a1c9c7ce1af20340d26e78d4",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/Content/Lessons/\u0424\u0438\u0437\u0438\u043a\u0430/\u0423\u0440\u043e\u043a 07 - \u0421\u0438\u043b\u0430, \u043c\u0430\u0441\u0441\u0430 \u0438 \u0432\u0442\u043e\u0440\u043e\u0439 \u0437\u0430\u043a\u043e\u043d \u041d\u044c\u044e\u0442\u043e\u043d\u0430.md": {
+    "mtime": 1789604326.2109058,
+    "seen": 1790182779.3735328,
+    "ast_hash": "6c7109101cfa6103874276d05806f9f5",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/Content/Lessons/\u0424\u0438\u0437\u0438\u043a\u0430/\u0423\u0440\u043e\u043a 08 - \u0421\u0432\u043e\u0431\u043e\u0434\u043d\u043e\u0435 \u043f\u0430\u0434\u0435\u043d\u0438\u0435 \u0442\u0435\u043b.md": {
+    "mtime": 1790177624.591123,
+    "seen": 1790182779.3735354,
+    "ast_hash": "9906cd51f29e2de580911d0a21045632",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/Content/Package/\u0421\u041d\u0410\u0427\u0410\u041b\u0410 \u041f\u0420\u041e\u0427\u0418\u0422\u0410\u0419 - \u0443\u0447\u0435\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u043a\u043e\u043c\u043f\u043b\u0435\u043a\u0442.txt": {
+    "mtime": 1790181943.0675938,
+    "seen": 1790182779.3735478,
+    "ast_hash": "3138a3da0a61bfddc031035b826e749d",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260906_114136_\u043a\u0430\u043a\u0438\u0435_\u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0435_\u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044b_\u0441\u0432\u044f\u0437\u0430\u043d\u044b_\u0441_\u043f\u0435\u0440\u0432\u044b\u043c\u0438_\u0442\u0440\u0435.md": {
+    "mtime": 1788694896.849933,
+    "seen": 1790182779.373564,
+    "ast_hash": "b0cb51ed5b7f1e34f713a9dc25eea149",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260906_122340_\u0447\u0442\u043e_\u0442\u043e_\u0438\u0437\u043c\u0435\u043d\u0438\u043b\u043e\u0441\u044c_\u0432_\u0442\u0440\u0435\u043d\u0430\u0436\u0435\u0440\u0435_\u043f\u043e_\u0444\u0438\u0437\u0438\u043a\u0435.md": {
+    "mtime": 1788697420.8754694,
+    "seen": 1790182779.3735654,
+    "ast_hash": "b6cfe3e6cb1316913ef262223bad167c",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260910_015212_\u043d\u043e_\u0442\u0440\u0435\u043d\u0430\u0436\u0435\u0440_\u043d\u0443\u0436\u043d\u043e_\u0434\u043e\u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c__\u043a\u0430\u043a\u0438\u0435_\u0442\u043e_\u0441\u0438\u043c\u0432\u043e\u043b\u044b_\u043d\u0435\u043f.md": {
+    "mtime": 1789005132.7565517,
+    "seen": 1790182779.3735669,
+    "ast_hash": "88c017c82bc91cce224b5461e896ca5c",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260910_101350_\u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0438_\u0438_\u0435\u0441\u043b\u0438_\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e_\u0432_\u0442\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u0435_\u0434\u043e\u0431\u0430\u0432\u0438\u0442\u044c_\u0432\u043e\u0437\u043c.md": {
+    "mtime": 1789035230.5357888,
+    "seen": 1790182779.3735683,
+    "ast_hash": "6b829c270c569e26ceb342b39239ac51",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260910_103534_\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e_\u0434\u043e\u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c_\u0442\u0440\u0435\u043d\u0430\u0436\u0435\u0440_\u0447\u0442\u043e\u0431\u044b_\u043c\u043e\u0436\u043d\u043e_\u0431\u044b\u043b\u043e_\u0441\u0430\u043c.md": {
+    "mtime": 1789036534.355842,
+    "seen": 1790182779.3735695,
+    "ast_hash": "1a6c83bdea5ef0d04ccbc2562fb96d77",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260910_104938_\u0442\u0440\u0435\u043d\u0430\u0436\u0435\u0440_\u043d\u0435_\u0437\u0430\u043f\u0443\u0441\u043a\u0430\u0435\u0442\u0441\u044f.md": {
+    "mtime": 1789037378.059778,
+    "seen": 1790182779.373571,
+    "ast_hash": "9ce213026a6c411df9b1cc7303ae898d",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260917_002310_c7f25665_\u043a\u0430\u043a_\u0443\u0441\u0442\u0440\u043e\u0435\u043d\u044b_\u0442\u0435\u043a\u0443\u0449\u0438\u0435_\u0443\u0440\u043e\u043a\u0438_\u0444\u0438\u0437\u0438\u043a\u0438_\u0438_\u043a\u0430\u043a\u0438\u0435_\u0442\u0435\u043c\u044b_\u0434\u043e\u043b.md": {
+    "mtime": 1789604590.262438,
+    "seen": 1790182779.3735723,
+    "ast_hash": "06ee61da21132fe8fa322c0edd87548f",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260918_043529_3ed7fe19_\u043a\u0430\u043a_\u0434\u043e\u0431\u0430\u0432\u0438\u0442\u044c_\u0443\u0440\u043e\u043a_\u043f\u043e_\u0437\u043d\u0430\u043a\u043e\u0432\u044b\u043c_\u0438_\u0442\u0430\u0431\u043b\u0438\u0447\u043d\u044b\u043c_\u043c\u043e\u0434\u0435\u043b\u044f\u043c.md": {
+    "mtime": 1789706129.4345715,
+    "seen": 1790182779.3735735,
+    "ast_hash": "f05b4943dc7c0cb0a1412422b03f3255",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260918_050318_cc687ee6_student_\u0443\u0447\u0435\u043d\u0438\u043a\u0430_package_trainer_\u0442\u0440\u0435\u043d\u0430\u0436\u0451\u0440_lessons_\u0443.md": {
+    "mtime": 1789707798.3009124,
+    "seen": 1790182779.373575,
+    "ast_hash": "33200db9f9a3dac2b89209509c1eef7d",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260919_053529_b482f1ab_\u043c\u043e\u0436\u0435\u0448\u044c_\u0434\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u044c_5_\u0443\u0440\u043e\u043a_\u043f\u043e_\u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0435_\u044d\u0442\u0438\u043c\u0438_\u043e\u0431\u044a\u044f\u0441.md": {
+    "mtime": 1789796129.890765,
+    "seen": 1790182779.3735762,
+    "ast_hash": "1bc1e4a3aa296d4c051ee0b1489fa1cc",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260919_054230_6583cb02_\u0442\u044b_\u043c\u043e\u0436\u0435\u0448\u044c_\u0437\u0430\u043f\u0443\u0441\u043a\u0430\u0442\u044c_docker_desktop_\u0441\u0430\u043c_\u043f\u0440\u0438_\u043d\u0435\u043e\u0431\u0445\u043e\u0434.md": {
+    "mtime": 1789796550.046287,
+    "seen": 1790182779.3735774,
+    "ast_hash": "1bc4766dba9f8cc23ad39504e38e8347",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260919_054529_bba93ae9_\u0430_\u0443\u0447\u0435\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439_\u043a\u043e\u043c\u043f\u043b\u0435\u043a\u0442_\u0441\u0434\u0435\u043b\u0430\u043b.md": {
+    "mtime": 1789796729.7727802,
+    "seen": 1790182779.3735788,
+    "ast_hash": "f976ae18228ba2364dbc56aa8ca201fc",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260919_055543_2ea6ff69_\u0434\u0430_\u0441\u0434\u0435\u043b\u0430\u0439_\u0441\u0435\u0439\u0447\u0430\u0441_\u0438_\u043d\u0430_\u0431\u0443\u0434\u0443\u0449\u0435\u0435_\u0437\u0430\u043f\u0438\u0448\u0438_\u043f\u0440\u0430\u0432\u0438\u043b\u043e_\u043f\u0435\u0440\u0435\u0441.md": {
+    "mtime": 1789797343.6303873,
+    "seen": 1790182779.3735802,
+    "ast_hash": "644c349f42067279706398a9b6ff6592",
+    "semantic_hash": ""
+  },
+  "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0430/\u0422\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u044b/\u0413\u0440\u0430\u0444\u044b \u0438 \u043c\u0430\u0442\u0440\u0438\u0446\u044b/README.md": {
+    "mtime": 1790181856.2088087,
+    "seen": 1790182779.3735905,
+    "ast_hash": "0a5a708f2a266ce8152649c7d1e9b46c",
+    "semantic_hash": ""
+  },
+  "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0430/\u0422\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u044b/\u0413\u0440\u0430\u0444\u044b \u0438 \u043c\u0430\u0442\u0440\u0438\u0446\u044b/index.html": {
+    "mtime": 1790181856.205095,
+    "seen": 1790182779.373592,
+    "ast_hash": "7c182997a1e9e783aef4c0529fa96b64",
+    "semantic_hash": ""
+  },
+  "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u0438\u043a\u0430/\u0423\u0440\u043e\u043a\u0438/\u0423\u0440\u043e\u043a 05 - \u0417\u043d\u0430\u043a\u043e\u0432\u044b\u0435 \u0438 \u0442\u0430\u0431\u043b\u0438\u0447\u043d\u044b\u0435 \u043c\u043e\u0434\u0435\u043b\u0438. \u0413\u0440\u0430\u0444\u044b \u0438 \u043c\u0430\u0442\u0440\u0438\u0446\u044b.md": {
+    "mtime": 1789795828.153051,
+    "seen": 1790182779.3736002,
+    "ast_hash": "a2c2b66e4bc4d42b9d234c3e248c4d68",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0422\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u044b/\u0412\u0442\u043e\u0440\u043e\u0439 \u0437\u0430\u043a\u043e\u043d \u041d\u044c\u044e\u0442\u043e\u043d\u0430/README.md": {
+    "mtime": 1790181737.595662,
+    "seen": 1790182779.3736079,
+    "ast_hash": "4772220c44fc9573d11876a1ba76e858",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0422\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u044b/\u0412\u0442\u043e\u0440\u043e\u0439 \u0437\u0430\u043a\u043e\u043d \u041d\u044c\u044e\u0442\u043e\u043d\u0430/index.html": {
+    "mtime": 1790181737.596713,
+    "seen": 1790182779.3736093,
+    "ast_hash": "e6e533cd88c0a31bd7c322a958d8a100",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0422\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u044b/\u041f\u0435\u0440\u0432\u044b\u0439 \u0437\u0430\u043a\u043e\u043d \u041d\u044c\u044e\u0442\u043e\u043d\u0430/README.md": {
+    "mtime": 1790181737.5924468,
+    "seen": 1790182779.3736105,
+    "ast_hash": "7f1cb4603c0ea4d47c5708da0ec73137",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0422\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u044b/\u041f\u0435\u0440\u0432\u044b\u0439 \u0437\u0430\u043a\u043e\u043d \u041d\u044c\u044e\u0442\u043e\u043d\u0430/index.html": {
+    "mtime": 1790181737.5929945,
+    "seen": 1790182779.3736117,
+    "ast_hash": "649ca71f6f0d6c77042aed4316cdfb5f",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0422\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u044b/\u0421\u0432\u043e\u0431\u043e\u0434\u043d\u043e\u0435 \u043f\u0430\u0434\u0435\u043d\u0438\u0435/README.md": {
+    "mtime": 1790179156.4669664,
+    "seen": 1790182779.373613,
+    "ast_hash": "0ad91dcef90c11b5c9f7a906906c7338",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0422\u0440\u0435\u043d\u0430\u0436\u0451\u0440\u044b/\u0421\u0432\u043e\u0431\u043e\u0434\u043d\u043e\u0435 \u043f\u0430\u0434\u0435\u043d\u0438\u0435/index.html": {
+    "mtime": 1790177746.8554637,
+    "seen": 1790182779.373614,
+    "ast_hash": "074049b4f0415df98a270c57da45fff8",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0423\u0440\u043e\u043a\u0438/\u0423\u0440\u043e\u043a 05 - \u041f\u0440\u043e\u0432\u0435\u0440\u043e\u0447\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430 \u043f\u043e \u043a\u0438\u043d\u0435\u043c\u0430\u0442\u0438\u043a\u0435.md": {
+    "mtime": 1789272841.9648545,
+    "seen": 1790182779.3736222,
+    "ast_hash": "cfa83aad5e08584939520b8326fc2e6b",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0423\u0440\u043e\u043a\u0438/\u0423\u0440\u043e\u043a 06 - \u0418\u043d\u0435\u0440\u0446\u0438\u044f \u0438 \u043f\u0435\u0440\u0432\u044b\u0439 \u0437\u0430\u043a\u043e\u043d \u041d\u044c\u044e\u0442\u043e\u043d\u0430.md": {
+    "mtime": 1790182571.60559,
+    "seen": 1790182779.3736236,
+    "ast_hash": "4f768733e6ddeae035b9219fb86ff2ad",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0423\u0440\u043e\u043a\u0438/\u0423\u0440\u043e\u043a 07 - \u0421\u0438\u043b\u0430, \u043c\u0430\u0441\u0441\u0430 \u0438 \u0432\u0442\u043e\u0440\u043e\u0439 \u0437\u0430\u043a\u043e\u043d \u041d\u044c\u044e\u0442\u043e\u043d\u0430.md": {
+    "mtime": 1790182571.6067004,
+    "seen": 1790182779.3736246,
+    "ast_hash": "4726c4c7bf2b3e1d7ab136f1f3685d39",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0423\u0440\u043e\u043a\u0438/\u0423\u0440\u043e\u043a 08 - \u0421\u0432\u043e\u0431\u043e\u0434\u043d\u043e\u0435 \u043f\u0430\u0434\u0435\u043d\u0438\u0435 \u0442\u0435\u043b.md": {
+    "mtime": 1790179156.466443,
+    "seen": 1790182779.3736258,
+    "ast_hash": "944a4e7e2cdd10fac528eb35ceb340e9",
+    "semantic_hash": ""
+  },
+  "Grade9Trainer/Content/Lessons/\u0412\u043b\u043e\u0436\u0435\u043d\u0438\u044f/physics03-meeting-graph.svg": {
+    "mtime": 1789798198.1883454,
+    "seen": 1790182779.3736374,
+    "ast_hash": "e5244da232f04b206770d32c2d35342b",
+    "semantic_hash": ""
+  },
+  "\u0424\u0438\u0437\u0438\u043a\u0430/\u0412\u043b\u043e\u0436\u0435\u043d\u0438\u044f/physics03-meeting-graph.svg": {
+    "mtime": 1789798198.1883454,
+    "seen": 1790182779.3736389,
+    "ast_hash": "e5244da232f04b206770d32c2d35342b",
+    "semantic_hash": ""
   }
 }
