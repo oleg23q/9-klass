@@ -53,13 +53,14 @@ internal static class Program
         var diagram = Descendants<Grade9Trainer.App.DiagramView>(window).FirstOrDefault();
         var profileList = Descendants<ComboBox>(window).FirstOrDefault(comboBox => comboBox.Name == "ProfileList");
         var editorButton = Descendants<Button>(window).FirstOrDefault(button => Equals(button.Content, "Редактор"));
+        var subjectList = Descendants<ListBox>(window).FirstOrDefault(listBox => listBox.Name == "SubjectList");
         var lessonList = Descendants<ListBox>(window).FirstOrDefault(listBox => listBox.Name == "LessonList");
         var focusModeButton = Descendants<Button>(window).FirstOrDefault(button => button.Name == "FocusModeButton");
         var subjectPanel = Descendants<Border>(window).FirstOrDefault(border => border.Name == "SubjectPanel");
         var lessonPanel = Descendants<Border>(window).FirstOrDefault(border => border.Name == "LessonPanel");
         var lessonSurface = Descendants<Border>(window).FirstOrDefault(border => border.Name == "LessonSurface");
         if (answer is null || selectableTexts.Length == 0 || solutionButton is null || stepSolutions.Length == 0 || diagram is null ||
-            profileList is null || profileList.Items.Count < 1 || editorButton is null ||
+            profileList is null || profileList.Items.Count < 1 || editorButton is null || subjectList is null ||
             lessonList is null || lessonList.Items.Count < 2 || focusModeButton is null ||
             subjectPanel is null || lessonPanel is null || lessonSurface is null)
         {
@@ -233,6 +234,42 @@ internal static class Program
         {
             throw new InvalidOperationException("Урок 08 о свободном падении не отобразился полностью или потерял формулу v=gt.");
         }
+
+        subjectList.SelectedItem = "Химия";
+        window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
+        if (lessonList.Items.Count != 6)
+        {
+            throw new InvalidOperationException($"В разделе химии ожидалось 6 уроков с подготовительным, найдено {lessonList.Items.Count}.");
+        }
+        lessonList.SelectedIndex = lessonList.Items.Count - 1;
+        window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
+        window.UpdateLayout();
+        var redoxTitle = Descendants<TextBlock>(window).FirstOrDefault(textBlock => textBlock.Name == "LessonTitle");
+        var redoxSteps = Descendants<Border>(window).Count(border => Equals(border.Tag, "StepSolution"));
+        var redoxText = Descendants<TextBox>(window)
+            .Where(textBox => Equals(textBox.Tag, "SelectableLessonText"))
+            .Select(textBox => textBox.Text ?? string.Empty)
+            .ToArray();
+        if (redoxTitle?.Text != "Урок 05. Окислительно-восстановительные реакции" || redoxSteps != 8 ||
+            !redoxText.Any(text => text.Contains("отданных электронов", StringComparison.OrdinalIgnoreCase)) ||
+            !redoxText.Any(text => text.Contains("Индекс 2", StringComparison.Ordinal) &&
+                                   text.Contains("SO₂", StringComparison.Ordinal) &&
+                                   text.Contains("NH₃", StringComparison.Ordinal) &&
+                                   text.Contains("KMnO₄", StringComparison.Ordinal)))
+        {
+            throw new InvalidOperationException("Урок 05 по ОВР не отобразился полностью, потерял правило электронного баланса или новые примеры степеней окисления.");
+        }
+
+        var redoxBitmap = new RenderTargetBitmap(
+            (int)Math.Ceiling(window.ActualWidth * scale.DpiScaleX),
+            (int)Math.Ceiling(window.ActualHeight * scale.DpiScaleY),
+            scale.PixelsPerInchX,
+            scale.PixelsPerInchY,
+            PixelFormats.Pbgra32);
+        redoxBitmap.Render(window);
+        var redoxEncoder = new PngBitmapEncoder();
+        redoxEncoder.Frames.Add(BitmapFrame.Create(redoxBitmap));
+        using (var stream = File.Create(outputPath)) redoxEncoder.Save(stream);
 
         window.Close();
         application.Shutdown();

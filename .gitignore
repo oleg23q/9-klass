@@ -20,6 +20,10 @@ __pycache__/
 bin/
 obj/
 artifacts/
+.artifacts/
+
+# Machine-specific recovery backups
+backups/rdp-repair/
 
 # Local Graphify runtime state
 graphify-out/.graphify_python

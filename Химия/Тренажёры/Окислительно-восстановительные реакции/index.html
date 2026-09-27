@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ОВР — интерактивный тренажёр</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div>
+        <p class="eyebrow">Химия · урок 05</p>
+        <h1>Окислительно-восстановительные реакции</h1>
+        <p class="subtitle">От степеней окисления к электронному балансу</p>
+      </div>
+      <button id="themeToggle" class="icon-btn" type="button" aria-label="Переключить тему">◐</button>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Разделы тренажёра">
+    <button class="nav-btn active" type="button" data-target="theory">Короткая теория</button>
+    <button class="nav-btn" type="button" data-target="transfer">Передача электронов</button>
+    <button class="nav-btn" type="button" data-target="balance">Электронный баланс</button>
+    <button class="nav-btn" type="button" data-target="tasks">Задания</button>
+  </nav>
+
+  <main>
+    <section id="theory" class="content-section active">
+      <div class="hero">
+        <div>
+          <span class="eyebrow">Главный признак ОВР</span>
+          <h2>Степени окисления изменились</h2>
+          <p>Сначала расставь степени окисления. Только после этого решай, кто отдал и кто принял электроны.</p>
+        </div>
+        <div class="formula-card" aria-label="Правило электронного баланса">
+          <strong>отдано e⁻ = принято e⁻</strong>
+          <span>электроны не исчезают и не возникают</span>
+        </div>
+      </div>
+      <div class="rule-grid">
+        <article class="rule oxidation">
+          <span class="rule-mark">− e⁻</span>
+          <h3>Окисление</h3>
+          <p>Отдача электронов. Степень окисления повышается.</p>
+          <strong>Восстановитель отдаёт и окисляется</strong>
+        </article>
+        <article class="rule reduction">
+          <span class="rule-mark">+ e⁻</span>
+          <h3>Восстановление</h3>
+          <p>Принятие электронов. Степень окисления понижается.</p>
+          <strong>Окислитель принимает и восстанавливается</strong>
+        </article>
+      </div>
+      <div class="rules-strip">
+        <div><strong>0</strong><span>у простого вещества</span></div>
+        <div><strong>−2</strong><span>обычно у кислорода</span></div>
+        <div><strong>+1</strong><span>обычно у водорода</span></div>
+        <div><strong>Σ = 0</strong><span>в нейтральном веществе</span></div>
+      </div>
+    </section>
+
+    <section id="transfer" class="content-section">
+      <div class="section-title">
+        <div>
+          <span class="eyebrow">Следи за изменением числа</span>
+          <h2>Кто передаёт электроны?</h2>
+        </div>
+        <label class="select-label">Пример
+          <select id="reactionSelect"></select>
+        </label>
+      </div>
+      <div class="reaction-line" id="reactionLine" aria-live="polite"></div>
+      <div class="transfer-stage" aria-live="polite">
+        <article class="atom-card oxidation" id="donorCard">
+          <span class="role-label">Отдаёт электроны</span>
+          <div class="state-change"><span id="donorFrom"></span><b>→</b><span id="donorTo"></span></div>
+          <p id="donorElectrons"></p>
+          <strong id="donorRole"></strong>
+        </article>
+        <div class="electron-arrow" aria-hidden="true">
+          <span id="electronCount"></span>
+          <div>e⁻ →</div>
+        </div>
+        <article class="atom-card reduction" id="acceptorCard">
+          <span class="role-label">Принимает электроны</span>
+          <div class="state-change"><span id="acceptorFrom"></span><b>→</b><span id="acceptorTo"></span></div>
+          <p id="acceptorElectrons"></p>
+          <strong id="acceptorRole"></strong>
+        </article>
+      </div>
+      <p id="transferHint" class="feedback neutral"></p>
+    </section>
+
+    <section id="balance" class="content-section">
+      <div class="section-title">
+        <div>
+          <span class="eyebrow">Подбери коэффициенты</span>
+          <h2>Электронный баланс</h2>
+        </div>
+        <label class="select-label">Реакция
+          <select id="balanceSelect"></select>
+        </label>
+      </div>
+      <div class="balance-layout">
+        <div class="panel">
+          <div id="halfReactions" class="half-reactions"></div>
+          <p id="lcmHint" class="hint"></p>
+        </div>
+        <div class="panel">
+          <h3>Поставь коэффициенты</h3>
+          <div id="coefficientEditor" class="coefficient-editor"></div>
+          <div class="button-row">
+            <button id="checkBalance" class="btn primary" type="button">Проверить</button>
+            <button id="showBalanceHint" class="btn" type="button">Подсказка</button>
+          </div>
+          <div id="balanceFeedback" class="feedback neutral" aria-live="polite">Начни с равенства отданных и принятых электронов.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tasks" class="content-section">
+      <div class="section-title">
+        <div>
+          <span class="eyebrow">Самостоятельная проверка</span>
+          <h2>Восемь коротких заданий</h2>
+        </div>
+        <span class="score-badge">Верно: <span id="score">0/8</span></span>
+      </div>
+      <div id="taskGrid" class="task-grid"></div>
+      <button id="resetProgress" class="btn danger" type="button">Сбросить ответы</button>
+    </section>
+  </main>
+
+  <footer>Сначала изменение степени окисления, затем электроны, потом коэффициенты.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
