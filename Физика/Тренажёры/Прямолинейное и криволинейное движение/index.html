@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Прямолинейное и криволинейное движение — тренажёр по физике</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M8 50h20c12 0 14-26 28-26" class="arrow-line"/>
+          <path d="m47 14 9 10-12 4" class="arrow-line"/>
+          <circle cx="12" cy="50" r="6" class="ball"/>
+        </svg>
+        <div>
+          <h1>Прямолинейное и криволинейное движение</h1>
+          <p>Интерактивный тренажёр · 9 класс · Физика · Урок 09</p>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить цветовую тему">◐</button>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Разделы тренажёра">
+    <button class="nav-btn active" data-target="theory" type="button">Теория</button>
+    <button class="nav-btn" data-target="lab" type="button">Эксперимент</button>
+    <button class="nav-btn" data-target="examples" type="button">Разборы задач</button>
+    <button class="nav-btn" data-target="algorithm" type="button">Алгоритм</button>
+    <button class="nav-btn" data-target="tasks" type="button">Задания</button>
+  </nav>
+
+  <main class="main-content">
+    <section class="content-section active" id="theory">
+      <div class="hero-card">
+        <div>
+          <span class="eyebrow">Главная идея</span>
+          <h2>Траекторию выбирает сила</h2>
+          <p>Если сила лежит на одной прямой со скоростью, тело движется по прямой. Если сила направлена под углом к скорости, траектория искривляется. Сама скорость в каждой точке направлена по касательной.</p>
+        </div>
+        <div class="formula-stack" aria-label="Основные положения">
+          <code>F ∥ v → прямая</code>
+          <code>F под углом к v → кривая</code>
+          <code>v — по касательной</code>
+        </div>
+      </div>
+
+      <div class="theory-grid">
+        <article class="theory-card">
+          <span class="card-number">01</span>
+          <h3>Траектория и вид движения</h3>
+          <p>Траектория — линия, по которой движется тело. Прямая траектория означает прямолинейное движение, кривая — криволинейное. Вид зависит и от системы отсчёта.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">02</span>
+          <h3>Скорость по касательной</h3>
+          <p>В каждой точке криволинейной траектории мгновенная скорость направлена по <strong>касательной</strong>. Поэтому искры с точила и брызги с колеса летят по прямым линиям.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">03</span>
+          <h3>Две составляющие силы</h3>
+          <p>Составляющая силы <strong>вдоль скорости</strong> меняет модуль скорости. Составляющая <strong>поперёк скорости</strong> меняет направление скорости и искривляет траекторию.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">04</span>
+          <h3>Путь больше перемещения</h3>
+          <p>На дуге путь — длина кривой, а перемещение — прямой отрезок от начала до конца. Поэтому путь больше модуля перемещения. Длина окружности C = 2πR, поэтому для полуокружности l = C/2 = πR, а s = 2R (диаметр).</p>
+        </article>
+      </div>
+      <div class="notice"><strong>Ловушка:</strong> короткий удар не делает траекторию кривой надолго. После удара сил нет, и тело снова движется по инерции по прямой. Для кривой нужна сила, которая действует во время движения.</div>
+    </section>
+
+    <section class="content-section" id="lab">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Управляемая модель</span>
+          <h2>Сила и траектория</h2>
+        </div>
+        <span class="model-badge">без трения и сопротивления</span>
+      </div>
+
+      <div class="lab-grid">
+        <aside class="control-panel">
+          <label for="modeSelect">Как направлена сила</label>
+          <select id="modeSelect">
+            <option value="rel">Под заданным углом к скорости</option>
+            <option value="grav">Вертикально вниз, как сила тяжести</option>
+          </select>
+
+          <div class="hidden-row" id="angleRow">
+            <label for="angleInput">Угол между силой и скоростью: <strong><span id="angleLabel">90</span>°</strong></label>
+            <input id="angleInput" type="range" min="0" max="180" step="5" value="90">
+          </div>
+
+          <label for="accelInput">Ускорение от силы a: <strong><span id="accelLabel">3</span> м/с²</strong></label>
+          <input id="accelInput" type="range" min="0" max="6" step="0.5" value="3">
+
+          <label for="speedInput">Начальная скорость: <strong><span id="speedLabel">3</span> м/с</strong></label>
+          <input id="speedInput" type="range" min="1" max="6" step="0.5" value="3">
+
+          <label for="dirInput">Начальное направление скорости: <strong><span id="dirLabel">0</span>°</strong></label>
+          <input id="dirInput" type="range" min="0" max="90" step="5" value="0">
+
+          <div class="prediction-box">
+            <h3>Твой прогноз</h3>
+            <label for="predPath">Траектория</label>
+            <select id="predPath">
+              <option value="">— выбери —</option>
+              <option value="straight">прямая</option>
+              <option value="curve">кривая</option>
+            </select>
+            <label for="predSpeed">Модуль скорости</label>
+            <select id="predSpeed">
+              <option value="">— выбери —</option>
+              <option value="grow">растёт</option>
+              <option value="fall">убывает</option>
+              <option value="same">не меняется</option>
+            </select>
+          </div>
+
+          <label class="check-row"><input type="checkbox" id="tangentToggle" checked> Показывать касательную</label>
+
+          <div class="button-row">
+            <button class="btn primary" id="runBtn" type="button">Запустить</button>
+            <button class="btn secondary" id="resetBtn" type="button">Сбросить</button>
+          </div>
+          <button class="btn ghost full" id="releaseBtn" type="button" disabled>Убрать силу во время полёта</button>
+        </aside>
+
+        <div class="experiment-card">
+          <svg class="scene" id="scene" viewBox="0 0 560 400" role="img" aria-labelledby="sceneTitle sceneDesc">
+            <title id="sceneTitle">Движение тела под действием силы</title>
+            <desc id="sceneDesc">Шар движется по траектории, синяя стрелка показывает скорость, розовая стрелка показывает силу</desc>
+            <defs>
+              <linearGradient id="sceneSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#e5f6ff"/>
+                <stop offset="1" stop-color="#fff8e3"/>
+              </linearGradient>
+              <marker id="headV" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1c7ed6"/></marker>
+              <marker id="headF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#d6336c"/></marker>
+            </defs>
+            <rect x="0" y="0" width="560" height="400" rx="24" fill="url(#sceneSky)"/>
+            <line class="ground" id="groundLine" x1="20" y1="388" x2="540" y2="388" visibility="hidden"/>
+            <path id="trail" class="trail" d=""/>
+            <line id="tangent" class="tangent-line" x1="0" y1="0" x2="0" y2="0" visibility="hidden"/>
+            <circle id="startDot" r="5" fill="#17313a"/>
+            <line id="vecV" class="vec-v" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headV)"/>
+            <line id="vecF" class="vec-f" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headF)" visibility="hidden"/>
+            <circle id="ball" class="body-dot" r="12" cx="150" cy="340"/>
+            <text id="labelV" class="vec-label v" x="0" y="0">v</text>
+            <text id="labelF" class="vec-label f" x="0" y="0" visibility="hidden">F</text>
+          </svg>
+          <div class="legend">
+            <span><i class="lv"></i>скорость v</span>
+            <span><i class="lf"></i>сила F (ускорение a)</span>
+            <span><i class="lt"></i>траектория</span>
+          </div>
+          <div class="meters">
+            <div><span>Время</span><strong id="timeMeter">0,0 с</strong></div>
+            <div><span>Скорость</span><strong id="speedMeter">0,0 м/с</strong></div>
+            <div><span>Угол между F и v</span><strong id="angleMeter">—</strong></div>
+          </div>
+          <div class="verdict" id="verdict" aria-live="polite">Выбери условия и сделай прогноз: вывод появится после опыта.</div>
+          <div class="feedback" id="labFeedback" aria-live="polite">Попробуй три опыта: угол 0°, угол 90° и угол 180°. Затем выбери силу вниз и начальное направление 0° и 90°.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="examples">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Решаем вместе</span>
+          <h2>Четыре разобранные задачи</h2>
+        </div>
+        <div class="score-pill">Изучено: <strong id="exampleScore">0/4</strong></div>
+      </div>
+      <p class="examples-intro">Сначала попробуй решить задачу сам. Затем открывай шаги разбора по одному и сравнивай свой ход мысли.</p>
+      <div class="example-list" id="exampleList"></div>
+    </section>
+
+    <section class="content-section" id="algorithm">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Сила → угол → вывод</span>
+          <h2>Алгоритм определения движения</h2>
+        </div>
+      </div>
+
+      <div class="algorithm-grid">
+        <ol class="steps-list">
+          <li><span>1</span><div><h3>Найди силу</h3><p>Какая равнодействующая сила действует на тело во время движения? Если её нет или она равна нулю, движение равномерное и прямолинейное.</p></div></li>
+          <li><span>2</span><div><h3>Нарисуй скорость</h3><p>Скорость в данной точке направь по касательной к траектории или по линии движения.</p></div></li>
+          <li><span>3</span><div><h3>Сравни углы</h3><p>Угол между силой и скоростью 0° или 180° — траектория прямая. Любой другой угол — траектория искривляется.</p></div></li>
+          <li><span>4</span><div><h3>Скажи, что меняется</h3><p>Составляющая вдоль скорости меняет модуль скорости, составляющая поперёк меняет направление.</p></div></li>
+        </ol>
+
+        <div class="calculator-card">
+          <h3>Дуга: путь и перемещение</h3>
+          <label for="arcRadius">Радиус R, м</label>
+          <input id="arcRadius" type="number" min="0.1" step="0.1" value="10">
+          <label for="arcAngle">Центральный угол дуги: <strong><span id="arcAngleLabel">180</span>°</strong></label>
+          <input id="arcAngle" type="range" min="10" max="350" step="5" value="180">
+          <svg class="arc-preview" id="arcPreview" viewBox="0 0 300 190" role="img" aria-label="Дуга окружности и хорда между её концами"></svg>
+          <button class="btn primary full" id="arcBtn" type="button">Показать решение</button>
+          <div class="solution-box" id="arcResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="tasks">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Самостоятельная работа</span>
+          <h2>Двенадцать задач с проверкой и разбором</h2>
+        </div>
+        <div class="score-pill">Верно: <strong id="scoreValue">0/12</strong></div>
+      </div>
+      <p class="tasks-intro">Принимаем π = 3,14 и g = 10 м/с². Десятичную дробь можно вводить через запятую или точку. После первой проверки открывается полный разбор задачи.</p>
+      <div class="task-grid" id="taskGrid"></div>
+      <div class="button-row final-actions">
+        <button class="btn secondary" id="resetProgressBtn" type="button">Начать задания заново</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Тренажёр работает локально. Результат заданий хранится только в этом браузере.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

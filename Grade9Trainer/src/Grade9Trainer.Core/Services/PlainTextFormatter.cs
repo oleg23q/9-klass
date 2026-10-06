@@ -208,6 +208,8 @@ public static partial class PlainTextFormatter
             formatted = replaced;
         }
 
+        formatted = formatted.Replace("^\\circ", "°", StringComparison.Ordinal).Replace("^{\\circ}", "°", StringComparison.Ordinal);
+        formatted = MathSymbolRegex().Replace(formatted, match => MathSymbols[match.Groups[1].Value]);
         formatted = SqrtRegex().Replace(formatted, match => $"√({match.Groups[1].Value})");
         formatted = SuperscriptRegex().Replace(formatted, match => ConvertScript(match, superscript: true));
         formatted = SubscriptRegex().Replace(formatted, match => ConvertScript(match, superscript: false));
@@ -218,6 +220,13 @@ public static partial class PlainTextFormatter
         formatted = MultiSpaceRegex().Replace(formatted, " ");
         return formatted.Trim();
     }
+
+    private static readonly Dictionary<string, string> MathSymbols = new(StringComparer.Ordinal)
+    {
+        ["pi"] = "π", ["omega"] = "ω", ["nu"] = "ν", ["varphi"] = "φ", ["phi"] = "φ", ["alpha"] = "α",
+        ["approx"] = "≈", ["leq"] = "≤", ["le"] = "≤", ["geq"] = "≥", ["ge"] = "≥", ["neq"] = "≠",
+        ["perp"] = "⊥", ["parallel"] = "∥", ["circ"] = "°", ["pm"] = "±"
+    };
 
     private static string FormatMathGroup(string value)
     {
@@ -331,6 +340,9 @@ public static partial class PlainTextFormatter
 
     [GeneratedRegex(@"_(?:\{([^{}]+)\}|([A-Za-z0-9+\-=()]))")]
     private static partial Regex SubscriptRegex();
+
+    [GeneratedRegex(@"\\(pi|omega|nu|varphi|phi|alpha|approx|leq|le|geq|ge|neq|perp|parallel|circ|pm)(?![A-Za-z])")]
+    private static partial Regex MathSymbolRegex();
 
     [GeneratedRegex(@"\\([A-Za-z]+)")]
     private static partial Regex UnknownCommandRegex();

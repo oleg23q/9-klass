@@ -6,13 +6,13 @@ var parser = new LessonMarkdownParser();
 var catalog = new LessonCatalogService(parser).Load(lessonRoot);
 
 Assert(catalog.Warnings.Count == 0, "Каталог содержит предупреждения: " + string.Join("; ", catalog.Warnings));
-Assert(catalog.Lessons.Count == 19, $"Ожидалось 19 уроков, найдено {catalog.Lessons.Count}.");
-Assert(catalog.Lessons.Sum(lesson => lesson.Steps.Count) == 148, "Ожидалось 148 последовательных шагов.");
-Assert(catalog.Lessons.Select(lesson => lesson.Metadata.Id).Distinct().Count() == 19, "Идентификаторы уроков должны быть уникальными.");
+Assert(catalog.Lessons.Count == 21, $"Ожидалось 21 урок, найдено {catalog.Lessons.Count}.");
+Assert(catalog.Lessons.Sum(lesson => lesson.Steps.Count) == 172, "Ожидалось 172 последовательных шага.");
+Assert(catalog.Lessons.Select(lesson => lesson.Metadata.Id).Distinct().Count() == 21, "Идентификаторы уроков должны быть уникальными.");
 Assert(catalog.Lessons.All(lesson => lesson.Steps.All(step =>
     !string.IsNullOrWhiteSpace(step.PromptMarkdown) && !string.IsNullOrWhiteSpace(step.SolutionMarkdown))),
     "У каждого шага должны быть задание и решение.");
-Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Физика") == 8, "Ожидалось 8 уроков физики.");
+Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Физика") == 10, "Ожидалось 10 уроков физики.");
 Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Химия") == 6, "Ожидалось 6 уроков химии с учётом подготовительного урока 00.");
 Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Информатика") == 5, "Ожидалось 5 уроков информатики.");
 Assert(catalog.Lessons.Single(lesson => lesson.Metadata.Subject == "Физика" && lesson.Metadata.Number == 3).Steps.Count == 12,
@@ -54,6 +54,13 @@ try
 
     var formattedDiagram = PlainTextFormatter.Format(firstLesson.IntroductionMarkdown);
     Assert(formattedDiagram.Contains('→'), "Mermaid-схема должна иметь читаемое офлайн-представление.");
+
+    var formattedSymbols = PlainTextFormatter.Format(@"Скорость $v=2\pi R/T$, угловая $\omega=2\pi/T$, угол $30^\circ$, $a\approx8$.");
+    Assert(formattedSymbols.Contains("π", StringComparison.Ordinal) && formattedSymbols.Contains("ω", StringComparison.Ordinal) &&
+           formattedSymbols.Contains("30°", StringComparison.Ordinal) && formattedSymbols.Contains("≈", StringComparison.Ordinal) &&
+           !formattedSymbols.Contains("pi", StringComparison.Ordinal) && !formattedSymbols.Contains("omega", StringComparison.Ordinal) &&
+           !formattedSymbols.Contains("circ", StringComparison.Ordinal),
+        "Греческие буквы, градусы и знак приближения должны читаемо отображаться в ученическом тексте.");
 
     var formattedTable = PlainTextFormatter.Format("""
         | Ситуация | Можно считать точкой? | Почему |
@@ -120,7 +127,7 @@ try
 
     var diagramParser = new MermaidDiagramParser();
     var diagrams = catalog.Lessons.SelectMany(lesson => diagramParser.ParseFromMarkdown(lesson.IntroductionMarkdown)).ToArray();
-Assert(diagrams.Length == 19, $"Ожидалось 19 графических схем, найдено {diagrams.Length}.");
+Assert(diagrams.Length == 21, $"Ожидалось 21 графическая схема, найдено {diagrams.Length}.");
     Assert(diagrams.All(diagram => diagram.Nodes.Count >= 2 && diagram.Edges.Count >= 1), "Каждая схема должна содержать узлы и связи.");
     Assert(diagrams.SelectMany(diagram => diagram.Nodes).Any(node => node.Shape == Grade9Trainer.Core.Models.DiagramNodeShape.Decision),
         "Фигуры Mermaid-решений должны сохраняться в графической модели.");
@@ -148,7 +155,7 @@ finally
     if (Directory.Exists(tempRoot)) Directory.Delete(tempRoot, true);
 }
 
-Console.WriteLine("Smoke tests passed: 19 lessons, 148 steps, graphical diagrams, student profiles, progress merge, Markdown/ZIP import.");
+Console.WriteLine("Smoke tests passed: 21 lessons, 172 steps, graphical diagrams, student profiles, progress merge, Markdown/ZIP import.");
 return;
 
 static void Assert(bool condition, string message)

@@ -216,11 +216,11 @@ internal static class Program
         }
         editor.Close();
 
-        if (lessonList.Items.Count != 8)
+        if (lessonList.Items.Count != 10)
         {
-            throw new InvalidOperationException($"В разделе физики ожидалось 8 уроков, найдено {lessonList.Items.Count}.");
+            throw new InvalidOperationException($"В разделе физики ожидалось 10 уроков, найдено {lessonList.Items.Count}.");
         }
-        lessonList.SelectedIndex = lessonList.Items.Count - 1;
+        lessonList.SelectedIndex = lessonList.Items.Count - 3;
         window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
         var freeFallTitle = Descendants<TextBlock>(window).FirstOrDefault(textBlock => textBlock.Name == "LessonTitle");
         var freeFallSteps = Descendants<Border>(window).Count(border => Equals(border.Tag, "StepSolution"));
@@ -233,6 +233,28 @@ internal static class Program
                 .Contains("v=gt", StringComparison.Ordinal)))
         {
             throw new InvalidOperationException("Урок 08 о свободном падении не отобразился полностью или потерял формулу v=gt.");
+        }
+
+        foreach (var (index, expectedTitle, expectedFormula, expectedMessage) in new[]
+        {
+            (lessonList.Items.Count - 2, "Урок 09. Прямолинейное и криволинейное движение", "по касательной", "Урок 09 о криволинейном движении не отобразился полностью или потерял правило о касательной."),
+            (lessonList.Items.Count - 1, "Урок 10. Движение тела по окружности с постоянной по модулю скоростью", "v²/R", "Урок 10 о движении по окружности не отобразился полностью или потерял формулу a=v²/R.")
+        })
+        {
+            lessonList.SelectedIndex = index;
+            window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
+            var kinematicsTitle = Descendants<TextBlock>(window).FirstOrDefault(textBlock => textBlock.Name == "LessonTitle");
+            var kinematicsSteps = Descendants<Border>(window).Count(border => Equals(border.Tag, "StepSolution"));
+            var kinematicsText = Descendants<TextBox>(window)
+                .Where(textBox => Equals(textBox.Tag, "SelectableLessonText"))
+                .Select(textBox => textBox.Text ?? string.Empty)
+                .ToArray();
+            if (kinematicsTitle?.Text != expectedTitle || kinematicsSteps != 12 ||
+                !kinematicsText.Any(text => text.Replace(" ", string.Empty, StringComparison.Ordinal)
+                    .Contains(expectedFormula.Replace(" ", string.Empty, StringComparison.Ordinal), StringComparison.Ordinal)))
+            {
+                throw new InvalidOperationException(expectedMessage);
+            }
         }
 
         subjectList.SelectedItem = "Химия";

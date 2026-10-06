@@ -1,4 +1,4 @@
-"""Build the reviewed student edition from nineteen explicit lesson notes.
+"""Build the reviewed student edition from twenty-one explicit lesson notes.
 
 No vault-wide copy: only reviewed sections and fresh templates enter the ZIP.
 Existing student work and local settings are never overwritten by this builder.
@@ -15,7 +15,7 @@ import zipfile
 
 HERE = Path(__file__).resolve().parent
 TEMPLATES = HERE.parent / 'student-template'
-DAY = '2026-09-26'
+DAY = '2026-10-01'
 VAULT_NAME = '9 класс — ученик'
 
 # Explicit allowlist: never discover additional teacher notes automatically.
@@ -28,6 +28,8 @@ SPECS = [
     ('Физика', 6, 'Инерция и первый закон Ньютона', ['__prebuilt__']),
     ('Физика', 7, 'Сила, масса и второй закон Ньютона', ['__prebuilt__']),
     ('Физика', 8, 'Свободное падение тел', ['__prebuilt__']),
+    ('Физика', 9, 'Прямолинейное и криволинейное движение', ['__prebuilt__']),
+    ('Физика', 10, 'Движение тела по окружности с постоянной по модулю скоростью', ['__prebuilt__']),
     ('Химия', 0, 'Быстрая проверка языка химии', [2, 3, 4, 5, 6, 7]),
     ('Химия', 1, 'Классификация химических соединений', [2, 3, 4]),
     ('Химия', 2, 'Классификация химических реакций', [2, 3, 4]),
@@ -49,6 +51,8 @@ PREBUILT_STEPS = {
     ('Физика', 6): 7,
     ('Физика', 7): 7,
     ('Физика', 8): 8,
+    ('Физика', 9): 12,
+    ('Физика', 10): 12,
     ('Химия', 5): 8,
     ('Информатика', 5): 8,
 }
