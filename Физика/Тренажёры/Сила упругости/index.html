@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Сила упругости — тренажёр по физике</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M32 6v8l-10 4 20 6-20 6 20 6-10 4v6" class="arrow-line" fill="none"/>
+          <rect x="22" y="48" width="20" height="12" rx="3" class="ball"/>
+        </svg>
+        <div>
+          <h1>Сила упругости</h1>
+          <p>Интерактивный тренажёр · 9 класс · Физика · Урок 11</p>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить цветовую тему">◐</button>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Разделы тренажёра">
+    <button class="nav-btn active" data-target="theory" type="button">Теория</button>
+    <button class="nav-btn" data-target="lab" type="button">Эксперимент</button>
+    <button class="nav-btn" data-target="examples" type="button">Разборы задач</button>
+    <button class="nav-btn" data-target="algorithm" type="button">Алгоритм</button>
+    <button class="nav-btn" data-target="tasks" type="button">Задания</button>
+  </nav>
+
+  <main class="main-content">
+    <section class="content-section active" id="theory">
+      <div class="hero-card">
+        <div>
+          <span class="eyebrow">Главная идея</span>
+          <h2>Пружина тянет назад, а сила пропорциональна удлинению</h2>
+          <p>Деформация — изменение формы или размеров тела под действием внешних сил. При упругой деформации возникает сила упругости: она направлена против деформации и стремится вернуть телу прежнюю форму. Чем сильнее растянута пружина, тем больше сила: F ~ |Δl|. Коэффициент пропорциональности — жёсткость k.</p>
+        </div>
+        <div class="formula-stack" aria-label="Основные формулы">
+          <code>F = k · |Δl|</code>
+          <code>Δl = l − l₀</code>
+          <code>k = F / Δl</code>
+        </div>
+      </div>
+
+      <div class="theory-grid">
+        <article class="theory-card">
+          <span class="card-number">01</span>
+          <h3>Виды деформации</h3>
+          <p>Растяжение, сжатие, сдвиг, изгиб, кручение. Растяжение и сжатие — основные виды. <strong>Изгиб</strong> — их сочетание: на выпуклой стороне слои растянуты, на вогнутой сжаты. <strong>Кручение</strong> сводится к сдвигу слоёв.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">02</span>
+          <h3>Упругая и пластическая</h3>
+          <p>Упругая деформация исчезает после снятия нагрузки (стальная пружина, резинка при небольшой нагрузке). Пластическая остаётся (пластилин, согнутая проволока). Сила упругости возникает при упругой деформации.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">03</span>
+          <h3>Куда направлена сила</h3>
+          <p>Против деформации. Растянутая пружина тянет тело к себе, сжатая — отталкивает. Груз на пружине действует на неё в противоположную сторону (третий закон Ньютона). Природа силы упругости — электромагнитное взаимодействие частиц вещества.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">04</span>
+          <h3>Закон Гука и жёсткость</h3>
+          <p><strong>F = k|Δl|</strong>. Жёсткость k (Н/м) — сила, нужная для изменения длины на 1 м. Груз неподвижен: kΔl = mg. График F(Δl) — прямая через начало координат. Закон верен только для малых упругих деформаций.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">05</span>
+          <h3>Виды сил упругости и знак минус</h3>
+          <p>1) <strong>Натяжение нити или троса</strong> — вдоль нити, при подвешивании грузов. 2) <strong>Реакция опоры</strong> — перпендикулярно поверхности опоры, не даёт телу упасть. 3) <strong>Сила упругости пружины</strong> — при растяжении и сжатии. В записи F = −kx величина x = Δl, а минус показывает, что сила направлена противоположно деформации.</p>
+        </article>
+      </div>
+      <div class="notice"><strong>Не путай:</strong> в формулу входит удлинение Δl = l − l₀, а не длина пружины. Если пружина была 20 см, а стала 25 см, то Δl = 5 см = 0,05 м.</div>
+    </section>
+
+    <section class="content-section" id="lab">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Управляемая модель</span>
+          <h2>Груз на пружине</h2>
+        </div>
+        <span class="model-badge">закон Гука, g = 10 м/с²</span>
+      </div>
+
+      <div class="lab-grid">
+        <aside class="control-panel">
+          <label for="kInput">Жёсткость k: <strong><span id="kLabel">200</span> Н/м</strong></label>
+          <input id="kInput" type="range" min="50" max="400" step="50" value="200">
+
+          <label for="massInput">Масса груза m: <strong><span id="massLabel">0,5</span> кг</strong></label>
+          <input id="massInput" type="range" min="0.1" max="1.5" step="0.1" value="0.5">
+
+          <div class="prediction-box">
+            <h3>Твой прогноз</h3>
+            <label for="predDl">Удлинение Δl, см</label>
+            <input id="predDl" inputmode="decimal" placeholder="например, 2,5">
+            <label for="predF">Сила упругости F, Н</label>
+            <input id="predF" inputmode="decimal" placeholder="например, 5">
+          </div>
+
+          <div class="button-row">
+            <button class="btn primary" id="hangBtn" type="button">Подвесить груз</button>
+            <button class="btn secondary" id="unloadBtn" type="button">Снять груз</button>
+          </div>
+          <button class="btn secondary full" id="checkBtn" type="button">Проверить прогноз</button>
+          <button class="btn ghost full" id="revealBtn" type="button">Показать значения</button>
+          <button class="btn ghost full" id="clearBtn" type="button">Новая пружина и график</button>
+        </aside>
+
+        <div class="experiment-card">
+          <svg class="scene" id="scene" viewBox="0 0 560 400" role="img" aria-labelledby="sceneTitle sceneDesc">
+            <title id="sceneTitle">Груз на пружине</title>
+            <desc id="sceneDesc">Пружина подвешена к опоре. Под грузом она растягивается; рядом линейка показывает удлинение. Розовая стрелка — сила упругости вверх, оранжевая — сила тяжести вниз.</desc>
+            <defs>
+              <linearGradient id="sceneSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#e5f6ff"/>
+                <stop offset="1" stop-color="#fff8e3"/>
+              </linearGradient>
+              <marker id="headF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#d6336c"/></marker>
+              <marker id="headG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#e98b2a"/></marker>
+            </defs>
+            <rect x="0" y="0" width="560" height="400" rx="24" fill="url(#sceneSky)"/>
+            <rect class="support-bar" x="180" y="22" width="150" height="14" rx="5"/>
+            <line id="naturalMark" class="natural-mark" x1="24" y1="140" x2="410" y2="140"/>
+            <text class="ruler-text" x="24" y="132">l₀ — пружина без груза</text>
+            <path id="spring" class="spring-coil" d=""/>
+            <rect id="weight" class="weight-body" x="235" y="150" width="40" height="40" rx="8"/>
+            <text id="weightText" class="vec-label plain" x="255" y="175" text-anchor="middle">0,5 кг</text>
+            <line id="vecF" class="vec-f" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headF)" visibility="hidden"/>
+            <line id="vecG" class="vec-v" style="stroke:#e98b2a" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headG)" visibility="hidden"/>
+            <text id="labelF" class="vec-label f" x="0" y="0" visibility="hidden">F упр</text>
+            <text id="labelG" class="vec-label" style="fill:#e98b2a" x="0" y="0" visibility="hidden">mg</text>
+            <g id="ruler"></g>
+          </svg>
+          <div class="legend">
+            <span><i class="lf"></i>сила упругости F — вверх</span>
+            <span><i class="lg"></i>сила тяжести mg — вниз</span>
+            <span>длины стрелок условные</span>
+          </div>
+          <div class="meters wide">
+            <div><span>Жёсткость k</span><strong id="kMeter">200 Н/м</strong></div>
+            <div><span>Масса m</span><strong id="mMeter">0,5 кг</strong></div>
+            <div><span>Сила тяжести mg</span><strong id="gMeter">?</strong></div>
+            <div><span>Удлинение Δl</span><strong id="dlMeter">?</strong></div>
+            <div><span>Сила упругости F</span><strong id="fMeter">?</strong></div>
+          </div>
+          <div class="verdict" id="verdict" aria-live="polite">Груз неподвижен: сила упругости уравновешивает силу тяжести. Подвесь груз и сравни с прогнозом.</div>
+          <div class="feedback" id="labFeedback" aria-live="polite">Сосчитай Δl и F сам, запиши прогноз и нажми «Проверить прогноз»: значения на табло откроются после верного ответа.</div>
+
+          <div class="graph-card">
+            <h3>График F(Δl) по твоим опытам</h3>
+            <svg class="graph" id="graph" viewBox="0 0 560 280" role="img" aria-label="График зависимости силы упругости от удлинения"></svg>
+            <p class="toolbar-note" id="graphNote">Каждое подвешивание груза добавляет точку. У одной пружины точки лежат на прямой через начало координат; красные точки — за пределом упругости.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="examples">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Решаем вместе</span>
+          <h2>Четыре разобранные задачи</h2>
+        </div>
+        <div class="score-pill">Изучено: <strong id="exampleScore">0/4</strong></div>
+      </div>
+      <p class="examples-intro">Сначала попробуй решить задачу сам. Затем открывай шаги разбора по одному и сравнивай свой ход мысли.</p>
+      <div class="example-list" id="exampleList"></div>
+    </section>
+
+    <section class="content-section" id="algorithm">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Дано → СИ → формула → проверка</span>
+          <h2>Алгоритм решения</h2>
+        </div>
+      </div>
+
+      <div class="algorithm-grid">
+        <ol class="steps-list">
+          <li><span>1</span><div><h3>Назови модель и данные в СИ</h3><p>Упругая деформация? Переведи сантиметры в метры, граммы в килограммы. Найди удлинение Δl = l − l₀, если даны длины.</p></div></li>
+          <li><span>2</span><div><h3>Определи силу</h3><p>Если груз неподвижен, F = mg. Если известно k и Δl, F = kΔl.</p></div></li>
+          <li><span>3</span><div><h3>Выбери формулу для искомой величины</h3><p>Сила F = kΔl, жёсткость k = F/Δl, удлинение Δl = F/k. Если нужно ускорение — второй закон Ньютона a = F/m.</p></div></li>
+          <li><span>4</span><div><h3>Проверь смысл</h3><p>Единицы: Н/м · м = Н. При вдвое большей силе удлинение вдвое больше. Сила направлена против деформации.</p></div></li>
+        </ol>
+
+        <div class="calculator-card">
+          <h3>Калькулятор с разбором</h3>
+          <label for="calcMode">Что нужно найти</label>
+          <select id="calcMode">
+            <option value="force">Силу F (известны k и Δl)</option>
+            <option value="stiff">Жёсткость k (известны F и Δl)</option>
+            <option value="stretch">Удлинение Δl (известны F и k)</option>
+            <option value="hang">Удлинение под грузом (известны m и k)</option>
+          </select>
+          <label for="calcX" id="calcXLabel">Жёсткость k, Н/м</label>
+          <input id="calcX" type="number" min="0.001" step="1" value="200">
+          <label for="calcY" id="calcYLabel">Удлинение Δl, см</label>
+          <input id="calcY" type="number" min="0.001" step="0.1" value="5">
+          <button class="btn primary full" id="calculateBtn" type="button">Показать решение</button>
+          <div class="solution-box" id="calculationResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="tasks">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Самостоятельная работа</span>
+          <h2>Двенадцать задач с проверкой и разбором</h2>
+        </div>
+        <div class="score-pill">Верно: <strong id="scoreValue">0/12</strong></div>
+      </div>
+      <p class="tasks-intro">Принимаем g = 10 м/с². Десятичную дробь можно вводить через запятую или точку. После первой проверки открывается полный разбор задачи.</p>
+      <div class="task-grid" id="taskGrid"></div>
+      <div class="button-row final-actions">
+        <button class="btn secondary" id="resetProgressBtn" type="button">Начать задания заново</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Тренажёр работает локально. Результат заданий хранится только в этом браузере.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
