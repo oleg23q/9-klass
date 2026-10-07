@@ -6,15 +6,15 @@ var parser = new LessonMarkdownParser();
 var catalog = new LessonCatalogService(parser).Load(lessonRoot);
 
 Assert(catalog.Warnings.Count == 0, "Каталог содержит предупреждения: " + string.Join("; ", catalog.Warnings));
-Assert(catalog.Lessons.Count == 22, $"Ожидалось 22 урока, найдено {catalog.Lessons.Count}.");
-Assert(catalog.Lessons.Sum(lesson => lesson.Steps.Count) == 184, "Ожидалось 184 последовательных шага.");
-Assert(catalog.Lessons.Select(lesson => lesson.Metadata.Id).Distinct().Count() == 22, "Идентификаторы уроков должны быть уникальными.");
+Assert(catalog.Lessons.Count == 25, $"Ожидалось 25 уроков, найдено {catalog.Lessons.Count}.");
+Assert(catalog.Lessons.Sum(lesson => lesson.Steps.Count) == 224, "Ожидалось 224 последовательных шага.");
+Assert(catalog.Lessons.Select(lesson => lesson.Metadata.Id).Distinct().Count() == 25, "Идентификаторы уроков должны быть уникальными.");
 Assert(catalog.Lessons.All(lesson => lesson.Steps.All(step =>
     !string.IsNullOrWhiteSpace(step.PromptMarkdown) && !string.IsNullOrWhiteSpace(step.SolutionMarkdown))),
     "У каждого шага должны быть задание и решение.");
-Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Физика") == 11, "Ожидалось 11 уроков физики.");
+Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Физика") == 12, "Ожидалось 12 уроков физики.");
 Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Химия") == 6, "Ожидалось 6 уроков химии с учётом подготовительного урока 00.");
-Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Информатика") == 5, "Ожидалось 5 уроков информатики.");
+Assert(catalog.Lessons.Count(lesson => lesson.Metadata.Subject == "Информатика") == 7, "Ожидалось 7 уроков информатики.");
 Assert(catalog.Lessons.Single(lesson => lesson.Metadata.Subject == "Физика" && lesson.Metadata.Number == 3).Steps.Count == 12,
     "В уроке физики 03 должно быть 12 шагов с графическими задачами.");
 Assert(File.Exists(Path.Combine(lessonRoot, "Вложения", "physics03-meeting-graph.svg")),
@@ -127,7 +127,7 @@ try
 
     var diagramParser = new MermaidDiagramParser();
     var diagrams = catalog.Lessons.SelectMany(lesson => diagramParser.ParseFromMarkdown(lesson.IntroductionMarkdown)).ToArray();
-Assert(diagrams.Length == 22, $"Ожидалось 22 графические схемы, найдено {diagrams.Length}.");
+Assert(diagrams.Length == 25, $"Ожидалось 25 графических схем, найдено {diagrams.Length}.");
     Assert(diagrams.All(diagram => diagram.Nodes.Count >= 2 && diagram.Edges.Count >= 1), "Каждая схема должна содержать узлы и связи.");
     Assert(diagrams.SelectMany(diagram => diagram.Nodes).Any(node => node.Shape == Grade9Trainer.Core.Models.DiagramNodeShape.Decision),
         "Фигуры Mermaid-решений должны сохраняться в графической модели.");
@@ -155,7 +155,7 @@ finally
     if (Directory.Exists(tempRoot)) Directory.Delete(tempRoot, true);
 }
 
-Console.WriteLine("Smoke tests passed: 22 lessons, 184 steps, graphical diagrams, student profiles, progress merge, Markdown/ZIP import.");
+Console.WriteLine("Smoke tests passed: 25 lessons, 224 steps, graphical diagrams, student profiles, progress merge, Markdown/ZIP import.");
 return;
 
 static void Assert(bool condition, string message)

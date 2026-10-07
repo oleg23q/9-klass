@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Три закона Ньютона — тренажёр по физике</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="6" y="28" width="20" height="16" rx="4" class="ball"/>
+          <rect x="38" y="28" width="20" height="16" rx="4" class="ball"/>
+          <path d="M2 20h14M62 20H48" class="arrow-line" fill="none"/>
+        </svg>
+        <div>
+          <h1>Три закона Ньютона</h1>
+          <p>Интерактивный тренажёр · 9 класс · Физика · Урок 12</p>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить цветовую тему">◐</button>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Разделы тренажёра">
+    <button class="nav-btn active" data-target="theory" type="button">Теория</button>
+    <button class="nav-btn" data-target="lab" type="button">Эксперимент</button>
+    <button class="nav-btn" data-target="examples" type="button">Разборы задач</button>
+    <button class="nav-btn" data-target="algorithm" type="button">Алгоритм</button>
+    <button class="nav-btn" data-target="tasks" type="button">Задания</button>
+  </nav>
+
+  <main class="main-content">
+    <section class="content-section active" id="theory">
+      <div class="hero-card">
+        <div>
+          <span class="eyebrow">Главная идея</span>
+          <h2>Три закона отвечают на три вопроса</h2>
+          <p>Первый закон: когда скорость не меняется? Второй: как она меняется под действием сил? Третий: откуда берутся силы? Они всегда возникают парами: если одно тело действует на другое, то и второе действует на первое с силой, равной по модулю и противоположной по направлению. Эти силы приложены к разным телам.</p>
+        </div>
+        <div class="formula-stack" aria-label="Основные формулы">
+          <code>F = 0 ⇒ a = 0</code>
+          <code>a = F / m</code>
+          <code>F₁₂ = −F₂₁</code>
+        </div>
+      </div>
+
+      <div class="theory-grid">
+        <article class="theory-card">
+          <span class="card-number">01</span>
+          <h3>Первый закон</h3>
+          <p>Если равнодействующая равна нулю, тело сохраняет покой или равномерное прямолинейное движение. «Нет ускорения» не значит «нет сил»: силы могут быть, но скомпенсированы.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">02</span>
+          <h3>Второй закон</h3>
+          <p><strong>a = F/m</strong>. Ускорение прямо пропорционально равнодействующей и обратно пропорционально массе; направление совпадает с направлением равнодействующей. Если сил несколько, сначала найди равнодействующую.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">03</span>
+          <h3>Третий закон</h3>
+          <p>Силы взаимодействия равны по модулю, противоположны по направлению, одной природы и приложены <strong>к разным телам</strong>. Поэтому они не уравновешивают друг друга. Равны силы, но не ускорения: m₁a₁ = m₂a₂.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">04</span>
+          <h3>Несколько тел</h3>
+          <p>Для каждого тела запиши второй закон. Связанные нерастяжимой нитью тела имеют общее ускорение a = F/(m₁ + m₂), а натяжение для второго тела T = m₂a. Проверка для первого тела: F − T = m₁a.</p>
+        </article>
+      </div>
+      <div class="notice"><strong>Не путай:</strong> сила тяжести книги и сила реакции опоры не образуют пару третьего закона: обе приложены к книге и уравновешивают друг друга. Пара для силы тяжести — притяжение книгой Земли.</div>
+    </section>
+
+    <section class="content-section" id="lab">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Управляемая модель</span>
+          <h2>Две тележки расталкиваются</h2>
+        </div>
+        <span class="model-badge">гладкая поверхность, толчок 0,8 с</span>
+      </div>
+
+      <div class="lab-grid">
+        <aside class="control-panel">
+          <label for="m1Input">Масса левой тележки m₁: <strong><span id="m1Label">2</span> кг</strong></label>
+          <input id="m1Input" type="range" min="1" max="6" step="1" value="2">
+
+          <label for="m2Input">Масса правой тележки m₂: <strong><span id="m2Label">3</span> кг</strong></label>
+          <input id="m2Input" type="range" min="1" max="6" step="1" value="3">
+
+          <label for="forceInput">Сила толчка F: <strong><span id="forceLabel">6</span> Н</strong></label>
+          <input id="forceInput" type="range" min="2" max="12" step="2" value="6">
+
+          <div class="prediction-box">
+            <h3>Твой прогноз</h3>
+            <label for="predA1">Ускорение левой a₁, м/с²</label>
+            <input id="predA1" inputmode="decimal" placeholder="например, 3">
+            <label for="predA2">Ускорение правой a₂, м/с²</label>
+            <input id="predA2" inputmode="decimal" placeholder="например, 2">
+          </div>
+
+          <div class="button-row">
+            <button class="btn primary" id="runBtn" type="button">Толкнуть</button>
+            <button class="btn secondary" id="resetBtn" type="button">Сбросить</button>
+          </div>
+          <button class="btn secondary full" id="checkBtn" type="button">Проверить прогноз</button>
+          <button class="btn ghost full" id="revealBtn" type="button">Показать значения</button>
+        </aside>
+
+        <div class="experiment-card">
+          <svg class="scene" id="scene" viewBox="0 0 560 400" role="img" aria-labelledby="sceneTitle sceneDesc">
+            <title id="sceneTitle">Две тележки расталкиваются пружиной</title>
+            <desc id="sceneDesc">Между двумя тележками сжатая пружина. Во время толчка на тележки действуют равные по модулю противоположные силы, затем тележки движутся равномерно. Розовые стрелки — силы, синие — скорости.</desc>
+            <defs>
+              <linearGradient id="sceneSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#e5f6ff"/>
+                <stop offset="1" stop-color="#fff8e3"/>
+              </linearGradient>
+              <marker id="headF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#d6336c"/></marker>
+              <marker id="headV" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1c7ed6"/></marker>
+            </defs>
+            <rect x="0" y="0" width="560" height="400" rx="24" fill="url(#sceneSky)"/>
+            <line class="ruler-line" x1="10" y1="262" x2="550" y2="262"/>
+            <path id="spring" class="spring-coil" d=""/>
+            <rect id="cart1" class="weight-body" x="190" y="204" width="60" height="44" rx="8"/>
+            <rect id="cart2" class="weight-body" x="270" y="204" width="60" height="44" rx="8" style="fill:#4c9a6a"/>
+            <circle id="w1a" cx="0" cy="255" r="7" fill="#17313a"/><circle id="w1b" cx="0" cy="255" r="7" fill="#17313a"/>
+            <circle id="w2a" cx="0" cy="255" r="7" fill="#17313a"/><circle id="w2b" cx="0" cy="255" r="7" fill="#17313a"/>
+            <text id="mass1" class="vec-label plain" x="0" y="232" text-anchor="middle">2 кг</text>
+            <text id="mass2" class="vec-label plain" x="0" y="232" text-anchor="middle" style="fill:#fff">3 кг</text>
+            <line id="vecF1" class="vec-f" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headF)" visibility="hidden"/>
+            <line id="vecF2" class="vec-f" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headF)" visibility="hidden"/>
+            <text id="labelF1" class="vec-label f" x="0" y="0" visibility="hidden">F₂₁</text>
+            <text id="labelF2" class="vec-label f" x="0" y="0" visibility="hidden">F₁₂</text>
+            <line id="vecV1" class="vec-v" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headV)" visibility="hidden"/>
+            <line id="vecV2" class="vec-v" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headV)" visibility="hidden"/>
+            <text id="labelV1" class="vec-label v" x="0" y="0" visibility="hidden">v₁</text>
+            <text id="labelV2" class="vec-label v" x="0" y="0" visibility="hidden">v₂</text>
+            <text id="phaseText" class="vec-label plain" x="280" y="330" text-anchor="middle">Тележки покоятся: равнодействующая равна нулю</text>
+          </svg>
+          <div class="legend">
+            <span><i class="lf"></i>силы взаимодействия — во время толчка</span>
+            <span><i class="lv"></i>скорости — после толчка</span>
+            <span>длины стрелок условные</span>
+          </div>
+          <div class="meters wide">
+            <div><span>Масса m₁</span><strong id="m1Meter">2 кг</strong></div>
+            <div><span>Масса m₂</span><strong id="m2Meter">3 кг</strong></div>
+            <div><span>Сила F</span><strong id="fMeter">6 Н</strong></div>
+            <div><span>Ускорение a₁</span><strong id="a1Meter">?</strong></div>
+            <div><span>Ускорение a₂</span><strong id="a2Meter">?</strong></div>
+            <div><span>Скорость v₁</span><strong id="v1Meter">?</strong></div>
+            <div><span>Скорость v₂</span><strong id="v2Meter">?</strong></div>
+          </div>
+          <div class="verdict" id="verdict" aria-live="polite">Силы на обе тележки одинаковы по модулю, а ускорения разные: у лёгкой тележки оно больше.</div>
+          <div class="feedback" id="labFeedback" aria-live="polite">Сосчитай a₁ и a₂ сам, запиши прогноз и нажми «Проверить прогноз»: значения на табло откроются после верного ответа.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="examples">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Решаем вместе</span>
+          <h2>Четыре разобранные задачи</h2>
+        </div>
+        <div class="score-pill">Изучено: <strong id="exampleScore">0/4</strong></div>
+      </div>
+      <p class="examples-intro">Сначала попробуй решить задачу сам. Затем открывай шаги разбора по одному и сравнивай свой ход мысли.</p>
+      <div class="example-list" id="exampleList"></div>
+    </section>
+
+    <section class="content-section" id="algorithm">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Закон → силы → формула → проверка</span>
+          <h2>Алгоритм решения</h2>
+        </div>
+      </div>
+
+      <div class="algorithm-grid">
+        <ol class="steps-list">
+          <li><span>1</span><div><h3>Назови закон</h3><p>Скорость не меняется — первый закон. Нужно ускорение или сила — второй. Два тела действуют друг на друга — третий.</p></div></li>
+          <li><span>2</span><div><h3>Выбери тело и запиши силы на него</h3><p>Только силы, приложенные <b>к этому телу</b>. Найди равнодействующую с учётом направлений.</p></div></li>
+          <li><span>3</span><div><h3>Запиши второй закон</h3><p>a = F/m, F = ma. Для связанных нитью тел a = F/(m₁ + m₂), затем T = m₂a.</p></div></li>
+          <li><span>4</span><div><h3>Проверь</h3><p>Силы третьего закона равны по модулю. Для первого тела F − T = m₁a. Единицы: Н/кг = м/с².</p></div></li>
+        </ol>
+
+        <div class="calculator-card">
+          <h3>Калькулятор с разбором</h3>
+          <label for="calcMode">Что нужно найти</label>
+          <select id="calcMode">
+            <option value="accel">Ускорение (известны F и m)</option>
+            <option value="force">Силу (известны m и a)</option>
+            <option value="carts">Ускорения двух тележек (F, m₁, m₂)</option>
+            <option value="rope">Тела на нити (F, m₁, m₂)</option>
+          </select>
+          <label for="calcX" id="calcXLabel">Сила F, Н</label>
+          <input id="calcX" type="number" min="0.001" step="0.1" value="20">
+          <label for="calcY" id="calcYLabel">Масса m, кг</label>
+          <input id="calcY" type="number" min="0.001" step="0.1" value="4">
+          <label for="calcZ" id="calcZLabel" hidden>Масса m₂, кг</label>
+          <input id="calcZ" type="number" min="0.001" step="0.1" value="6" hidden>
+          <button class="btn primary full" id="calculateBtn" type="button">Показать решение</button>
+          <div class="solution-box" id="calculationResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="tasks">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Самостоятельная работа</span>
+          <h2>Двенадцать задач с проверкой и разбором</h2>
+        </div>
+        <div class="score-pill">Верно: <strong id="scoreValue">0/12</strong></div>
+      </div>
+      <p class="tasks-intro">Трения нет, g = 10 м/с². Десятичную дробь можно вводить через запятую или точку. После первой проверки открывается полный разбор задачи.</p>
+      <div class="task-grid" id="taskGrid"></div>
+      <div class="button-row final-actions">
+        <button class="btn secondary" id="resetProgressBtn" type="button">Начать задания заново</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Тренажёр работает локально. Результат заданий хранится только в этом браузере.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

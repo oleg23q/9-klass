@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Количество путей в графе — тренажёр по информатике</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="12" cy="32" r="7" class="ball"/>
+          <circle cx="32" cy="12" r="7" class="ball"/>
+          <circle cx="32" cy="52" r="7" class="ball"/>
+          <circle cx="54" cy="32" r="7" class="ball"/>
+          <path d="M19 29 26 17M19 35 26 47M38 17 48 27M38 47 48 37" class="arrow-line" fill="none"/>
+        </svg>
+        <div>
+          <h1>Количество путей в графе</h1>
+          <p>Интерактивный тренажёр · 9 класс · Информатика · Урок 06</p>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить цветовую тему">◐</button>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Разделы тренажёра">
+    <button class="nav-btn active" data-target="theory" type="button">Теория</button>
+    <button class="nav-btn" data-target="lab" type="button">Подписи вершин</button>
+    <button class="nav-btn" data-target="examples" type="button">Разборы задач</button>
+    <button class="nav-btn" data-target="algorithm" type="button">Перечисление</button>
+    <button class="nav-btn" data-target="tasks" type="button">Задания</button>
+  </nav>
+
+  <main class="main-content">
+    <section class="content-section active" id="theory">
+      <div class="hero-card">
+        <div>
+          <span class="eyebrow">Главная идея</span>
+          <h2>Число путей в вершину — сумма чисел путей в её соседей</h2>
+          <p>Путь — последовательность вершин, где каждая следующая связана с предыдущей ребром (в ориентированном графе — стрелкой вперёд). Чтобы не выписывать все пути, подписывают вершины: у старта подпись 1, у остальных — сумма подписей вершин, из которых входят стрелки.</p>
+        </div>
+        <div class="formula-stack" aria-label="Основные формулы">
+          <code>N(старт) = 1</code>
+          <code>N(X) = N(Y₁) + N(Y₂) + …</code>
+          <code>через X: N₁ · N₂</code>
+        </div>
+      </div>
+
+      <div class="theory-grid">
+        <article class="theory-card">
+          <span class="card-number">01</span>
+          <h3>Путь и его длина</h3>
+          <p>Путь А→Б→В состоит из двух рёбер: длина 2. Путь А→В из одного ребра имеет длину 1. Пути различны, если различны последовательности вершин. Число рёбер графа и число путей — разные величины.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">02</span>
+          <h3>Умножить или сложить</h3>
+          <p>Части одного маршрута идут <strong>друг за другом</strong>: числа способов умножают (3 дороги и затем 2 дороги — 6 способов). Разные маршруты <strong>исключают друг друга</strong>: числа способов складывают (4 и 3 — 7 способов).</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">03</span>
+          <h3>Метод подписей</h3>
+          <p>Последний шаг пути в X — одна из входящих стрелок. Если она идёт из Y, до Y можно дойти N(Y) способами. Разные стрелки дают разные пути, поэтому подписи складываются. Подписывай вершины по порядку: сначала те, из которых в неё входят стрелки.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">04</span>
+          <h3>Через вершину и неориентированный граф</h3>
+          <p>Через X проходят N₁·N₂ путей (до X и после X). Не через X: все пути минус эти. В неориентированном графе подписи не работают: можно ходить по кругу, поэтому вершины не повторяют, а пути выписывают перебором.</p>
+        </article>
+      </div>
+      <div class="notice"><strong>Не путай:</strong> подпись вершины — это число <b>путей</b> из старта, а не число рёбер и не длина пути. Складывай подписи вершин, из которых стрелки входят в X.</div>
+    </section>
+
+    <section class="content-section" id="lab">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Управляемая модель</span>
+          <h2>Подпиши вершины числом путей из старта</h2>
+        </div>
+        <span class="model-badge">ориентированный граф без циклов</span>
+      </div>
+
+      <div class="lab-grid">
+        <aside class="control-panel">
+          <label for="graphSelect">Граф</label>
+          <select id="graphSelect"></select>
+          <p class="toolbar-note" id="graphEdges"></p>
+          <div class="button-row">
+            <button class="btn primary" id="checkBtn" type="button">Проверить</button>
+            <button class="btn secondary" id="clearBtn" type="button">Сбросить</button>
+          </div>
+          <button class="btn ghost full" id="hintBtn" type="button">Подсказка</button>
+          <button class="btn ghost full" id="listBtn" type="button">Показать все пути в финиш</button>
+        </aside>
+
+        <div class="experiment-card">
+          <div class="graph-box"><svg class="graph-svg" id="labSvg" viewBox="0 0 560 300" role="img" aria-label="Граф для подсчёта путей"></svg></div>
+          <div class="legend">
+            <span><i style="background:#2b8a3e"></i>старт — подпись 1</span>
+            <span><i style="background:#e8590c"></i>финиш — искомое число путей</span>
+          </div>
+          <div class="label-grid" id="labelGrid"></div>
+          <div class="verdict" id="verdict" aria-live="polite">Подписывай вершины по порядку: у каждой подпись — сумма подписей вершин, из которых в неё входят стрелки.</div>
+          <div class="feedback" id="labFeedback" aria-live="polite">Впиши числа и нажми «Проверить». Подсказка покажет, какие стрелки входят в вершину, но не число.</div>
+          <div class="solution-box" id="labPaths" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="examples">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Решаем вместе</span>
+          <h2>Четыре разобранные задачи</h2>
+        </div>
+        <div class="score-pill">Изучено: <strong id="exampleScore">0/4</strong></div>
+      </div>
+      <p class="examples-intro">Сначала попробуй решить задачу сам. Затем открывай шаги разбора по одному и сравнивай свой ход мысли.</p>
+      <div class="example-list" id="exampleList"></div>
+    </section>
+
+    <section class="content-section" id="algorithm">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Проверка перечислением</span>
+          <h2>Выпиши все пути и сравни с подписями</h2>
+        </div>
+      </div>
+
+      <div class="algorithm-grid">
+        <ol class="steps-list">
+          <li><span>1</span><div><h3>Нарисуй граф по списку рёбер</h3><p>Расставь вершины слева направо, стрелки по списку. Так проще заметить входящие стрелки.</p></div></li>
+          <li><span>2</span><div><h3>Подпиши вершины по порядку</h3><p>N(старт) = 1. Для остальных сложи подписи вершин, из которых в неё входят стрелки.</p></div></li>
+          <li><span>3</span><div><h3>Проверь перечислением</h3><p>Выпиши все пути из старта в финиш: от каждой вершины иди по всем стрелкам. Число путей должно совпасть с подписью финиша.</p></div></li>
+          <li><span>4</span><div><h3>Учти условие</h3><p>Через вершину X: N(до X) · N(от X). Не через X: все пути минус пути через X. В неориентированном графе вершины не повторяют.</p></div></li>
+        </ol>
+
+        <div class="calculator-card">
+          <h3>Все пути выбранного графа</h3>
+          <label for="enumGraph">Граф</label>
+          <select id="enumGraph"></select>
+          <label for="enumVia">Условие</label>
+          <select id="enumVia"></select>
+          <button class="btn primary full" id="enumBtn" type="button">Показать решение</button>
+          <div class="solution-box" id="enumResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="tasks">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Самостоятельная работа</span>
+          <h2>Двадцать задач с проверкой и разбором</h2>
+        </div>
+        <div class="score-pill">Верно: <strong id="scoreValue">0/20</strong></div>
+      </div>
+      <p class="tasks-intro">Ответ — одно число. После первой проверки открывается полный разбор задачи.</p>
+      <div class="task-grid" id="taskGrid"></div>
+      <div class="button-row final-actions">
+        <button class="btn secondary" id="resetProgressBtn" type="button">Начать задания заново</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Тренажёр работает локально. Результат заданий хранится только в этом браузере.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

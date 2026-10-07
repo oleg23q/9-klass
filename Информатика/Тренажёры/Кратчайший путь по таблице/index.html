@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Кратчайший путь по таблице — тренажёр по информатике</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="8" y="8" width="48" height="48" rx="6" class="ball"/>
+          <path d="M8 24h48M8 40h48M24 8v48M40 8v48" class="arrow-line" fill="none"/>
+        </svg>
+        <div>
+          <h1>Кратчайший путь по таблице</h1>
+          <p>Интерактивный тренажёр · 9 класс · Информатика · Урок 07</p>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить цветовую тему">◐</button>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Разделы тренажёра">
+    <button class="nav-btn active" data-target="theory" type="button">Теория</button>
+    <button class="nav-btn" data-target="lab" type="button">Расстояния</button>
+    <button class="nav-btn" data-target="examples" type="button">Разборы задач</button>
+    <button class="nav-btn" data-target="algorithm" type="button">Все пути</button>
+    <button class="nav-btn" data-target="tasks" type="button">Задания</button>
+  </nav>
+
+  <main class="main-content">
+    <section class="content-section active" id="theory">
+      <div class="hero-card">
+        <div>
+          <span class="eyebrow">Главная идея</span>
+          <h2>Сначала нарисуй граф по таблице, потом решай</h2>
+          <p>В таблице дорог число на пересечении строки и столбца — длина дороги между двумя городами, пустая клетка — дороги нет. Длина пути — сумма весов. Количество путей — это перебор, и веса в нём не складывают. Условие «через пункт» делит путь на два куска, а «не через пункт» вычёркивает пункт из графа.</p>
+        </div>
+        <div class="formula-stack" aria-label="Основные формулы">
+          <code>длина = w₁ + w₂ + …</code>
+          <code>d(X) = min(d(Y) + w)</code>
+          <code>через X: d(А→X) + d(X→Ф)</code>
+        </div>
+      </div>
+
+      <div class="theory-grid">
+        <article class="theory-card">
+          <span class="card-number">01</span>
+          <h3>Читаем таблицу</h3>
+          <p>Строка — один город, столбец — другой. Число в клетке — дорога между ними, пустая клетка — дороги нет. Таблица зеркальна: граф неориентированный. Рёбра читай выше диагонали, чтобы не записать дорогу дважды.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">02</span>
+          <h3>Длина или количество</h3>
+          <p><strong>Длина</strong> пути А→Б→Г — сумма весов. <strong>Количество</strong> путей — сколько разных последовательностей вершин ведут из А в Г; веса не используют. Вершины в пути не повторяются.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">03</span>
+          <h3>Кратчайший путь</h3>
+          <p>Выпиши пути и сложи веса или подпиши вершины расстояниями: d(А) = 0, а для остальных d(X) = минимум из d(Y) + w по подписанным соседям. Подписывай в порядке возрастания расстояния.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">04</span>
+          <h3>Через и не через</h3>
+          <p><strong>Через X:</strong> кратчайший путь А→X плюс кратчайший X→Ф. <strong>Не через X:</strong> вычеркни X и его дороги и решай обычную задачу. Количество путей с запретом считай так же.</p>
+        </article>
+      </div>
+      <div class="notice"><strong>Не путай:</strong> если спрашивают «сколько путей», сумма весов не нужна и ответом быть не может. Если спрашивают «длину кратчайшего пути», нужна сумма весов.</div>
+    </section>
+
+    <section class="content-section" id="lab">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Управляемая модель</span>
+          <h2>Подпиши вершины кратчайшими расстояниями</h2>
+        </div>
+        <span class="model-badge">неориентированный граф с весами</span>
+      </div>
+
+      <div class="lab-grid">
+        <aside class="control-panel">
+          <label for="graphSelect">Таблица</label>
+          <select id="graphSelect"></select>
+          <label for="sourceSelect">Откуда считаем расстояния</label>
+          <select id="sourceSelect"></select>
+          <label for="banSelect">Запрещённый пункт</label>
+          <select id="banSelect"></select>
+          <div class="button-row">
+            <button class="btn primary" id="checkBtn" type="button">Проверить</button>
+            <button class="btn secondary" id="clearBtn" type="button">Сбросить</button>
+          </div>
+          <button class="btn ghost full" id="hintBtn" type="button">Подсказка</button>
+          <button class="btn ghost full" id="listBtn" type="button">Показать все пути с длинами</button>
+        </aside>
+
+        <div class="experiment-card">
+          <div id="labTable"></div>
+          <div class="graph-box"><svg class="graph-svg" id="labSvg" viewBox="0 0 560 300" role="img" aria-label="Граф по таблице"></svg></div>
+          <div class="label-grid" id="labelGrid"></div>
+          <div class="verdict" id="verdict" aria-live="polite">Подписывай по порядку возрастания расстояния: d(X) — минимум из d(Y) + вес дороги Y—X по уже подписанным соседям.</div>
+          <div class="feedback" id="labFeedback" aria-live="polite">Впиши расстояния и нажми «Проверить». Если вершину нельзя достичь, напиши 0 только у источника, а у недостижимых оставь прочерк «-».</div>
+          <div class="solution-box" id="labPaths" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="examples">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Решаем вместе</span>
+          <h2>Четыре разобранные задачи</h2>
+        </div>
+        <div class="score-pill">Изучено: <strong id="exampleScore">0/4</strong></div>
+      </div>
+      <p class="examples-intro">Сначала попробуй решить задачу сам. Затем открывай шаги разбора по одному и сравнивай свой ход мысли.</p>
+      <div class="example-list" id="exampleList"></div>
+    </section>
+
+    <section class="content-section" id="algorithm">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Проверка перебором</span>
+          <h2>Все пути, длины и количество</h2>
+        </div>
+      </div>
+
+      <div class="algorithm-grid">
+        <ol class="steps-list">
+          <li><span>1</span><div><h3>Нарисуй граф по таблице</h3><p>Прочитай клетки выше диагонали, выпиши рёбра с весами и нарисуй.</p></div></li>
+          <li><span>2</span><div><h3>Определи вопрос</h3><p>Длина — суммируй веса. Количество — перебирай пути, веса не нужны. Есть условие «через» или «не через»?</p></div></li>
+          <li><span>3</span><div><h3>Примени условие</h3><p>Не через X — вычеркни X. Через X — найди два куска и сложи.</p></div></li>
+          <li><span>4</span><div><h3>Проверь перебором</h3><p>Выпиши все пути и сравни ответ. Не забудь прямой путь и пути через две вершины.</p></div></li>
+        </ol>
+
+        <div class="calculator-card">
+          <h3>Все пути выбранной таблицы</h3>
+          <label for="enumGraph">Таблица</label>
+          <select id="enumGraph"></select>
+          <label for="enumFrom">Откуда</label>
+          <select id="enumFrom"></select>
+          <label for="enumTo">Куда</label>
+          <select id="enumTo"></select>
+          <label for="enumVia">Условие</label>
+          <select id="enumVia"></select>
+          <button class="btn primary full" id="enumBtn" type="button">Показать решение</button>
+          <div class="solution-box" id="enumResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="tasks">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Самостоятельная работа</span>
+          <h2>Шестнадцать задач с проверкой и разбором</h2>
+        </div>
+        <div class="score-pill">Верно: <strong id="scoreValue">0/16</strong></div>
+      </div>
+      <p class="tasks-intro">Ответ — одно число (или «да» / «нет»). Рисунок графа по таблице можно открыть кнопкой, но сначала попробуй прочитать таблицу сам. После первой проверки открывается полный разбор задачи.</p>
+      <div class="task-grid" id="taskGrid"></div>
+      <div class="button-row final-actions">
+        <button class="btn secondary" id="resetProgressBtn" type="button">Начать задания заново</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Тренажёр работает локально. Результат заданий хранится только в этом браузере.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

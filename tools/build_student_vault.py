@@ -1,4 +1,4 @@
-"""Build the reviewed student edition from twenty-two explicit lesson notes.
+"""Build the reviewed student edition from twenty-five explicit lesson notes.
 
 No vault-wide copy: only reviewed sections and fresh templates enter the ZIP.
 Existing student work and local settings are never overwritten by this builder.
@@ -15,7 +15,7 @@ import zipfile
 
 HERE = Path(__file__).resolve().parent
 TEMPLATES = HERE.parent / 'student-template'
-DAY = '2026-10-06'
+DAY = '2026-10-07'
 VAULT_NAME = '9 класс — ученик'
 
 # Explicit allowlist: never discover additional teacher notes automatically.
@@ -31,6 +31,7 @@ SPECS = [
     ('Физика', 9, 'Прямолинейное и криволинейное движение', ['__prebuilt__']),
     ('Физика', 10, 'Движение тела по окружности с постоянной по модулю скоростью', ['__prebuilt__']),
     ('Физика', 11, 'Деформация, сила упругости и закон Гука', ['__prebuilt__']),
+    ('Физика', 12, 'Три закона Ньютона', ['__prebuilt__']),
     ('Химия', 0, 'Быстрая проверка языка химии', [2, 3, 4, 5, 6, 7]),
     ('Химия', 1, 'Классификация химических соединений', [2, 3, 4]),
     ('Химия', 2, 'Классификация химических реакций', [2, 3, 4]),
@@ -42,6 +43,8 @@ SPECS = [
     ('Информатика', 3, 'Запись вспомогательных алгоритмов на Python', ['1. Функция без параметров', '2. Параметр и аргумент', '3. Возвращаемое значение', 'Разобранный пример']),
     ('Информатика', 4, 'Одномерные массивы на Python', ['1. Создание списка', '2. Индексы элементов', '3. Заполнение и вывод', 'Разобранный пример']),
     ('Информатика', 5, 'Знаковые и табличные модели. Графы и матрицы', ['__prebuilt__']),
+    ('Информатика', 6, 'Пути в графе и количество путей', ['__prebuilt__']),
+    ('Информатика', 7, 'Графы по таблице', ['__prebuilt__']),
 ]
 
 # These lesson files are already written as the reviewed student edition used by
@@ -55,8 +58,11 @@ PREBUILT_STEPS = {
     ('Физика', 9): 12,
     ('Физика', 10): 12,
     ('Физика', 11): 12,
+    ('Физика', 12): 12,
     ('Химия', 5): 8,
     ('Информатика', 5): 8,
+    ('Информатика', 6): 16,
+    ('Информатика', 7): 12,
 }
 
 GOALS = {
