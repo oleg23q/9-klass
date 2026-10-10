@@ -622,7 +622,7 @@ function checkPrediction() {
     lab.revealed = true;
     drawScene();
     feedback.className = "feedback success";
-    feedback.textContent = `Прогноз верный: по третьему закону сила на обе тележки ${format(p.force, 0)} Н, поэтому a₁ = F/m₁ = ${format(p.a1, 2)} м/с², a₂ = F/m₂ = ${format(p.a2, 2)} м/с². Значения на табло открыты.`;
+    feedback.textContent = `Прогноз верный: по третьему закону сила на обе тележки ${format(p.force, 0)} Н, поэтому a₁ = F/m₁ = ${format(p.a1, 2)} м/с², a₂ = F/m₂ = ${format(p.a2, 2)} м/с². После толчка длительностью t = ${format(PUSH_TIME, 1)} с скорость v = a·t: v₁ = ${format(p.a1, 2)} · ${format(PUSH_TIME, 1)} = ${format(p.v1, 2)} м/с, v₂ = ${format(p.a2, 2)} · ${format(PUSH_TIME, 1)} = ${format(p.v2, 2)} м/с. Значения на табло открыты.`;
     return;
   }
   const parts = [];
