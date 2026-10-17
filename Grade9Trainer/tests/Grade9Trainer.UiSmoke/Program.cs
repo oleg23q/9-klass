@@ -216,11 +216,11 @@ internal static class Program
         }
         editor.Close();
 
-        if (lessonList.Items.Count != 12)
+        if (lessonList.Items.Count != 13)
         {
-            throw new InvalidOperationException($"В разделе физики ожидалось 12 уроков, найдено {lessonList.Items.Count}.");
+            throw new InvalidOperationException($"В разделе физики ожидалось 13 уроков, найдено {lessonList.Items.Count}.");
         }
-        lessonList.SelectedIndex = lessonList.Items.Count - 5;
+        lessonList.SelectedIndex = lessonList.Items.Count - 6;
         window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
         var freeFallTitle = Descendants<TextBlock>(window).FirstOrDefault(textBlock => textBlock.Name == "LessonTitle");
         var freeFallSteps = Descendants<Border>(window).Count(border => Equals(border.Tag, "StepSolution"));
@@ -237,10 +237,11 @@ internal static class Program
 
         foreach (var (index, expectedTitle, expectedFormula, expectedMessage) in new[]
         {
-            (lessonList.Items.Count - 4, "Урок 09. Прямолинейное и криволинейное движение", "по касательной", "Урок 09 о криволинейном движении не отобразился полностью или потерял правило о касательной."),
-            (lessonList.Items.Count - 3, "Урок 10. Движение тела по окружности с постоянной по модулю скоростью", "v²/R", "Урок 10 о движении по окружности не отобразился полностью или потерял формулу a=v²/R."),
-            (lessonList.Items.Count - 2, "Урок 11. Деформация, сила упругости и закон Гука", "Δl", "Урок 11 о силе упругости не отобразился полностью или потерял удлинение Δl."),
-            (lessonList.Items.Count - 1, "Урок 12. Три закона Ньютона", "разным телам", "Урок 12 о трёх законах Ньютона не отобразился полностью или потерял правило о разных телах.")
+            (lessonList.Items.Count - 5, "Урок 09. Прямолинейное и криволинейное движение", "по касательной", "Урок 09 о криволинейном движении не отобразился полностью или потерял правило о касательной."),
+            (lessonList.Items.Count - 4, "Урок 10. Движение тела по окружности с постоянной по модулю скоростью", "v²/R", "Урок 10 о движении по окружности не отобразился полностью или потерял формулу a=v²/R."),
+            (lessonList.Items.Count - 3, "Урок 11. Деформация, сила упругости и закон Гука", "Δl", "Урок 11 о силе упругости не отобразился полностью или потерял удлинение Δl."),
+            (lessonList.Items.Count - 2, "Урок 12. Три закона Ньютона", "разным телам", "Урок 12 о трёх законах Ньютона не отобразился полностью или потерял правило о разных телах."),
+            (lessonList.Items.Count - 1, "Урок 13. Бросок вверх и невесомость", "невесомост", "Урок 13 о броске вверх и невесомости не отобразился полностью или потерял объяснение невесомости.")
         })
         {
             lessonList.SelectedIndex = index;
@@ -294,6 +295,33 @@ internal static class Program
         var redoxEncoder = new PngBitmapEncoder();
         redoxEncoder.Frames.Add(BitmapFrame.Create(redoxBitmap));
         using (var stream = File.Create(outputPath)) redoxEncoder.Save(stream);
+
+        subjectList.SelectedItem = "Информатика";
+        window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
+        lessonList.SelectedIndex = lessonList.Items.Count - 1;
+        window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
+        window.UpdateLayout();
+        var tableTitle = Descendants<TextBlock>(window).FirstOrDefault(textBlock => textBlock.Name == "LessonTitle");
+        var tableGraph = Descendants<Grade9Trainer.App.DiagramView>(window)
+            .FirstOrDefault(view => Descendants<System.Windows.Shapes.Line>(view).Count() == 6 &&
+                                    !Descendants<System.Windows.Shapes.Polygon>(view).Any());
+        if (tableTitle?.Text != "Урок 07. Графы по таблице: длина пути, кратчайший путь и количество путей" || tableGraph is null)
+        {
+            throw new InvalidOperationException("Урок 07 по информатике не отобразился или потерял рисунок графа по таблице (6 линий без стрелок).");
+        }
+        tableGraph.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+        tableGraph.Arrange(new Rect(tableGraph.DesiredSize));
+        tableGraph.UpdateLayout();
+        var graphBitmap = new RenderTargetBitmap(
+            (int)Math.Ceiling(tableGraph.ActualWidth * scale.DpiScaleX),
+            (int)Math.Ceiling(tableGraph.ActualHeight * scale.DpiScaleY),
+            scale.PixelsPerInchX,
+            scale.PixelsPerInchY,
+            PixelFormats.Pbgra32);
+        graphBitmap.Render(tableGraph);
+        var graphEncoder = new PngBitmapEncoder();
+        graphEncoder.Frames.Add(BitmapFrame.Create(graphBitmap));
+        using (var graphStream = File.Create(Path.ChangeExtension(outputPath, null) + "-table-graph.png")) graphEncoder.Save(graphStream);
 
         window.Close();
         application.Shutdown();

@@ -750,37 +750,169 @@ function initLab() {
 }
 
 // ===== Все пути =====
+// ===== Проверка собственного решения ученика =====
+const LOOKALIKE = { "А": "A", "В": "B", "С": "C", "Е": "E", "а": "A", "в": "B", "с": "C", "е": "E" };
+
+// Строки вида «A-B-D», «A → B → D», «ABD» переводятся в списки вершин; текст после «=» отбрасывается.
+function parseMyPaths(text, names) {
+  return text.split("\n").map(line => line.replace(/=.*$/, "").trim()).filter(Boolean).map(line => {
+    const tokens = [];
+    line.split(/[\s→\-—–>,;.]+/).filter(Boolean).forEach(raw => {
+      const fixed = [...raw].map(ch => LOOKALIKE[ch] ?? ch.toUpperCase()).join("");
+      if (names.includes(fixed) || ![...fixed].every(ch => names.includes(ch))) tokens.push(fixed);
+      else tokens.push(...fixed);
+    });
+    return tokens;
+  });
+}
+
+function initMyCheck() {
+  $("#enumCheck").addEventListener("click", () => {
+    const graph = GRAPHS[$("#enumGraph").value];
+    const names = ids(graph);
+    const from = $("#enumFrom").value;
+    const to = $("#enumTo").value;
+    const [kind, vertex] = $("#enumVia").value.split(":");
+    const feedback = $("#enumFeedback");
+    let expected = allPaths(graph, from, to, kind === "not" ? vertex : undefined);
+    if (kind === "via") expected = expected.filter(item => item.path.includes(vertex));
+    const expectedSet = new Set(expected.map(item => item.path.join("-")));
+    const shortest = expected.length ? expected[0].length : null;
+
+    const answerText = $("#enumAnswer").value.trim();
+    const lengthText = $("#enumLength").value.trim();
+    const mine = parseMyPaths($("#enumMine").value, names);
+    if (!answerText && !lengthText && mine.length === 0) {
+      feedback.className = "feedback error";
+      feedback.textContent = "Сначала впиши ответ и (или) выпиши свои пути. Чем подробнее решение, тем легче найти ошибку.";
+      return;
+    }
+
+    const problems = [];
+    const seen = new Set();
+    const lengths = [];
+    mine.forEach(path => {
+      const label = path.join("-");
+      if (path.length < 2) { problems.push(`«${label}»: в пути должно быть не меньше двух пунктов`); return; }
+      if (path.some(id => !names.includes(id))) { problems.push(`«${label}»: такого пункта нет в таблице`); return; }
+      if (path[0] !== from) { problems.push(`«${label}»: путь должен начинаться в ${from}`); return; }
+      if (path[path.length - 1] !== to) { problems.push(`«${label}»: путь должен заканчиваться в ${to}`); return; }
+      if (new Set(path).size !== path.length) { problems.push(`«${label}»: пункты в пути повторяться не должны`); return; }
+      let length = 0;
+      for (let i = 0; i + 1 < path.length; i += 1) {
+        const w = edgeWeight(graph, path[i], path[i + 1]);
+        if (w === null) { problems.push(`«${label}»: в таблице нет дороги ${path[i]}—${path[i + 1]}`); return; }
+        length += w;
+      }
+      if (kind === "via" && !path.includes(vertex)) { problems.push(`«${label}»: путь не проходит через ${vertex}`); return; }
+      if (kind === "not" && path.includes(vertex)) { problems.push(`«${label}»: путь проходит через ${vertex}, а по условию нельзя`); return; }
+      if (seen.has(label)) { problems.push(`«${label}»: этот путь записан дважды`); return; }
+      seen.add(label);
+      lengths.push({ label, length });
+    });
+
+    const notes = [];
+    let good = true;
+    if (answerText) {
+      if (near(numberValue(answerText), expectedSet.size, 0)) {
+        notes.push("Число путей указано верно.");
+      } else {
+        good = false;
+        notes.push("Число путей пока не сходится. В вопросе «сколько путей» веса не складывают: считают только разные пути. Проверь, не пропущен ли прямой путь.");
+      }
+    }
+    if (lengthText) {
+      if (shortest !== null && near(numberValue(lengthText), shortest, 0)) {
+        notes.push("Длина кратчайшего пути указана верно.");
+      } else {
+        good = false;
+        notes.push("Длина кратчайшего пути пока не сходится. Сложи веса каждого найденного пути и выбери наименьшую сумму; проверь условие «через» или «не через».");
+      }
+    }
+    if (mine.length > 0) {
+      if (problems.length > 0) {
+        good = false;
+        notes.push(`Ошибки в записи путей: ${problems.join("; ")}.`);
+      }
+      if (lengths.length > 0) notes.push(`Длины твоих путей: ${lengths.map(item => `${item.label} = ${item.length}`).join("; ")}.`);
+      // Полнота списка нужна, когда ученик считает количество путей; для одной длины достаточно верного пути.
+      const countingGoal = Boolean(answerText) || !lengthText;
+      if (countingGoal && seen.size < expectedSet.size && problems.length === 0) {
+        good = false;
+        notes.push(`Все выписанные пути подходят (${seen.size}), но выписаны не все. Продолжай перебор: прямой путь, через одну вершину, через две.`);
+      } else if (countingGoal && seen.size === expectedSet.size && problems.length === 0) {
+        notes.push(`Список полный: найдены все пути, их ${seen.size}.`);
+      }
+      if (answerText && !Number.isNaN(numberValue(answerText)) && numberValue(answerText) !== seen.size && problems.length === 0) {
+        notes.push("Число в ответе не совпадает с числом выписанных путей: пересчитай список.");
+      }
+    }
+    feedback.className = `feedback ${good ? "success" : "error"}`;
+    feedback.textContent = notes.join(" ");
+  });
+}
+
 function initEnumeration() {
   const graphSelect = $("#enumGraph");
   const keys = ["t5", "p4", "p3", "t6", "q2", "q3", "t7"];
   fillSelect(graphSelect, keys, false);
   $all("#enumGraph option").forEach(option => { option.textContent = GRAPHS[option.value].name; });
-  const refill = () => {
-    const names = ids(GRAPHS[graphSelect.value]);
-    fillSelect($("#enumFrom"), names, false);
-    fillSelect($("#enumTo"), names, false);
-    $("#enumTo").value = names[names.length - 1];
+
+  // Условие, таблица и рисунок показываются сразу, до нажатия кнопки.
+  const describe = () => {
+    const graph = GRAPHS[graphSelect.value];
+    const from = $("#enumFrom").value;
+    const to = $("#enumTo").value;
+    const [kind, vertex] = $("#enumVia").value.split(":");
+    const condition = kind === "via" ? `, проходящих через пункт ${vertex}`
+      : kind === "not" ? `, не проходящих через пункт ${vertex}` : "";
+    const roads = graph.edges.map(([a, b, w]) => `${a}—${b} = ${w}`).join(", ");
+    $("#enumTask").innerHTML = `<strong>Задача.</strong> Дороги (длины): ${roads}. Нужно найти <b>количество различных путей</b> из ${from} в ${to}${condition} и <b>длину кратчайшего пути</b> среди них. Пункты в пути не повторяются.`;
+    $("#enumTable").innerHTML = matrixHtml(graph);
+    $("#enumPicture").innerHTML = graphSvg(graph);
+    $("#enumAnswer").value = "";
+    $("#enumLength").value = "";
+    $("#enumMine").value = "";
+    $("#enumFeedback").replaceChildren();
+    $("#enumFeedback").className = "feedback";
+    $("#enumResult").replaceChildren();
+  };
+
+  const fillConditions = () => {
+    const names = ids(GRAPHS[graphSelect.value]).filter(id => id !== $("#enumFrom").value && id !== $("#enumTo").value);
     const via = $("#enumVia");
     via.replaceChildren();
-    [["", "без условия"], ...names.map(id => [`via:${id}`, `через ${id}`]), ...names.map(id => [`not:${id}`, `не через ${id}`])].forEach(([value, text]) => {
+    [["", "без условия"], ...names.map(id => [`via:${id}`, `через пункт ${id}`]), ...names.map(id => [`not:${id}`, `не через пункт ${id}`])].forEach(([value, text]) => {
       const option = document.createElement("option");
       option.value = value;
       option.textContent = text;
       via.append(option);
     });
-    $("#enumResult").replaceChildren();
   };
+
+  const refill = () => {
+    const names = ids(GRAPHS[graphSelect.value]);
+    fillSelect($("#enumFrom"), names, false);
+    fillSelect($("#enumTo"), names, false);
+    $("#enumFrom").value = names[0];
+    $("#enumTo").value = names[names.length - 1];
+    fillConditions();
+    describe();
+  };
+
   graphSelect.addEventListener("change", refill);
+  $("#enumFrom").addEventListener("change", () => { fillConditions(); describe(); });
+  $("#enumTo").addEventListener("change", () => { fillConditions(); describe(); });
+  $("#enumVia").addEventListener("change", describe);
   refill();
+
   $("#enumBtn").addEventListener("click", () => {
     const graph = GRAPHS[graphSelect.value];
     const from = $("#enumFrom").value;
     const to = $("#enumTo").value;
-    const condition = $("#enumVia").value;
     const result = $("#enumResult");
-    if (from === to) { result.textContent = "Выберите разные пункты."; return; }
-    const [kind, vertex] = condition.split(":");
-    if (vertex && (vertex === from || vertex === to)) { result.textContent = "Условие должно относиться к промежуточному пункту."; return; }
+    if (from === to) { result.textContent = "Выбери разные пункты: начало и конец не должны совпадать."; return; }
+    const [kind, vertex] = $("#enumVia").value.split(":");
     let paths = allPaths(graph, from, to, kind === "not" ? vertex : undefined);
     if (kind === "via") paths = paths.filter(item => item.path.includes(vertex));
     const lines = [];
@@ -789,7 +921,7 @@ function initEnumeration() {
     if (kind === "not") lines.push(`Пункт ${vertex} вычеркнут вместе с его дорогами. Остаются пути: ${paths.length}.`);
     if (kind === "via") lines.push(`Путей через ${vertex}: ${paths.length}.`);
     if (paths.length === 0) {
-      result.innerHTML = `<strong>Ответ: нет путей.</strong><ol>${lines.map(line => `<li>${line}</li>`).join("")}</ol>`;
+      result.innerHTML = `<strong>Ответ: подходящих путей нет.</strong><ol>${lines.map(line => `<li>${line}</li>`).join("")}</ol>`;
       return;
     }
     lines.push(`Список путей с длинами: ${paths.map(item => `${item.path.join("→")} = ${item.length}`).join("; ")}.`);
@@ -805,6 +937,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initLab();
   renderExamples();
   initEnumeration();
+  initMyCheck();
   initTasks();
   addExamplePictures();
   addTaskPictures();

@@ -1,0 +1,65 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Ключ для преподавателя — урок 08</title><style>
+@page { size: A4; margin: 12mm 14mm; }
+* { box-sizing: border-box; }
+body { font-family: "Segoe UI", Arial, sans-serif; font-size: 11.5pt; line-height: 1.35; color: #111; margin: 0; }
+h1 { font-size: 16pt; margin: 0 0 2mm; }
+.sub { color: #444; margin: 0 0 3mm; }
+.head { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #111; padding-bottom: 2mm; margin-bottom: 3mm; }
+.fields { font-size: 10.5pt; text-align: right; }
+.fields span { display: inline-block; min-width: 42mm; border-bottom: 1px solid #111; margin-left: 2mm; }
+.rules { border: 1px solid #888; border-radius: 3mm; padding: 2mm 4mm; margin: 0 0 4mm; font-size: 10.5pt; }
+.task { border: 1px solid #333; border-radius: 3mm; padding: 3mm 4mm; margin: 0 0 4mm; break-inside: avoid; page-break-inside: avoid; }
+.task h2 { font-size: 12pt; margin: 0 0 2mm; }
+.task h2 .num { display: inline-block; min-width: 7mm; padding: 0 2mm; margin-right: 2mm; border-radius: 2mm; background: #111; color: #fff; text-align: center; }
+.task .text { white-space: pre-line; }
+.task pre.snippet { background: #f4f4f4; border: 1px solid #bbb; border-radius: 2mm; padding: 2mm 3mm; margin: 1.5mm 0; font: 10.5pt/1.3 "Cascadia Mono", Consolas, monospace; white-space: pre; }
+table.data { border-collapse: collapse; margin: 1.5mm 0 2mm; }
+table.data th, table.data td { border: 1px solid #111; padding: 1mm 3mm; min-width: 9mm; height: 7mm; text-align: center; font-size: 11pt; }
+table.data th { background: #eee; }
+table.data td.diag { background: #d8d8d8; }
+table.data td.blank { min-width: 22mm; height: 9mm; }
+.work { display: grid; gap: 3mm; margin-top: 2mm; }
+.work.two { grid-template-columns: 56mm 1fr; }
+.work.one { grid-template-columns: 1fr; }
+.box { border: 1px dashed #666; border-radius: 2mm; min-height: 34mm; padding: 1mm 2mm; font-size: 9pt; color: #777; }
+.box.short { min-height: 20mm; }
+.box.tall { min-height: 46mm; }
+.box.code { font-family: "Cascadia Mono", Consolas, monospace; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 6.4mm, #ccc 6.4mm, #ccc 6.8mm); }
+.ruled { border: 1px dashed #666; border-radius: 2mm; min-height: 40mm; padding: 1mm 2mm; font-size: 9pt; color: #777;
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 7.4mm, #bbb 7.4mm, #bbb 7.8mm); }
+.answer { margin-top: 2mm; font-weight: 700; }
+.answer span { display: inline-block; min-width: 40mm; border-bottom: 1.5px solid #111; }
+.footer { font-size: 9pt; color: #555; text-align: center; margin-top: 2mm; }
+.pb { break-before: page; page-break-before: always; }
+.key table.proto { border-collapse: collapse; width: 100%; margin: 2mm 0 4mm; }
+.key table.proto th, .key table.proto td { border: 1px solid #333; padding: 1.5mm 2mm; font-size: 10pt; vertical-align: top; }
+.key table.proto td.blank { height: 9mm; }
+.key h2 { font-size: 12.5pt; margin: 4mm 0 1mm; break-after: avoid; }
+.key .ans { font-weight: 700; }
+.key .qtext { white-space: pre-line; }
+.key ul { margin: 1mm 0 2mm 5mm; padding: 0; }
+.key li { margin: 0.5mm 0; }
+.key .warn { background: #f1f1f1; padding: 1.5mm 3mm; border-left: 3px solid #111; margin: 1.5mm 0; font-size: 10.5pt; }
+.key .qtask { break-inside: avoid; page-break-inside: avoid; }
+</style></head><body class="key"><div class="head"><div><h1>Ключ для преподавателя</h1><p class="sub">Урок 08. Свободное падение тел · Физика · варианты А и Б · не выдавать ученику</p></div></div>
+<div class="warn"><b>Как проверять.</b> Сверь ответ с ключом, затем посмотри ход решения: что записано в «Дано», какие формулы и шаги выбраны, нарисован ли рисунок. Для каждой ошибки поставь код из таблицы ниже. Если ошибка повторяется два раза и больше, это тема для мини-урока. Фото работы можно прислать для совместного разбора; имя ученика на фото и в записях не нужно.</div>
+<h2>Коды ошибок</h2><table class="proto"><tr><th>Код</th><th>Что это</th><th>Признак</th></tr><tr><td><b>Ф</b></td><td>формула</td><td>выбрана не та формула или неверно выражена величина</td></tr><tr><td><b>Е</b></td><td>единицы</td><td>не переведены км/ч, см, г или минуты в СИ, нет единицы в ответе</td></tr><tr><td><b>Н</b></td><td>направление и знак</td><td>неверно выбран знак проекции или направление вектора</td></tr><tr><td><b>П</b></td><td>понятие</td><td>перепутаны путь и перемещение, вес и сила тяжести, скорость и ускорение</td></tr><tr><td><b>А</b></td><td>арифметика</td><td>ошибка в вычислениях</td></tr><tr><td><b>Р</b></td><td>запись</td><td>нет «Дано», рисунка или единицы, решение без пояснения</td></tr><tr><td><b>Л</b></td><td>другая логика</td><td>рассуждение не сводится к перечисленному, обсудить устно</td></tr></table>
+<div class="pb"></div><h1>Вариант А</h1>
+<div class="qtask"><h2>Задание 1. Ответ: <span class="ans">только сила тяжести; да, свободное падение</span></h2><div class="qtext">Камень движется в вакууме после того, как его отпустили. Какая сила действует на него? Является ли движение свободным падением?</div><ul><li>Свободное падение — движение под действием только силы тяжести.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>«тяжёлое упадёт раньше»</b> — П: в вакууме масса не влияет на ускорение</div></div>
+<div class="qtask"><h2>Задание 2. Ответ: <span class="ans">вверх: aᵧ = −g; вниз: aᵧ = +g; направление ускорения не меняется</span></h2><div class="qtext">Вектор g направлен вниз. Каков знак проекции aᵧ, если ось направлена вверх? А если вниз?</div><ul><li>Меняется знак проекции, а не направление вектора.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>aᵧ = +g при оси вверх</b> — Н: знак проекции не соотнесён с осью</div></div>
+<div class="qtask"><h2>Задание 3. Ответ: <span class="ans">10 м/с</span></h2><div class="qtext">Тело отпустили без начальной скорости. Найди модуль скорости через 1 с (g = 10 м/с²).</div><ul><li>v = gt = 10 · 1 = 10 м/с.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>5</b> — Ф: использована формула пути</div></div>
+<div class="qtask"><h2>Задание 4. Ответ: <span class="ans">20 м</span></h2><div class="qtext">Какое расстояние пройдёт свободно падающее тело за 2 с, если v₀ = 0 (g = 10 м/с²)?</div><ul><li>h = gt²/2 = 10 · 2² / 2 = 20 м.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>20</b> — Ф: использована формула скорости; <b>10</b> — А: время не возведено в квадрат</div></div>
+<div class="qtask"><h2>Задание 5. Ответ: <span class="ans">t = 3 с; v = 30 м/с</span></h2><div class="qtext">Камень отпустили с высоты 45 м. Найди время падения и скорость перед ударом (g = 10 м/с²).</div><ul><li>t = √(2h/g) = √(90/10) = 3 с.</li><li>v = gt = 30 м/с.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>t = 9 с</b> — Ф: потерян корень из выражения</div></div>
+<div class="qtask"><h2>Задание 6. Ответ: <span class="ans">упадут одновременно: a = F/m = mg/m = g, масса сокращается</span></h2><div class="qtext">Шары массой 1 кг и 5 кг одновременно отпустили с одной высоты в вакууме. Какой упадёт раньше? Объясни через второй закон Ньютона.</div><ul><li>Тяжёлое тело сильнее притягивается, но и инертнее: ускорение одинаково.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>тяжёлый упадёт раньше</b> — П: не учтена инертность</div></div>
+<div class="qtask"><h2>Задание 7. Ответ: <span class="ans">h = 80 м; v = 40 м/с</span></h2><div class="qtext">Тело падало 4 с без начальной скорости. С какой высоты оно упало и какой скорости достигло (g = 10 м/с²)?</div><ul><li>h = gt²/2 = 5 · 4² = 80 м.</li><li>v = gt = 40 м/с.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>h = 40</b> — Ф: высота найдена по формуле скорости</div></div>
+<div class="qtask"><h2>Задание 8. Ответ: <span class="ans">2 с</span></h2><div class="qtext">Ученик для высоты 20 м написал t = 2h/g = 4 с. Найди ошибку и вычисли время правильно.</div><ul><li>Из h = gt²/2 получаем t = √(2h/g); ученик потерял квадратный корень.</li><li>t = √(40/10) = 2 с.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>4 с</b> — Ф: повторена ошибка ученика</div></div>
+<div class="pb"></div><h1>Вариант Б</h1>
+<div class="qtask"><h2>Задание 1. Ответ: <span class="ans">только сила тяжести; падают одинаково, одновременно достигают дна</span></h2><div class="qtext">В трубке без воздуха одновременно отпускают перо и дробинку. Какая сила действует на тела? Как они будут падать?</div><ul><li>Свободное падение — движение под действием только силы тяжести.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>«тяжёлое упадёт раньше»</b> — П: в вакууме масса не влияет на ускорение</div></div>
+<div class="qtask"><h2>Задание 2. Ответ: <span class="ans">вверх: aᵧ = −g; вниз: aᵧ = +g; направление ускорения не меняется</span></h2><div class="qtext">Вектор g направлен вниз. Каков знак проекции aᵧ, если ось направлена вверх? А если вниз?</div><ul><li>Меняется знак проекции, а не направление вектора.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>aᵧ = +g при оси вверх</b> — Н: знак проекции не соотнесён с осью</div></div>
+<div class="qtask"><h2>Задание 3. Ответ: <span class="ans">30 м/с</span></h2><div class="qtext">Тело отпустили без начальной скорости. Найди модуль скорости через 3 с (g = 10 м/с²).</div><ul><li>v = gt = 10 · 3 = 30 м/с.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>45</b> — Ф: использована формула пути</div></div>
+<div class="qtask"><h2>Задание 4. Ответ: <span class="ans">45 м</span></h2><div class="qtext">Какое расстояние пройдёт свободно падающее тело за 3 с, если v₀ = 0 (g = 10 м/с²)?</div><ul><li>h = gt²/2 = 10 · 3² / 2 = 45 м.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>30</b> — Ф: использована формула скорости; <b>15</b> — А: время не возведено в квадрат</div></div>
+<div class="qtask"><h2>Задание 5. Ответ: <span class="ans">t = 4 с; v = 40 м/с</span></h2><div class="qtext">Камень отпустили с высоты 80 м. Найди время падения и скорость перед ударом (g = 10 м/с²).</div><ul><li>t = √(2h/g) = √(160/10) = 4 с.</li><li>v = gt = 40 м/с.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>t = 16 с</b> — Ф: потерян корень из выражения</div></div>
+<div class="qtask"><h2>Задание 6. Ответ: <span class="ans">упадут одновременно: a = F/m = mg/m = g, масса сокращается</span></h2><div class="qtext">Шары массой 1 кг и 5 кг одновременно отпустили с одной высоты в вакууме. Какой упадёт раньше? Объясни через второй закон Ньютона.</div><ul><li>Тяжёлое тело сильнее притягивается, но и инертнее: ускорение одинаково.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>тяжёлый упадёт раньше</b> — П: не учтена инертность</div></div>
+<div class="qtask"><h2>Задание 7. Ответ: <span class="ans">h = 125 м; v = 50 м/с</span></h2><div class="qtext">Тело падало 5 с без начальной скорости. С какой высоты оно упало и какой скорости достигло (g = 10 м/с²)?</div><ul><li>h = gt²/2 = 5 · 5² = 125 м.</li><li>v = gt = 50 м/с.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>h = 50</b> — Ф: высота найдена по формуле скорости</div></div>
+<div class="qtask"><h2>Задание 8. Ответ: <span class="ans">4 с</span></h2><div class="qtext">Ученик для высоты 80 м написал t = 2h/g = 16 с. Найди ошибку и вычисли время правильно.</div><ul><li>Из h = gt²/2 получаем t = √(2h/g); ученик потерял квадратный корень.</li><li>t = √(160/10) = 4 с.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>16 с</b> — Ф: повторена ошибка ученика</div></div>
+<div class="pb"></div><h1>Протокол проверки работы</h1><p>Дата ___ Вариант ___ Верно ___ из 8</p><table class="proto"><tr><th>№</th><th>Верно?</th><th>Код ошибки</th><th>Что именно написал ученик, как рассуждал</th></tr><tr><td>1</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>2</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>3</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>4</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>5</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>6</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>7</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>8</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr></table><h2>Итог</h2><p>Повторяющиеся ошибки (коды): ______________ &nbsp; Тема мини-урока: ____________________________</p><p>Следующий шаг: ______________________________________________________</p><p style="font-size:9.5pt;color:#444">После мини-урока дать лист другого варианта и сравнить коды ошибок.</p></body></html>

@@ -29,6 +29,9 @@ public sealed class DiagramView : Border
 
     private static Canvas BuildCanvas(DiagramModel model)
     {
+        // Граф без направлений (рёбра «---»): вершины по кругу, линии без стрелок, числа на рёбрах.
+        if (model.Edges.Any(edge => !edge.IsDirected)) return BuildUndirectedCanvas(model);
+
         var levels = BuildLevels(model);
         var groups = model.Nodes
             .GroupBy(node => levels.GetValueOrDefault(node.Id))
@@ -76,6 +79,86 @@ public sealed class DiagramView : Border
         foreach (var node in model.Nodes)
         {
             if (positions.TryGetValue(node.Id, out var position)) DrawNode(canvas, node, position);
+        }
+
+        return canvas;
+    }
+
+    private static Canvas BuildUndirectedCanvas(DiagramModel model)
+    {
+        const double nodeWidth = 84;
+        const double nodeHeight = 52;
+        const double radius = 140;
+        const double margin = 36;
+        var count = model.Nodes.Count;
+        var size = margin * 2 + radius * 2 + nodeWidth;
+        var canvas = new Canvas { Width = size, Height = margin * 2 + radius * 2 + nodeHeight, ClipToBounds = false };
+        var centres = new Dictionary<string, Point>(StringComparer.Ordinal);
+        for (var index = 0; index < count; index++)
+        {
+            var angle = -Math.PI / 2 - 2 * Math.PI * index / count - Math.PI / count;
+            centres[model.Nodes[index].Id] = new Point(
+                size / 2 + radius * Math.Cos(angle),
+                canvas.Height / 2 + radius * Math.Sin(angle));
+        }
+
+        foreach (var edge in model.Edges)
+        {
+            if (!centres.TryGetValue(edge.FromId, out var from) || !centres.TryGetValue(edge.ToId, out var to)) continue;
+            canvas.Children.Add(new Line
+            {
+                X1 = from.X, Y1 = from.Y, X2 = to.X, Y2 = to.Y,
+                Stroke = Brush("#68708A"),
+                StrokeThickness = 2,
+                StrokeDashArray = edge.IsDashed ? new DoubleCollection { 5, 4 } : null
+            });
+        }
+
+        // Подписи рёбер сдвинуты к началу ребра, чтобы числа на пересекающихся диагоналях не совпадали.
+        var shift = 0;
+        foreach (var edge in model.Edges)
+        {
+            if (string.IsNullOrWhiteSpace(edge.Label)) continue;
+            if (!centres.TryGetValue(edge.FromId, out var from) || !centres.TryGetValue(edge.ToId, out var to)) continue;
+            var t = 0.36 + 0.04 * (shift++ % 3);
+            var label = new Border
+            {
+                Background = Brushes.White,
+                BorderBrush = Brush("#68708A"),
+                BorderThickness = new Thickness(1),
+                CornerRadius = new CornerRadius(5),
+                Padding = new Thickness(5, 1, 5, 1),
+                Child = new TextBlock { Text = edge.Label, FontSize = 13, FontWeight = FontWeights.SemiBold, Foreground = Brush("#172033") }
+            };
+            Canvas.SetLeft(label, from.X + (to.X - from.X) * t - 12);
+            Canvas.SetTop(label, from.Y + (to.Y - from.Y) * t - 12);
+            canvas.Children.Add(label);
+        }
+
+        foreach (var node in model.Nodes)
+        {
+            var centre = centres[node.Id];
+            var box = new Border
+            {
+                Width = nodeWidth,
+                Height = nodeHeight,
+                CornerRadius = new CornerRadius(26),
+                Background = Brush(node.Fill),
+                BorderBrush = Brush(node.Stroke),
+                BorderThickness = new Thickness(2),
+                Child = new TextBlock
+                {
+                    Text = node.Label,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    FontSize = 16,
+                    FontWeight = FontWeights.Bold,
+                    Foreground = Brush("#172033")
+                }
+            };
+            Canvas.SetLeft(box, centre.X - nodeWidth / 2);
+            Canvas.SetTop(box, centre.Y - nodeHeight / 2);
+            canvas.Children.Add(box);
         }
 
         return canvas;

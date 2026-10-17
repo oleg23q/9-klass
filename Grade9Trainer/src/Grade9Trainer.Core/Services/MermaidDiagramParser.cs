@@ -49,7 +49,8 @@ public sealed partial class MermaidDiagramParser
             EnsureNode(nodes, from);
             EnsureNode(nodes, to);
             var label = edge.Groups[3].Success ? edge.Groups[3].Value : edge.Groups[4].Value;
-            edges.Add(new DiagramEdge(from, to, CleanLabel(label), edge.Groups[4].Success));
+            var directed = edge.Groups[2].Value != "---";
+            edges.Add(new DiagramEdge(from, to, CleanLabel(label), edge.Groups[4].Success, directed));
         }
 
         var immutableNodes = nodes.Values.Select(node =>
@@ -110,7 +111,7 @@ public sealed partial class MermaidDiagramParser
     [GeneratedRegex(@"\b([A-Za-z][A-Za-z0-9_]*)\s*(?:\[""(.*?)""\]|\{""(.*?)""\})", RegexOptions.CultureInvariant)]
     private static partial Regex NodeDefinitionRegex();
 
-    [GeneratedRegex(@"^\s*([A-Za-z][A-Za-z0-9_]*)(?:\s*(?:\["".*?""\]|\{"".*?""\}))?\s*(?:(-->)\s*(?:\|""(.*?)""\|)?|-\.\s*""(.*?)""\s*\.->)\s*([A-Za-z][A-Za-z0-9_]*)", RegexOptions.CultureInvariant)]
+    [GeneratedRegex(@"^\s*([A-Za-z][A-Za-z0-9_]*)(?:\s*(?:\["".*?""\]|\{"".*?""\}))?\s*(?:(-->|---)\s*(?:\|""(.*?)""\|)?|-\.\s*""(.*?)""\s*\.->)\s*([A-Za-z][A-Za-z0-9_]*)", RegexOptions.CultureInvariant)]
     private static partial Regex EdgeRegex();
 
     [GeneratedRegex(@"^classDef\s+([A-Za-z][A-Za-z0-9_]*)\s+.*?fill:(#[0-9A-Fa-f]{6}).*?stroke:(#[0-9A-Fa-f]{6})", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]

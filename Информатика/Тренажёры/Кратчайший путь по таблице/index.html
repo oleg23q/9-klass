@@ -137,7 +137,7 @@
         </ol>
 
         <div class="calculator-card">
-          <h3>Все пути выбранной таблицы</h3>
+          <h3>Задача и все её пути</h3>
           <label for="enumGraph">Таблица</label>
           <select id="enumGraph"></select>
           <label for="enumFrom">Откуда</label>
@@ -146,7 +146,21 @@
           <select id="enumTo"></select>
           <label for="enumVia">Условие</label>
           <select id="enumVia"></select>
-          <button class="btn primary full" id="enumBtn" type="button">Показать решение</button>
+          <div class="notice" id="enumTask" aria-live="polite"></div>
+          <div id="enumTable"></div>
+          <div class="graph-box" id="enumPicture"></div>
+          <div class="my-solution">
+            <h4>Твоё решение</h4>
+            <label for="enumAnswer">Сколько путей получилось</label>
+            <input id="enumAnswer" inputmode="numeric" placeholder="число путей">
+            <label for="enumLength">Длина кратчайшего пути</label>
+            <input id="enumLength" inputmode="numeric" placeholder="длина">
+            <label for="enumMine">Выпиши пути (по одному в строке, например A-B-D)</label>
+            <textarea id="enumMine" rows="5" placeholder="A-D&#10;A-B-D" spellcheck="false"></textarea>
+            <button class="btn secondary full" id="enumCheck" type="button">Проверить моё решение</button>
+            <div class="feedback" id="enumFeedback" aria-live="polite"></div>
+          </div>
+          <button class="btn ghost full" id="enumBtn" type="button">Показать верное решение</button>
           <div class="solution-box" id="enumResult" aria-live="polite"></div>
         </div>
       </div>

@@ -41,7 +41,7 @@
         <div>
           <span class="eyebrow">Главная идея</span>
           <h2>Число путей в вершину — сумма чисел путей в её соседей</h2>
-          <p>Путь — последовательность вершин, где каждая следующая связана с предыдущей ребром (в ориентированном графе — стрелкой вперёд). Чтобы не выписывать все пути, подписывают вершины: у старта подпись 1, у остальных — сумма подписей вершин, из которых входят стрелки.</p>
+          <p>Путь — последовательность вершин, где каждая следующая связана с предыдущей ребром (в ориентированном графе — стрелкой вперёд). Чтобы не выписывать все пути, подписывают вершины: у старта подпись 1, у остальных — сумма подписей вершин, из которых идут стрелки в данную вершину.</p>
         </div>
         <div class="formula-stack" aria-label="Основные формулы">
           <code>N(старт) = 1</code>
@@ -64,7 +64,7 @@
         <article class="theory-card">
           <span class="card-number">03</span>
           <h3>Метод подписей</h3>
-          <p>Последний шаг пути в X — одна из входящих стрелок. Если она идёт из Y, до Y можно дойти N(Y) способами. Разные стрелки дают разные пути, поэтому подписи складываются. Подписывай вершины по порядку: сначала те, из которых в неё входят стрелки.</p>
+          <p>Последний шаг пути в X — одна из входящих стрелок. Если она идёт из Y, до Y можно дойти N(Y) способами. Разные стрелки дают разные пути, поэтому подписи складываются. Подписывай вершины по порядку: сначала те, из которых идут стрелки в неё.</p>
         </article>
         <article class="theory-card">
           <span class="card-number">04</span>
@@ -72,7 +72,7 @@
           <p>Через X проходят N₁·N₂ путей (до X и после X). Не через X: все пути минус эти. В неориентированном графе подписи не работают: можно ходить по кругу, поэтому вершины не повторяют, а пути выписывают перебором.</p>
         </article>
       </div>
-      <div class="notice"><strong>Не путай:</strong> подпись вершины — это число <b>путей</b> из старта, а не число рёбер и не длина пути. Складывай подписи вершин, из которых стрелки входят в X.</div>
+      <div class="notice"><strong>Не путай:</strong> подпись вершины — это число <b>путей</b> из старта, а не число рёбер и не длина пути. Складывай подписи вершин, из которых идут стрелки в X.</div>
     </section>
 
     <section class="content-section" id="lab">
@@ -104,7 +104,7 @@
             <span><i style="background:#e8590c"></i>финиш — искомое число путей</span>
           </div>
           <div class="label-grid" id="labelGrid"></div>
-          <div class="verdict" id="verdict" aria-live="polite">Подписывай вершины по порядку: у каждой подпись — сумма подписей вершин, из которых в неё входят стрелки.</div>
+          <div class="verdict" id="verdict" aria-live="polite">Подписывай вершины по порядку: у каждой подпись — сумма подписей вершин, из которых идут стрелки в неё.</div>
           <div class="feedback" id="labFeedback" aria-live="polite">Впиши числа и нажми «Проверить». Подсказка покажет, какие стрелки входят в вершину, но не число.</div>
           <div class="solution-box" id="labPaths" hidden></div>
         </div>
@@ -134,18 +134,33 @@
       <div class="algorithm-grid">
         <ol class="steps-list">
           <li><span>1</span><div><h3>Нарисуй граф по списку рёбер</h3><p>Расставь вершины слева направо, стрелки по списку. Так проще заметить входящие стрелки.</p></div></li>
-          <li><span>2</span><div><h3>Подпиши вершины по порядку</h3><p>N(старт) = 1. Для остальных сложи подписи вершин, из которых в неё входят стрелки.</p></div></li>
+          <li><span>2</span><div><h3>Подпиши вершины по порядку</h3><p>N(старт) = 1. Для остальных сложи подписи вершин, из которых идут стрелки в неё.</p></div></li>
           <li><span>3</span><div><h3>Проверь перечислением</h3><p>Выпиши все пути из старта в финиш: от каждой вершины иди по всем стрелкам. Число путей должно совпасть с подписью финиша.</p></div></li>
           <li><span>4</span><div><h3>Учти условие</h3><p>Через вершину X: N(до X) · N(от X). Не через X: все пути минус пути через X. В неориентированном графе вершины не повторяют.</p></div></li>
         </ol>
 
         <div class="calculator-card">
-          <h3>Все пути выбранного графа</h3>
+          <h3>Задача и все её пути</h3>
           <label for="enumGraph">Граф</label>
           <select id="enumGraph"></select>
+          <label for="enumFrom">Откуда (старт)</label>
+          <select id="enumFrom"></select>
+          <label for="enumTo">Куда (финиш)</label>
+          <select id="enumTo"></select>
           <label for="enumVia">Условие</label>
           <select id="enumVia"></select>
-          <button class="btn primary full" id="enumBtn" type="button">Показать решение</button>
+          <div class="notice" id="enumTask" aria-live="polite"></div>
+          <div class="graph-box" id="enumPicture"></div>
+          <div class="my-solution">
+            <h4>Твоё решение</h4>
+            <label for="enumAnswer">Сколько путей получилось</label>
+            <input id="enumAnswer" inputmode="numeric" placeholder="число путей">
+            <label for="enumMine">Выпиши пути (по одному в строке, например А-Б-Г)</label>
+            <textarea id="enumMine" rows="5" placeholder="А-Б-Г&#10;А-Б-В-Г" spellcheck="false"></textarea>
+            <button class="btn secondary full" id="enumCheck" type="button">Проверить моё решение</button>
+            <div class="feedback" id="enumFeedback" aria-live="polite"></div>
+          </div>
+          <button class="btn ghost full" id="enumBtn" type="button">Показать верное решение</button>
           <div class="solution-box" id="enumResult" aria-live="polite"></div>
         </div>
       </div>

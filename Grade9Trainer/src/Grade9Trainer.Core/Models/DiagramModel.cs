@@ -23,7 +23,8 @@ public sealed record DiagramEdge(
     string FromId,
     string ToId,
     string Label,
-    bool IsDashed);
+    bool IsDashed,
+    bool IsDirected = true);
 
 public sealed record DiagramModel(
     DiagramDirection Direction,

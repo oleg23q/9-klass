@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Бросок вверх и невесомость — тренажёр по физике</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M32 56V14" class="arrow-line" fill="none"/>
+          <path d="M22 24 32 10 42 24" class="arrow-line" fill="none"/>
+          <circle cx="32" cy="58" r="5" class="ball"/>
+        </svg>
+        <div>
+          <h1>Бросок вверх и невесомость</h1>
+          <p>Интерактивный тренажёр · 9 класс · Физика · Урок 13</p>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить цветовую тему">◐</button>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Разделы тренажёра">
+    <button class="nav-btn active" data-target="theory" type="button">Теория</button>
+    <button class="nav-btn" data-target="lab" type="button">Эксперимент</button>
+    <button class="nav-btn" data-target="examples" type="button">Разборы задач</button>
+    <button class="nav-btn" data-target="algorithm" type="button">Алгоритм</button>
+    <button class="nav-btn" data-target="tasks" type="button">Задания</button>
+  </nav>
+
+  <main class="main-content">
+    <section class="content-section active" id="theory">
+      <div class="hero-card">
+        <div>
+          <span class="eyebrow">Главная идея</span>
+          <h2>Ускорение всё время g вниз, а вес в полёте равен нулю</h2>
+          <p>После броска на тело действует только сила тяжести. Поэтому ускорение равно g и направлено вниз на подъёме, в верхней точке и при падении. В верхней точке скорость равна нулю, а ускорение нет. Вес — сила, с которой тело давит на опору. Если опора движется вниз с ускорением g (или тело летит свободно), вес равен нулю: это невесомость, сила тяжести при этом остаётся.</p>
+        </div>
+        <div class="formula-stack" aria-label="Основные формулы">
+          <code>v = v₀ − gt</code>
+          <code>H = v₀² / (2g)</code>
+          <code>P = m(g ± a)</code>
+        </div>
+      </div>
+
+      <div class="theory-grid">
+        <article class="theory-card">
+          <span class="card-number">01</span>
+          <h3>Знаки при броске вверх</h3>
+          <p>Ось вверх: a<sub>y</sub> = −g, v₀ &gt; 0. Формулы v = v₀ − gt, h = v₀t − gt²/2. Если v &gt; 0, тело летит вверх, если v &lt; 0 — вниз. Скорость и ускорение на подъёме направлены противоположно, поэтому скорость уменьшается.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">02</span>
+          <h3>Верхняя точка и симметрия</h3>
+          <p>v = 0: t₁ = v₀/g, H = v₀²/(2g). Ускорение в верхней точке по-прежнему g. Подъём и падение занимают одинаковое время; на одной высоте скорости равны по модулю; в точку броска тело возвращается через 2v₀/g со скоростью v₀ вниз.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">03</span>
+          <h3>Сила тяжести и вес</h3>
+          <p>Сила тяжести mg действует на тело. Вес P действует на опору или подвес, это сила упругости; по третьему закону он равен силе реакции опоры N. В покое P = mg. Весы и динамометр показывают вес.</p>
+        </article>
+        <article class="theory-card">
+          <span class="card-number">04</span>
+          <h3>Перегрузка и невесомость</h3>
+          <p>Ускорение опоры вверх: P = m(g + a) — вес больше (перегрузка). Вниз: P = m(g − a) — вес меньше. При a = g получаем P = 0: невесомость. Так же в свободном падении, в полёте брошенного тела и на орбите.</p>
+        </article>
+      </div>
+      <div class="notice"><strong>Не путай:</strong> невесомость — не отсутствие силы тяжести. Сила тяжести есть, она и сообщает ускорение g. Нет только веса: тело и опора падают вместе и не давят друг на друга.</div>
+    </section>
+
+    <section class="content-section" id="lab">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Управляемая модель</span>
+          <h2>Два опыта</h2>
+        </div>
+        <span class="model-badge">g = 10 м/с², без сопротивления воздуха</span>
+      </div>
+      <div class="mode-switch" role="tablist" aria-label="Выбор опыта">
+        <button class="mode-btn active" id="modeThrow" type="button" role="tab" aria-selected="true">Бросок вверх</button>
+        <button class="mode-btn" id="modeLift" type="button" role="tab" aria-selected="false">Весы в лифте</button>
+      </div>
+
+      <div class="lab-panel" id="panelThrow">
+        <div class="lab-grid">
+          <aside class="control-panel">
+            <label for="v0Input">Начальная скорость v₀: <strong><span id="v0Label">20</span> м/с</strong></label>
+            <input id="v0Input" type="range" min="10" max="40" step="5" value="20">
+
+            <label for="tempoSelect">Скорость показа</label>
+            <select id="tempoSelect">
+              <option value="0.5">× 0,5 (замедленно)</option>
+              <option value="1" selected>× 1 (реальное время)</option>
+              <option value="2">× 2 (ускоренно)</option>
+            </select>
+
+            <div class="prediction-box">
+              <h3>Твой прогноз</h3>
+              <label for="predT">Время подъёма t₁, с</label>
+              <input id="predT" inputmode="decimal" placeholder="например, 2">
+              <label for="predH">Наибольшая высота H, м</label>
+              <input id="predH" inputmode="decimal" placeholder="например, 20">
+            </div>
+
+            <div class="button-row">
+              <button class="btn primary" id="runBtn" type="button">Бросить</button>
+              <button class="btn secondary" id="resetBtn" type="button">Сбросить</button>
+            </div>
+            <button class="btn secondary full" id="checkBtn" type="button">Проверить прогноз</button>
+            <button class="btn ghost full" id="revealBtn" type="button">Показать значения</button>
+          </aside>
+
+          <div class="experiment-card">
+            <svg class="scene" id="scene" viewBox="0 0 560 400" role="img" aria-labelledby="sceneTitle sceneDesc">
+              <title id="sceneTitle">Бросок тела вертикально вверх</title>
+              <desc id="sceneDesc">Шар движется вертикально; синяя стрелка — скорость, розовая стрелка — ускорение, которое всегда направлено вниз. Справа шкала высоты в метрах.</desc>
+              <defs>
+                <linearGradient id="sceneSky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#e5f6ff"/>
+                  <stop offset="1" stop-color="#fff8e3"/>
+                </linearGradient>
+                <marker id="headV" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1c7ed6"/></marker>
+                <marker id="headA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#d6336c"/></marker>
+              </defs>
+              <rect x="0" y="0" width="560" height="400" rx="24" fill="url(#sceneSky)"/>
+              <line class="ruler-line" x1="30" y1="360" x2="530" y2="360"/>
+              <g id="heightRuler"></g>
+              <line id="maxLine" class="max-line" x1="60" y1="0" x2="470" y2="0" visibility="hidden"/>
+              <text id="maxText" class="vec-label f" x="64" y="0" visibility="hidden">наибольшая высота</text>
+              <line id="vecV" class="vec-v" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headV)" visibility="hidden"/>
+              <line id="vecA" class="vec-f" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headA)"/>
+              <circle id="ball" class="body-dot" r="12" cx="170" cy="348"/>
+              <text id="labelV" class="vec-label v" x="0" y="0" visibility="hidden">v</text>
+              <text id="labelA" class="vec-label f" x="0" y="0">g</text>
+            </svg>
+            <div class="legend">
+              <span><i class="lv"></i>скорость v</span>
+              <span><i class="lf"></i>ускорение g — всегда вниз</span>
+              <span>длины стрелок условные</span>
+            </div>
+            <div class="meters wide">
+              <div><span>Время t</span><strong id="tMeter">0 с</strong></div>
+              <div><span>Скорость v</span><strong id="vMeter">0 м/с</strong></div>
+              <div><span>Высота h</span><strong id="hMeter">0 м</strong></div>
+              <div><span>Время подъёма t₁</span><strong id="t1Meter">?</strong></div>
+              <div><span>Высота H</span><strong id="HMeter">?</strong></div>
+              <div><span>Время полёта</span><strong id="flightMeter">?</strong></div>
+            </div>
+            <div class="verdict" id="verdict" aria-live="polite">Ускорение всё время равно g и направлено вниз. В верхней точке скорость равна нулю, а ускорение нет.</div>
+            <div class="feedback" id="labFeedback" aria-live="polite">Сосчитай t₁ и H сам, запиши прогноз и нажми «Проверить прогноз»: значения на табло откроются после верного ответа.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lab-panel" id="panelLift" hidden>
+        <div class="lab-grid">
+          <aside class="control-panel">
+            <label for="massInput">Масса человека m: <strong><span id="massLabel">60</span> кг</strong></label>
+            <input id="massInput" type="range" min="40" max="80" step="10" value="60">
+
+            <label for="accInput">Ускорение лифта a: <strong><span id="accLabel">0</span> м/с²</strong> <span id="accDirLabel">(покой)</span></label>
+            <input id="accInput" type="range" min="-10" max="10" step="2" value="0">
+            <p class="toolbar-note">Плюс — ускорение направлено вверх, минус — вниз. −10 м/с² — лифт падает свободно.</p>
+
+            <div class="prediction-box">
+              <h3>Твой прогноз</h3>
+              <label for="predP">Показание весов P, Н</label>
+              <input id="predP" inputmode="decimal" placeholder="например, 600">
+            </div>
+
+            <button class="btn secondary full" id="checkLiftBtn" type="button">Проверить прогноз</button>
+            <button class="btn ghost full" id="revealLiftBtn" type="button">Показать значения</button>
+          </aside>
+
+          <div class="experiment-card">
+            <svg class="scene" id="liftScene" viewBox="0 0 560 400" role="img" aria-labelledby="liftTitle liftDesc">
+              <title id="liftTitle">Человек на весах в лифте</title>
+              <desc id="liftDesc">Человек стоит на весах в лифте. Розовая стрелка — сила тяжести, синяя — сила реакции опоры, оранжевая справа — ускорение лифта.</desc>
+              <defs>
+                <linearGradient id="liftSky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#e5f6ff"/>
+                  <stop offset="1" stop-color="#fff8e3"/>
+                </linearGradient>
+                <marker id="headMg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#d6336c"/></marker>
+                <marker id="headN" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1c7ed6"/></marker>
+                <marker id="headAcc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#e98b2a"/></marker>
+              </defs>
+              <rect x="0" y="0" width="560" height="400" rx="24" fill="url(#liftSky)"/>
+              <rect class="elevator-box" x="170" y="40" width="190" height="320" rx="10"/>
+              <rect class="scale-plate" x="195" y="326" width="140" height="16" rx="6"/>
+              <g id="person">
+                <circle class="person-head" cx="265" cy="196" r="18"/>
+                <rect class="person-body" x="244" y="216" width="42" height="80" rx="14"/>
+                <rect class="person-body" x="248" y="292" width="14" height="32" rx="5"/>
+                <rect class="person-body" x="268" y="292" width="14" height="32" rx="5"/>
+              </g>
+              <line id="vecMg" class="vec-f" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headMg)"/>
+              <line id="vecN" class="vec-v" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headN)" visibility="hidden"/>
+              <line id="vecAcc" class="vec-v" style="stroke:#e98b2a" x1="0" y1="0" x2="0" y2="0" marker-end="url(#headAcc)" visibility="hidden"/>
+              <text id="labelMg" class="vec-label f" x="0" y="0">mg</text>
+              <text id="labelN" class="vec-label v" x="0" y="0" visibility="hidden">N</text>
+              <text id="labelAcc" class="vec-label" style="fill:#e98b2a" x="0" y="0" visibility="hidden">a</text>
+              <rect x="205" y="330" width="120" height="8" rx="3" fill="#17313a"/>
+              <text id="scaleText" class="vec-label plain" x="265" y="357" text-anchor="middle">весы</text>
+            </svg>
+            <div class="legend">
+              <span><i class="lf"></i>сила тяжести mg</span>
+              <span><i class="lv"></i>сила реакции опоры N (по модулю равна весу)</span>
+              <span>длины стрелок условные</span>
+            </div>
+            <div class="meters wide">
+              <div><span>Масса m</span><strong id="mMeter">60 кг</strong></div>
+              <div><span>Ускорение a</span><strong id="aMeter">0 м/с²</strong></div>
+              <div><span>Сила тяжести mg</span><strong id="mgMeter">?</strong></div>
+              <div><span>Вес P (весы)</span><strong id="pMeter">?</strong></div>
+              <div><span>Состояние</span><strong id="stateMeter">?</strong></div>
+            </div>
+            <div class="verdict" id="liftVerdict" aria-live="polite">Весы показывают вес — силу, с которой человек давит на весы.</div>
+            <div class="feedback" id="liftFeedback" aria-live="polite">Сосчитай P сам, запиши прогноз и нажми «Проверить прогноз»: значения на табло откроются после верного ответа.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="examples">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Решаем вместе</span>
+          <h2>Четыре разобранные задачи</h2>
+        </div>
+        <div class="score-pill">Изучено: <strong id="exampleScore">0/4</strong></div>
+      </div>
+      <p class="examples-intro">Сначала попробуй решить задачу сам. Затем открывай шаги разбора по одному и сравнивай свой ход мысли.</p>
+      <div class="example-list" id="exampleList"></div>
+    </section>
+
+    <section class="content-section" id="algorithm">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Ось → формула → проверка</span>
+          <h2>Алгоритм решения</h2>
+        </div>
+      </div>
+
+      <div class="algorithm-grid">
+        <ol class="steps-list">
+          <li><span>1</span><div><h3>Выбери ось и запиши знаки</h3><p>Ось вверх: v₀ &gt; 0, a<sub>y</sub> = −g. Скорость вниз — отрицательная.</p></div></li>
+          <li><span>2</span><div><h3>Выбери формулу</h3><p>Время и скорость — v = v₀ − gt, высота — h = v₀t − gt²/2, без времени — v² = v₀² − 2gh. Верхняя точка: v = 0.</p></div></li>
+          <li><span>3</span><div><h3>Для веса определи ускорение опоры</h3><p>Вверх — P = m(g + a), вниз — P = m(g − a). Если a = g, то P = 0.</p></div></li>
+          <li><span>4</span><div><h3>Проверь смысл</h3><p>Подъём и падение симметричны; в верхней точке a = g; вес не равен силе тяжести, когда есть ускорение; единицы СИ.</p></div></li>
+        </ol>
+
+        <div class="calculator-card">
+          <h3>Калькулятор с разбором</h3>
+          <label for="calcMode">Что нужно найти</label>
+          <select id="calcMode">
+            <option value="top">Время подъёма и высоту (известна v₀)</option>
+            <option value="at">Скорость и высоту в момент t (известны v₀ и t)</option>
+            <option value="v0">Начальную скорость по высоте H</option>
+            <option value="weight">Вес тела (известны m и a)</option>
+          </select>
+          <label for="calcX" id="calcXLabel">Начальная скорость v₀, м/с</label>
+          <input id="calcX" type="number" step="0.1" value="20">
+          <label for="calcY" id="calcYLabel" hidden>Время t, с</label>
+          <input id="calcY" type="number" step="0.1" value="1" hidden>
+          <button class="btn primary full" id="calculateBtn" type="button">Показать решение</button>
+          <div class="solution-box" id="calculationResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="tasks">
+      <div class="section-heading-row">
+        <div>
+          <span class="eyebrow">Самостоятельная работа</span>
+          <h2>Двенадцать задач с проверкой и разбором</h2>
+        </div>
+        <div class="score-pill">Верно: <strong id="scoreValue">0/12</strong></div>
+      </div>
+      <p class="tasks-intro">Принимаем g = 10 м/с², сопротивления воздуха нет. Десятичную дробь можно вводить через запятую или точку; скорость вниз пиши со знаком минус. После первой проверки открывается полный разбор задачи.</p>
+      <div class="task-grid" id="taskGrid"></div>
+      <div class="button-row final-actions">
+        <button class="btn secondary" id="resetProgressBtn" type="button">Начать задания заново</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Тренажёр работает локально. Результат заданий хранится только в этом браузере.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -510,3 +510,19 @@ input[type="range"] { min-height: auto; padding: 0; accent-color: var(--primary)
 .mini-table { border-collapse: collapse; margin: 8px 0; }
 .mini-table th, .mini-table td { border: 1px solid var(--line); padding: 4px 10px; text-align: center; }
 .mini-table th { background: var(--surface-2); }
+
+textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  background: var(--surface-2);
+  font: inherit;
+  font-family: "Cascadia Mono", Consolas, monospace;
+  resize: vertical;
+}
+textarea:focus { outline: 3px solid color-mix(in srgb, var(--primary) 25%, transparent); border-color: var(--primary); }
+.my-solution { margin-top: 12px; padding: 12px; border: 2px dashed var(--primary); border-radius: 14px; }
+.my-solution h4 { margin: 0 0 6px; }
