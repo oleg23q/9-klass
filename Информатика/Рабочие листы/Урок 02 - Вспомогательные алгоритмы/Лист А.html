@@ -9,7 +9,17 @@ h1 { font-size: 16pt; margin: 0 0 2mm; }
 .fields span { display: inline-block; min-width: 42mm; border-bottom: 1px solid #111; margin-left: 2mm; }
 .rules { border: 1px solid #888; border-radius: 3mm; padding: 2mm 4mm; margin: 0 0 4mm; font-size: 10.5pt; }
 .task { border: 1px solid #333; border-radius: 3mm; padding: 3mm 4mm; margin: 0 0 4mm; break-inside: avoid; page-break-inside: avoid; }
-.task h2 { font-size: 12pt; margin: 0 0 2mm; }
+.task h2 { font-size: 12pt; margin: 0 0 2mm; display: flex; align-items: center; gap: 2mm; }
+.task h2 .ttl { flex: 1; }
+.task h2 .lvl { font-weight: 400; font-size: 10pt; white-space: nowrap; color: #222; }
+.task h2 .dots { letter-spacing: 1px; margin-right: 3mm; font-size: 11pt; }
+.warm { border: 1.5px solid #111; border-radius: 3mm; padding: 3mm 4mm; margin: 0 0 4mm; break-inside: avoid; page-break-inside: avoid; background: #f7f7f7; }
+.warm h2 { font-size: 12pt; margin: 0 0 1.5mm; }
+.warm ul { margin: 1mm 0 2mm 5mm; padding: 0; }
+.warm li { margin: 0.6mm 0; }
+.warm .formulas { display: flex; flex-wrap: wrap; gap: 2mm 3mm; margin: 1.5mm 0; }
+.warm .formulas span { border: 1px solid #333; border-radius: 2mm; background: #fff; padding: 0.8mm 2.5mm; font-family: "Cambria Math", "Segoe UI", serif; font-size: 11.5pt; }
+.warm .ex { margin-top: 1.5mm; font-size: 10.5pt; }
 .task h2 .num { display: inline-block; min-width: 7mm; padding: 0 2mm; margin-right: 2mm; border-radius: 2mm; background: #111; color: #fff; text-align: center; }
 .task .text { white-space: pre-line; }
 .task pre.snippet { background: #f4f4f4; border: 1px solid #bbb; border-radius: 2mm; padding: 2mm 3mm; margin: 1.5mm 0; font: 10.5pt/1.3 "Cascadia Mono", Consolas, monospace; white-space: pre; }
@@ -43,28 +53,29 @@ table.data td.blank { min-width: 22mm; height: 9mm; }
 .key .qtask { break-inside: avoid; page-break-inside: avoid; }
 </style></head><body><div class="head"><div><h1>Урок 02. Вспомогательные алгоритмы</h1><p class="sub">Информатика · 9 класс · Рабочий лист · Вариант А</p></div><div class="fields">Дата:<span></span><br>Имя (по желанию):<span></span></div></div>
 <div class="rules"><b>Как работать.</b> Решай ручкой, около 30 минут, без подсказок и без экрана. Код записывай аккуратно, с отступами. Не стирай черновое решение: по нему видно, как ты рассуждал. Если застрял, оставь вопрос на полях.</div>
-<div class="task"><h2><span class="num">1</span>Задание 1</h2><div class="text">В алгоритме найди действие, которое повторяется.
+<div class="warm"><h2>Разминка: вспомним тему</h2><ul><li>Вспомогательный алгоритм — отдельный алгоритм со своим именем, который вызывают из основного.</li><li>Параметры — данные, которые передают вспомогательному алгоритму; результат он может возвращать.</li><li>Основное преимущество — не повторять один и тот же код.</li></ul></div>
+<div class="task"><h2><span class="num">1</span><span class="ttl">Короткий ответ</span><span class="dots">●○○</span><span class="lvl">★ 1</span></h2><div class="text">В алгоритме найди действие, которое повторяется.
 </div><pre class="snippet">print("-----")
 print("Меню")
 print("-----")
 print("1. Играть")
 print("2. Выход")
 print("-----")</pre><div class="answer">Что повторяется: <span></span></div></div>
-<div class="task"><h2><span class="num">2</span>Задание 2</h2><div class="text">Придумай два понятных имени для вспомогательного алгоритма, который печатает «===».</div><div class="answer">Имена: <span></span></div></div>
-<div class="task"><h2><span class="num">3</span>Задание 3</h2><div class="text">Что выведет программа?</div><pre class="snippet">def hello():
+<div class="task"><h2><span class="num">2</span><span class="ttl">Короткий ответ</span><span class="dots">●○○</span><span class="lvl">★ 1</span></h2><div class="text">Придумай два понятных имени для вспомогательного алгоритма, который печатает «===».</div><div class="answer">Имена: <span></span></div></div>
+<div class="task"><h2><span class="num">3</span><span class="ttl">Объясни своими словами</span><span class="dots">●○○</span><span class="lvl">★ 1</span></h2><div class="text">Что выведет программа?</div><pre class="snippet">def hello():
     print("Привет")
 
 hello()
 hello()
 print("Конец")</pre><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div><div class="answer">Ответ: <span></span></div></div>
-<div class="task"><h2><span class="num">4</span>Задание 4</h2><div class="text">Почему программа не запускается? Запиши исправленный вариант.</div><pre class="snippet">def line():
+<div class="task"><h2><span class="num">4</span><span class="ttl">Напиши программу</span><span class="dots">●●○</span><span class="lvl">★ 2</span></h2><div class="text">Почему программа не запускается? Запиши исправленный вариант.</div><pre class="snippet">def line():
 print("-----")
 
 line()</pre><div class="work one"><div class="box code tall">Программа</div></div></div>
-<div class="task"><h2><span class="num">5</span>Задание 5</h2><div class="text">Укажи, где функция определяется, а где вызывается.</div><pre class="snippet">def star():
+<div class="task"><h2><span class="num">5</span><span class="ttl">Короткий ответ</span><span class="dots">●●○</span><span class="lvl">★ 2</span></h2><div class="text">Укажи, где функция определяется, а где вызывается.</div><pre class="snippet">def star():
     print("***")
 
 star()</pre><div class="answer">Ответ: <span></span></div></div>
-<div class="task"><h2><span class="num">6</span>Задание 6</h2><div class="text">Напиши функцию separator() так, чтобы программа вывела пять строк: ===, Python, ===, Алгоритмы, === (по порядку).</div><div class="work one"><div class="box code tall">Программа</div></div></div>
-<div class="task"><h2><span class="num">7</span>Задание 7</h2><div class="text">Объясни: зачем нужен вспомогательный алгоритм, что делает def и чем имя line отличается от вызова line().</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
-<div class="footer">Рабочий лист предназначен для самостоятельного решения. Ключ хранится у преподавателя.</div></body></html>
+<div class="task"><h2><span class="num">6</span><span class="ttl">Напиши программу</span><span class="dots">●●●</span><span class="lvl">★ 3</span></h2><div class="text">Напиши функцию separator() так, чтобы программа вывела пять строк: ===, Python, ===, Алгоритмы, === (по порядку).</div><div class="work one"><div class="box code tall">Программа</div></div></div>
+<div class="task"><h2><span class="num">7</span><span class="ttl">Объясни своими словами</span><span class="dots">●●●</span><span class="lvl">★ 3</span></h2><div class="text">Объясни: зачем нужен вспомогательный алгоритм, что делает def и чем имя line отличается от вызова line().</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
+<div class="footer">Уровень задания: ● — базовый, ●● — средний, ●●● — повышенный. Рабочий лист предназначен для самостоятельного решения. Ключ хранится у преподавателя.</div></body></html>

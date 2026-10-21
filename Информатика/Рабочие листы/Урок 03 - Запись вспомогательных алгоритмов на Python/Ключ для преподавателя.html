@@ -9,7 +9,17 @@ h1 { font-size: 16pt; margin: 0 0 2mm; }
 .fields span { display: inline-block; min-width: 42mm; border-bottom: 1px solid #111; margin-left: 2mm; }
 .rules { border: 1px solid #888; border-radius: 3mm; padding: 2mm 4mm; margin: 0 0 4mm; font-size: 10.5pt; }
 .task { border: 1px solid #333; border-radius: 3mm; padding: 3mm 4mm; margin: 0 0 4mm; break-inside: avoid; page-break-inside: avoid; }
-.task h2 { font-size: 12pt; margin: 0 0 2mm; }
+.task h2 { font-size: 12pt; margin: 0 0 2mm; display: flex; align-items: center; gap: 2mm; }
+.task h2 .ttl { flex: 1; }
+.task h2 .lvl { font-weight: 400; font-size: 10pt; white-space: nowrap; color: #222; }
+.task h2 .dots { letter-spacing: 1px; margin-right: 3mm; font-size: 11pt; }
+.warm { border: 1.5px solid #111; border-radius: 3mm; padding: 3mm 4mm; margin: 0 0 4mm; break-inside: avoid; page-break-inside: avoid; background: #f7f7f7; }
+.warm h2 { font-size: 12pt; margin: 0 0 1.5mm; }
+.warm ul { margin: 1mm 0 2mm 5mm; padding: 0; }
+.warm li { margin: 0.6mm 0; }
+.warm .formulas { display: flex; flex-wrap: wrap; gap: 2mm 3mm; margin: 1.5mm 0; }
+.warm .formulas span { border: 1px solid #333; border-radius: 2mm; background: #fff; padding: 0.8mm 2.5mm; font-family: "Cambria Math", "Segoe UI", serif; font-size: 11.5pt; }
+.warm .ex { margin-top: 1.5mm; font-size: 10.5pt; }
 .task h2 .num { display: inline-block; min-width: 7mm; padding: 0 2mm; margin-right: 2mm; border-radius: 2mm; background: #111; color: #fff; text-align: center; }
 .task .text { white-space: pre-line; }
 .task pre.snippet { background: #f4f4f4; border: 1px solid #bbb; border-radius: 2mm; padding: 2mm 3mm; margin: 1.5mm 0; font: 10.5pt/1.3 "Cascadia Mono", Consolas, monospace; white-space: pre; }
@@ -41,7 +51,7 @@ table.data td.blank { min-width: 22mm; height: 9mm; }
 .key li { margin: 0.5mm 0; }
 .key .warn { background: #f1f1f1; padding: 1.5mm 3mm; border-left: 3px solid #111; margin: 1.5mm 0; font-size: 10.5pt; }
 .key .qtask { break-inside: avoid; page-break-inside: avoid; }
-</style></head><body class="key"><div class="head"><div><h1>Ключ для преподавателя</h1><p class="sub">Урок 03. Запись вспомогательных алгоритмов на Python · Информатика · варианты А и Б · не выдавать ученику</p></div></div>
+</style></head><body class="key"><div class="head"><div><h1>Ключ для преподавателя</h1><p class="sub">Урок 03. Запись вспомогательных алгоритмов на Python · Информатика · варианты А, Б и В · не выдавать ученику</p></div></div>
 <div class="warn"><b>Как проверять.</b> Сверь ответ с ключом, затем посмотри ход решения: что записано в «Дано», какие формулы и шаги выбраны, нарисован ли рисунок. Для каждой ошибки поставь код из таблицы ниже. Если ошибка повторяется два раза и больше, это тема для мини-урока. Фото работы можно прислать для совместного разбора; имя ученика на фото и в записях не нужно.</div>
 <h2>Коды ошибок</h2><table class="proto"><tr><th>Код</th><th>Что это</th><th>Признак</th></tr><tr><td><b>П</b></td><td>понятие</td><td>неверно объяснено или перепутано понятие</td></tr><tr><td><b>К</b></td><td>код</td><td>синтаксис, отступы, двоеточие, скобки, имя функции</td></tr><tr><td><b>Т</b></td><td>трассировка</td><td>неверно определено, что выведет программа или каково значение переменной</td></tr><tr><td><b>А</b></td><td>арифметика</td><td>ошибка в счёте</td></tr><tr><td><b>Р</b></td><td>запись</td><td>решение или ответ записаны неполно, без пояснения</td></tr><tr><td><b>Л</b></td><td>другая логика</td><td>рассуждение не сводится к перечисленному, обсудить устно</td></tr></table>
 <div class="pb"></div><h1>Вариант А</h1>
@@ -60,4 +70,16 @@ table.data td.blank { min-width: 22mm; height: 9mm; }
 <div class="qtask"><h2>Задание 5. Ответ: <span class="ans">18</span></h2><div class="qtext">Напиши функцию area(a, b), которая возвращает площадь прямоугольника со сторонами a и b. Вызови её для сторон 6 и 3 и выведи результат.</div><ul><li>Функция: def area(a, b): return ...; вызов print(area(6, 3)) выводит 18.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>print внутри функции вместо return</b> — П: функция печатает, но не возвращает значение</div></div>
 <div class="qtask"><h2>Задание 6. Ответ: <span class="ans">8; None</span></h2><div class="qtext">Что выведет программа? Объясни результат.</div><ul><li>Функция печатает число внутри себя, но ничего не возвращает: значение переменной value — None.</li><li>Вывод: 8; None</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>только число без None</b> — П: не учтено, что функция без return возвращает None</div></div>
 <div class="qtask"><h2>Задание 7. Ответ: <span class="ans">параметр — имя для данных в определении; аргумент — значение при вызове; return возвращает результат в основную программу; нужен return</span></h2><div class="qtext">Закончи фразу: «Параметр — это ..., аргумент — это ..., а return ...». Что нужно выбрать внутри функции, если результат нужен для дальнейшего вычисления: print или return?</div><ul><li>return передаёт результат в место вызова, print только показывает его на экране.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>выбран print</b> — П: print не возвращает значение для дальнейшего вычисления</div></div>
+<div class="pb"></div><h1>Лист В: усложнённые задания</h1>
+<div class="qtask"><h2>Задание 1. Ответ: <span class="ans">15</span></h2><div class="qtext">Что выведет программа?</div><ul><li>f(3) = 7, затем f(7) = 15.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>7</b> — Т: вычислен только внутренний вызов; <b>13</b> — Т: f(3) = 7 заменено на 6 + 1</div></div>
+<div class="qtask"><h2>Задание 2. Ответ: <span class="ans">14</span></h2><div class="qtext">Что выведет программа? Объясни, чему равны оба вызова.</div><ul><li>g(3, 10) = 7, g(10, 3) = 7; сумма 14: функция возвращает модуль разности.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>0</b> — Т: разности взяты с разными знаками</div></div>
+<div class="qtask"><h2>Задание 3. Ответ: <span class="ans">30; сумму квадратов чисел от 1 до n</span></h2><div class="qtext">Что выведет программа и что вычисляет функция f?</div><ul><li>1 + 4 + 9 + 16 = 30.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>10</b> — Т: сложены числа, а не их квадраты; <b>16</b> — Т: взят квадрат последнего числа</div></div>
+<div class="qtask"><h2>Задание 4. Ответ: <span class="ans">после def area(r) нет двоеточия; return без отступа; вызов и вывод должны быть после определения: def area(r): ⏎ return 3.14 * r * r ⏎ print(area(2)) → 12.56</span></h2><div class="qtext">Найди все ошибки в программе и запиши исправленный вариант.</div><ul><li>Не хватает двоеточия после заголовка.</li><li>Тело функции должно иметь отступ.</li><li>Правильный результат: 12.56.</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>только двоеточие</b> — К: не найден отступ</div></div>
+<div class="qtask"><h2>Задание 5. Ответ: <span class="ans">4</span></h2><div class="qtext">Напиши функцию cnt(a, k), которая возвращает, сколько элементов списка a делятся на k без остатка. Какой результат даст вызов cnt([6, 9, 12, 15, 20], 3)?</div><ul><li>Подходят числа 6, 9, 12, 15 — их 4.</li><li>Образец:
+def cnt(a, k):
+    c = 0
+    for x in a:
+        if x % k == 0:
+            c += 1
+    return c</li></ul><div class="warn"><b>Частые неверные ответы и ошибки:</b> <b>5</b> — Т: счётчик увеличивается без проверки условия; <b>20</b> — Т: возвращён последний элемент, а не количество</div></div>
 <div class="pb"></div><h1>Протокол проверки работы</h1><p>Дата ___ Вариант ___ Верно ___ из 7</p><table class="proto"><tr><th>№</th><th>Верно?</th><th>Код ошибки</th><th>Что именно написал ученик, как рассуждал</th></tr><tr><td>1</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>2</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>3</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>4</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>5</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>6</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr><tr><td>7</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr></table><h2>Итог</h2><p>Повторяющиеся ошибки (коды): ______________ &nbsp; Тема мини-урока: ____________________________</p><p>Следующий шаг: ______________________________________________________</p><p style="font-size:9.5pt;color:#444">После мини-урока дать лист другого варианта и сравнить коды ошибок.</p></body></html>

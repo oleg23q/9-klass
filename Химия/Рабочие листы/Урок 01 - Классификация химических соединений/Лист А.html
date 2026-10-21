@@ -9,7 +9,17 @@ h1 { font-size: 16pt; margin: 0 0 2mm; }
 .fields span { display: inline-block; min-width: 42mm; border-bottom: 1px solid #111; margin-left: 2mm; }
 .rules { border: 1px solid #888; border-radius: 3mm; padding: 2mm 4mm; margin: 0 0 4mm; font-size: 10.5pt; }
 .task { border: 1px solid #333; border-radius: 3mm; padding: 3mm 4mm; margin: 0 0 4mm; break-inside: avoid; page-break-inside: avoid; }
-.task h2 { font-size: 12pt; margin: 0 0 2mm; }
+.task h2 { font-size: 12pt; margin: 0 0 2mm; display: flex; align-items: center; gap: 2mm; }
+.task h2 .ttl { flex: 1; }
+.task h2 .lvl { font-weight: 400; font-size: 10pt; white-space: nowrap; color: #222; }
+.task h2 .dots { letter-spacing: 1px; margin-right: 3mm; font-size: 11pt; }
+.warm { border: 1.5px solid #111; border-radius: 3mm; padding: 3mm 4mm; margin: 0 0 4mm; break-inside: avoid; page-break-inside: avoid; background: #f7f7f7; }
+.warm h2 { font-size: 12pt; margin: 0 0 1.5mm; }
+.warm ul { margin: 1mm 0 2mm 5mm; padding: 0; }
+.warm li { margin: 0.6mm 0; }
+.warm .formulas { display: flex; flex-wrap: wrap; gap: 2mm 3mm; margin: 1.5mm 0; }
+.warm .formulas span { border: 1px solid #333; border-radius: 2mm; background: #fff; padding: 0.8mm 2.5mm; font-family: "Cambria Math", "Segoe UI", serif; font-size: 11.5pt; }
+.warm .ex { margin-top: 1.5mm; font-size: 10.5pt; }
 .task h2 .num { display: inline-block; min-width: 7mm; padding: 0 2mm; margin-right: 2mm; border-radius: 2mm; background: #111; color: #fff; text-align: center; }
 .task .text { white-space: pre-line; }
 .task pre.snippet { background: #f4f4f4; border: 1px solid #bbb; border-radius: 2mm; padding: 2mm 3mm; margin: 1.5mm 0; font: 10.5pt/1.3 "Cascadia Mono", Consolas, monospace; white-space: pre; }
@@ -43,11 +53,12 @@ table.data td.blank { min-width: 22mm; height: 9mm; }
 .key .qtask { break-inside: avoid; page-break-inside: avoid; }
 </style></head><body><div class="head"><div><h1>Урок 01. Классификация химических соединений</h1><p class="sub">Химия · 9 класс · Рабочий лист · Вариант А</p></div><div class="fields">Дата:<span></span><br>Имя (по желанию):<span></span></div></div>
 <div class="rules"><b>Как работать.</b> Решай ручкой, около 30 минут, без подсказок и без экрана. Определяй класс по составу вещества. Не стирай черновое решение: по нему видно, как ты рассуждал. Если застрял, оставь вопрос на полях.</div>
-<div class="task"><h2><span class="num">1</span>Задание 1</h2><div class="text">Запиши, простое или сложное вещество: O₂, Fe, H₂O, NaCl.</div><table class="data"><tr><th>Формула</th><th>Простое или сложное</th></tr><tr><td>O₂</td><td class="blank"></td></tr><tr><td>Fe</td><td class="blank"></td></tr><tr><td>H₂O</td><td class="blank"></td></tr><tr><td>NaCl</td><td class="blank"></td></tr></table></div>
-<div class="task"><h2><span class="num">2</span>Задание 2</h2><div class="text">Определи класс веществ MgO и CO₂ и назови признак.</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
-<div class="task"><h2><span class="num">3</span>Задание 3</h2><div class="text">Определи класс веществ HNO₃ и HCl. Какой признак ты использовал?</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
-<div class="task"><h2><span class="num">4</span>Задание 4</h2><div class="text">Определи класс веществ KOH и Mg(OH)₂.</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
-<div class="task"><h2><span class="num">5</span>Задание 5</h2><div class="text">Определи класс веществ NaCl и CaCO₃.</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
-<div class="task"><h2><span class="num">6</span>Задание 6</h2><div class="text">Классифицируй вещества: Fe₂O₃, HNO₃, Ca(OH)₂, K₂SO₄, Cl₂.</div><table class="data"><tr><th>Формула</th><th>Класс</th></tr><tr><td>Fe₂O₃</td><td class="blank"></td></tr><tr><td>HNO₃</td><td class="blank"></td></tr><tr><td>Ca(OH)₂</td><td class="blank"></td></tr><tr><td>K₂SO₄</td><td class="blank"></td></tr><tr><td>Cl₂</td><td class="blank"></td></tr></table></div>
-<div class="task"><h2><span class="num">7</span>Задание 7</h2><div class="text">Ученик назвал вещество H₂O кислотой (потому что в формуле есть H). Найди ошибку и назови правильный класс.</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
-<div class="footer">Рабочий лист предназначен для самостоятельного решения. Ключ хранится у преподавателя.</div></body></html>
+<div class="warm"><h2>Разминка: вспомним тему</h2><ul><li>Оксиды — два элемента, один из них кислород. Основания — металл и OH. Кислоты — водород и кислотный остаток. Соли — металл и кислотный остаток.</li><li>Оксиды делят на основные, кислотные, амфотерные и несолеобразующие; ориентир — природа элемента.</li><li>Сначала выдели состав (из каких элементов и групп), потом называй класс.</li></ul><div class="formulas"><span>CaO — оксид</span><span>NaOH — основание</span><span>H₂SO₄ — кислота</span><span>Na₂SO₄ — соль</span></div></div>
+<div class="task"><h2><span class="num">1</span><span class="ttl">Заполни таблицу</span><span class="dots">●○○</span><span class="lvl">★ 1</span></h2><div class="text">Запиши, простое или сложное вещество: O₂, Fe, H₂O, NaCl.</div><table class="data"><tr><th>Формула</th><th>Простое или сложное</th></tr><tr><td>O₂</td><td class="blank"></td></tr><tr><td>Fe</td><td class="blank"></td></tr><tr><td>H₂O</td><td class="blank"></td></tr><tr><td>NaCl</td><td class="blank"></td></tr></table></div>
+<div class="task"><h2><span class="num">2</span><span class="ttl">Объясни своими словами</span><span class="dots">●○○</span><span class="lvl">★ 1</span></h2><div class="text">Определи класс веществ MgO и CO₂ и назови признак.</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
+<div class="task"><h2><span class="num">3</span><span class="ttl">Объясни своими словами</span><span class="dots">●○○</span><span class="lvl">★ 1</span></h2><div class="text">Определи класс веществ HNO₃ и HCl. Какой признак ты использовал?</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
+<div class="task"><h2><span class="num">4</span><span class="ttl">Объясни своими словами</span><span class="dots">●●○</span><span class="lvl">★ 2</span></h2><div class="text">Определи класс веществ KOH и Mg(OH)₂.</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
+<div class="task"><h2><span class="num">5</span><span class="ttl">Объясни своими словами</span><span class="dots">●●○</span><span class="lvl">★ 2</span></h2><div class="text">Определи класс веществ NaCl и CaCO₃.</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
+<div class="task"><h2><span class="num">6</span><span class="ttl">Заполни таблицу</span><span class="dots">●●●</span><span class="lvl">★ 3</span></h2><div class="text">Классифицируй вещества: Fe₂O₃, HNO₃, Ca(OH)₂, K₂SO₄, Cl₂.</div><table class="data"><tr><th>Формула</th><th>Класс</th></tr><tr><td>Fe₂O₃</td><td class="blank"></td></tr><tr><td>HNO₃</td><td class="blank"></td></tr><tr><td>Ca(OH)₂</td><td class="blank"></td></tr><tr><td>K₂SO₄</td><td class="blank"></td></tr><tr><td>Cl₂</td><td class="blank"></td></tr></table></div>
+<div class="task"><h2><span class="num">7</span><span class="ttl">Объясни своими словами</span><span class="dots">●●●</span><span class="lvl">★ 3</span></h2><div class="text">Ученик назвал вещество H₂O кислотой (потому что в формуле есть H). Найди ошибку и назови правильный класс.</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
+<div class="footer">Уровень задания: ● — базовый, ●● — средний, ●●● — повышенный. Рабочий лист предназначен для самостоятельного решения. Ключ хранится у преподавателя.</div></body></html>

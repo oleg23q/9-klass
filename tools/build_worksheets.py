@@ -31,6 +31,19 @@ def load_lessons():
                 continue
             raise
         lessons.extend(module.LESSONS)
+    from worksheets.theory import THEORY
+    hard_modules = {"Физика": ("hard_physics", "HARD_PHYSICS"), "Химия": ("hard_chemistry", "HARD_CHEMISTRY"),
+                    "Информатика": ("hard_informatics", "HARD_INFORMATICS")}
+    hard = {}
+    for subject, (module_name, attr) in hard_modules.items():
+        try:
+            hard[subject] = getattr(__import__(f"worksheets.{module_name}", fromlist=[attr]), attr)
+        except ModuleNotFoundError as error:
+            if not (error.name and error.name.endswith(module_name)):
+                raise
+    for lesson in lessons:
+        lesson.theory = THEORY.get((lesson.subject, lesson.number))
+        lesson.hard = hard.get(lesson.subject, {}).get(lesson.number)
     return lessons
 
 
@@ -52,9 +65,12 @@ README_TEMPLATE = r"""# Рабочие листы для печати — {subje
 
 | Файл | Кому | Для чего |
 |---|---|---|
-| `Лист А.pdf` / `.html` | ученику | основная работа, 6–9 заданий, 25–45 минут |
-| `Лист Б.pdf` / `.html` | ученику | второй вариант с теми же типами заданий и другими числами: для повторной проверки после мини-урока |
-| `Ключ для преподавателя.pdf` / `.html` | только преподавателю | ответы, разбор, частые неверные ответы с причинами, коды ошибок, протокол проверки |
+| `Лист А.pdf` / `.html` | ученику | блок «Разминка» (краткая теория и формулы) и основная работа, 6–10 заданий, 25–45 минут |
+| `Лист Б.pdf` / `.html` | ученику | второй вариант с теми же типами заданий и другими числами, без разминки: для повторной проверки после мини-урока |
+| `Лист В.pdf` / `.html` | ученику | усложнённые задания (4–5 штук, несколько действий, ловушки и комбинации тем): после успешных листов А и Б или для сильного ученика |
+| `Ключ для преподавателя.pdf` / `.html` | только преподавателю | ответы, разбор, частые неверные ответы с причинами, коды ошибок, протокол проверки для всех листов |
+
+У каждого задания в шапке указаны название типа и уровень сложности (●○○ — базовый, ●●○ — средний, ●●● — повышенный). Уровень в листах А и Б зависит от места задания в листе (начало — базовый, конец — повышенный), в листе В — от 2 до 3.
 
 ## Уроки
 

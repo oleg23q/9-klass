@@ -14,6 +14,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 VARIANTS = ("А", "Б")
+HARD = "В"
 
 # Типы рабочей области задания на листе ученика.
 #  solve  — одно поле «Решение»
@@ -35,6 +36,8 @@ class Task:
     extra_html: str = ""
     answer_label: str | None = "Ответ"
     note: str = ""
+    title: str = ""
+    level: int = 0  # 1–3; 0 — определить по месту в листе
 
 
 @dataclass
@@ -46,6 +49,8 @@ class Lesson:
     codes: list[tuple[str, str, str]]
     build: object  # callable(variant: str) -> list[Task]
     hint: str = ""
+    theory: dict | None = None  # {"points": [...], "formulas": [...], "example": "..."} — разминка на листе А
+    hard: object = None  # callable(variant) -> list[Task] — лист В с усложнёнными заданиями
 
 
 CSS = """
@@ -59,7 +64,17 @@ h1 { font-size: 16pt; margin: 0 0 2mm; }
 .fields span { display: inline-block; min-width: 42mm; border-bottom: 1px solid #111; margin-left: 2mm; }
 .rules { border: 1px solid #888; border-radius: 3mm; padding: 2mm 4mm; margin: 0 0 4mm; font-size: 10.5pt; }
 .task { border: 1px solid #333; border-radius: 3mm; padding: 3mm 4mm; margin: 0 0 4mm; break-inside: avoid; page-break-inside: avoid; }
-.task h2 { font-size: 12pt; margin: 0 0 2mm; }
+.task h2 { font-size: 12pt; margin: 0 0 2mm; display: flex; align-items: center; gap: 2mm; }
+.task h2 .ttl { flex: 1; }
+.task h2 .lvl { font-weight: 400; font-size: 10pt; white-space: nowrap; color: #222; }
+.task h2 .dots { letter-spacing: 1px; margin-right: 3mm; font-size: 11pt; }
+.warm { border: 1.5px solid #111; border-radius: 3mm; padding: 3mm 4mm; margin: 0 0 4mm; break-inside: avoid; page-break-inside: avoid; background: #f7f7f7; }
+.warm h2 { font-size: 12pt; margin: 0 0 1.5mm; }
+.warm ul { margin: 1mm 0 2mm 5mm; padding: 0; }
+.warm li { margin: 0.6mm 0; }
+.warm .formulas { display: flex; flex-wrap: wrap; gap: 2mm 3mm; margin: 1.5mm 0; }
+.warm .formulas span { border: 1px solid #333; border-radius: 2mm; background: #fff; padding: 0.8mm 2.5mm; font-family: "Cambria Math", "Segoe UI", serif; font-size: 11.5pt; }
+.warm .ex { margin-top: 1.5mm; font-size: 10.5pt; }
 .task h2 .num { display: inline-block; min-width: 7mm; padding: 0 2mm; margin-right: 2mm; border-radius: 2mm; background: #111; color: #fff; text-align: center; }
 .task .text { white-space: pre-line; }
 .task pre.snippet { background: #f4f4f4; border: 1px solid #bbb; border-radius: 2mm; padding: 2mm 3mm; margin: 1.5mm 0; font: 10.5pt/1.3 "Cascadia Mono", Consolas, monospace; white-space: pre; }
@@ -148,33 +163,64 @@ def _work_html(task: Task) -> str:
     return '<div class="work one"><div class="box">Решение</div></div>'
 
 
+TITLES = {"phys": "Расчётная задача", "solve": "Задача", "draw": "Задача с рисунком", "lines": "Объясни своими словами",
+          "code": "Напиши программу", "short": "Короткий ответ", "fill": "Заполни таблицу"}
+
+
+def level_of(task: Task, index: int, total: int) -> int:
+    if task.level:
+        return task.level
+    return min(3, 1 + index * 3 // max(total, 1))
+
+
+def card_title(task: Task) -> str:
+    return task.title or TITLES.get(task.work, "Задание")
+
+
+def warm_up(theory: dict) -> str:
+    items = "".join(f"<li>{esc(p)}</li>" for p in theory.get("points", []))
+    formulas = "".join(f"<span>{esc(f)}</span>" for f in theory.get("formulas", []))
+    block = f'<div class="warm"><h2>Разминка: вспомним тему</h2><ul>{items}</ul>'
+    if formulas:
+        block += f'<div class="formulas">{formulas}</div>'
+    if theory.get("example"):
+        block += f'<div class="ex"><b>Пример.</b> {esc(theory["example"])}</div>'
+    return block + "</div>"
+
+
 def student_sheet(lesson: Lesson, variant: str, tasks: list[Task]) -> str:
     title = f"Урок {lesson.number:02d}. {lesson.title}"
     parts = [f'<div class="head"><div><h1>{esc(title)}</h1>'
-             f'<p class="sub">{esc(lesson.subject)} · 9 класс · Рабочий лист · Вариант {variant}</p></div>'
+             f'<p class="sub">{esc(lesson.subject)} · 9 класс · Рабочий лист · {"Усложнённые задания" if variant == HARD else "Вариант " + variant}</p></div>'
              '<div class="fields">Дата:<span></span><br>Имя (по желанию):<span></span></div></div>',
              f'<div class="rules"><b>Как работать.</b> Решай ручкой, около {lesson.minutes} минут, без подсказок и без экрана. '
              f'{esc(lesson.hint)} Не стирай черновое решение: по нему видно, как ты рассуждал. Если застрял, оставь вопрос на полях.</div>']
+    if variant == "А" and lesson.theory:
+        parts.append(warm_up(lesson.theory))
     for number, task in enumerate(tasks, start=1):
+        level = level_of(task, number - 1, len(tasks))
+        if variant == HARD:
+            level = max(level, 2)
+        badge = f'<span class="dots">{"●" * level}{"○" * (3 - level)}</span><span class="lvl">★ {level}</span>'
         label = f'<div class="answer">{esc(task.answer_label)}: <span></span></div>' if task.answer_label else ""
         note = f'<div class="note" style="font-size:9.5pt;color:#444">{esc(task.note)}</div>' if task.note else ""
-        parts.append(f'<div class="task"><h2><span class="num">{number}</span>Задание {number}</h2>'
+        parts.append(f'<div class="task"><h2><span class="num">{number}</span><span class="ttl">{esc(card_title(task))}</span>{badge}</h2>'
                      f'<div class="text">{esc(task.text)}</div>{task.extra_html}{note}{_work_html(task)}{label}</div>')
-    parts.append('<div class="footer">Рабочий лист предназначен для самостоятельного решения. Ключ хранится у преподавателя.</div>')
+    parts.append('<div class="footer">Уровень задания: ● — базовый, ●● — средний, ●●● — повышенный. Рабочий лист предназначен для самостоятельного решения. Ключ хранится у преподавателя.</div>')
     return _page(f"{title} — рабочий лист {variant}", "\n".join(parts))
 
 
 def key_sheet(lesson: Lesson, all_tasks: dict[str, list[Task]]) -> str:
     title = f"Урок {lesson.number:02d}. {lesson.title}"
     count = max(len(t) for t in all_tasks.values())
-    parts = [f'<div class="head"><div><h1>Ключ для преподавателя</h1><p class="sub">{esc(title)} · {esc(lesson.subject)} · варианты А и Б · не выдавать ученику</p></div></div>',
+    parts = [f'<div class="head"><div><h1>Ключ для преподавателя</h1><p class="sub">{esc(title)} · {esc(lesson.subject)} · варианты {"А, Б" + (" и В" if HARD in all_tasks else "")} · не выдавать ученику</p></div></div>',
              '<div class="warn"><b>Как проверять.</b> Сверь ответ с ключом, затем посмотри ход решения: что записано в «Дано», какие формулы и шаги выбраны, нарисован ли рисунок. '
              'Для каждой ошибки поставь код из таблицы ниже. Если ошибка повторяется два раза и больше, это тема для мини-урока. '
              'Фото работы можно прислать для совместного разбора; имя ученика на фото и в записях не нужно.</div>',
              "<h2>Коды ошибок</h2><table class=\"proto\"><tr><th>Код</th><th>Что это</th><th>Признак</th></tr>" +
              "".join(f"<tr><td><b>{esc(c)}</b></td><td>{esc(n)}</td><td>{esc(d)}</td></tr>" for c, n, d in lesson.codes) + "</table>"]
     for variant, tasks in all_tasks.items():
-        parts.append(f'<div class="pb"></div><h1>Вариант {variant}</h1>')
+        parts.append(f'<div class="pb"></div><h1>{"Лист В: усложнённые задания" if variant == HARD else "Вариант " + variant}</h1>')
         for number, task in enumerate(tasks, start=1):
             block = [f'<div class="qtask"><h2>Задание {number}. Ответ: <span class="ans">{esc(task.answer)}</span></h2>',
                      f'<div class="qtext">{esc(task.text)}</div>']
@@ -225,6 +271,8 @@ def to_pdf(html_path: Path, pdf_path: Path) -> bool:
 def build_lesson(lesson: Lesson, out_dir: Path, make_pdf: bool = True) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     all_tasks = {v: lesson.build(v) for v in VARIANTS}
+    if lesson.hard:
+        all_tasks[HARD] = lesson.hard(HARD)
     files = []
     for variant, tasks in all_tasks.items():
         path = out_dir / f"Лист {variant}.html"

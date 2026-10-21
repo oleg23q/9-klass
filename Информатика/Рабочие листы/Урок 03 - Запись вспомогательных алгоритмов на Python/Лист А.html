@@ -9,7 +9,17 @@ h1 { font-size: 16pt; margin: 0 0 2mm; }
 .fields span { display: inline-block; min-width: 42mm; border-bottom: 1px solid #111; margin-left: 2mm; }
 .rules { border: 1px solid #888; border-radius: 3mm; padding: 2mm 4mm; margin: 0 0 4mm; font-size: 10.5pt; }
 .task { border: 1px solid #333; border-radius: 3mm; padding: 3mm 4mm; margin: 0 0 4mm; break-inside: avoid; page-break-inside: avoid; }
-.task h2 { font-size: 12pt; margin: 0 0 2mm; }
+.task h2 { font-size: 12pt; margin: 0 0 2mm; display: flex; align-items: center; gap: 2mm; }
+.task h2 .ttl { flex: 1; }
+.task h2 .lvl { font-weight: 400; font-size: 10pt; white-space: nowrap; color: #222; }
+.task h2 .dots { letter-spacing: 1px; margin-right: 3mm; font-size: 11pt; }
+.warm { border: 1.5px solid #111; border-radius: 3mm; padding: 3mm 4mm; margin: 0 0 4mm; break-inside: avoid; page-break-inside: avoid; background: #f7f7f7; }
+.warm h2 { font-size: 12pt; margin: 0 0 1.5mm; }
+.warm ul { margin: 1mm 0 2mm 5mm; padding: 0; }
+.warm li { margin: 0.6mm 0; }
+.warm .formulas { display: flex; flex-wrap: wrap; gap: 2mm 3mm; margin: 1.5mm 0; }
+.warm .formulas span { border: 1px solid #333; border-radius: 2mm; background: #fff; padding: 0.8mm 2.5mm; font-family: "Cambria Math", "Segoe UI", serif; font-size: 11.5pt; }
+.warm .ex { margin-top: 1.5mm; font-size: 10.5pt; }
 .task h2 .num { display: inline-block; min-width: 7mm; padding: 0 2mm; margin-right: 2mm; border-radius: 2mm; background: #111; color: #fff; text-align: center; }
 .task .text { white-space: pre-line; }
 .task pre.snippet { background: #f4f4f4; border: 1px solid #bbb; border-radius: 2mm; padding: 2mm 3mm; margin: 1.5mm 0; font: 10.5pt/1.3 "Cascadia Mono", Consolas, monospace; white-space: pre; }
@@ -43,30 +53,31 @@ table.data td.blank { min-width: 22mm; height: 9mm; }
 .key .qtask { break-inside: avoid; page-break-inside: avoid; }
 </style></head><body><div class="head"><div><h1>Урок 03. Запись вспомогательных алгоритмов на Python</h1><p class="sub">Информатика · 9 класс · Рабочий лист · Вариант А</p></div><div class="fields">Дата:<span></span><br>Имя (по желанию):<span></span></div></div>
 <div class="rules"><b>Как работать.</b> Решай ручкой, около 30 минут, без подсказок и без экрана. Программу можно проверить на компьютере только после того, как лист сдан. Не стирай черновое решение: по нему видно, как ты рассуждал. Если застрял, оставь вопрос на полях.</div>
-<div class="task"><h2><span class="num">1</span>Задание 1</h2><div class="text">Назови параметр, два аргумента и значения, которые выведет программа.</div><pre class="snippet">def double(number):
+<div class="warm"><h2>Разминка: вспомним тему</h2><ul><li>Функция в Python начинается с def, после имени и скобок стоит двоеточие, тело записано с отступом.</li><li>return возвращает результат; print только выводит на экран.</li><li>Функцию сначала определяют, потом вызывают.</li></ul><div class="formulas"><span>def f(a, b):</span><span>    return a + b</span><span>x = f(2, 3)</span></div></div>
+<div class="task"><h2><span class="num">1</span><span class="ttl">Объясни своими словами</span><span class="dots">●○○</span><span class="lvl">★ 1</span></h2><div class="text">Назови параметр, два аргумента и значения, которые выведет программа.</div><pre class="snippet">def double(number):
     return number * 2
 
 print(double(6))
 print(double(10))</pre><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div><div class="answer">Ответ: <span></span></div></div>
-<div class="task"><h2><span class="num">2</span>Задание 2</h2><div class="text">Запиши значения переменных после выполнения: что окажется в x и что выведет программа?</div><pre class="snippet">def add(a, b):
+<div class="task"><h2><span class="num">2</span><span class="ttl">Объясни своими словами</span><span class="dots">●○○</span><span class="lvl">★ 1</span></h2><div class="text">Запиши значения переменных после выполнения: что окажется в x и что выведет программа?</div><pre class="snippet">def add(a, b):
     result = a + b
     return result
 
 x = add(2, 5)
 print(x)</pre><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div><div class="answer">Ответ: <span></span></div></div>
-<div class="task"><h2><span class="num">3</span>Задание 3</h2><div class="text">Что выведет программа и почему?</div><pre class="snippet">def multiply(a, b):
+<div class="task"><h2><span class="num">3</span><span class="ttl">Объясни своими словами</span><span class="dots">●○○</span><span class="lvl">★ 1</span></h2><div class="text">Что выведет программа и почему?</div><pre class="snippet">def multiply(a, b):
     return a * b
 
 print(multiply(3, 4) + 1)</pre><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div><div class="answer">Ответ: <span></span></div></div>
-<div class="task"><h2><span class="num">4</span>Задание 4</h2><div class="text">Найди две ошибки и запиши правильный вариант.</div><pre class="snippet">def cube(number)
+<div class="task"><h2><span class="num">4</span><span class="ttl">Напиши программу</span><span class="dots">●●○</span><span class="lvl">★ 2</span></h2><div class="text">Найди две ошибки и запиши правильный вариант.</div><pre class="snippet">def cube(number)
 return number * number * number
 
 print(cube(3))</pre><div class="work one"><div class="box code tall">Программа</div></div></div>
-<div class="task"><h2><span class="num">5</span>Задание 5</h2><div class="text">Напиши функцию perimeter(a, b), которая возвращает периметр прямоугольника со сторонами a и b. Вызови её для сторон 5 и 2 и выведи результат.</div><div class="work one"><div class="box code tall">Программа</div></div><div class="answer">Результат вызова: <span></span></div></div>
-<div class="task"><h2><span class="num">6</span>Задание 6</h2><div class="text">Что выведет программа? Объясни результат.</div><pre class="snippet">def square_print(n):
+<div class="task"><h2><span class="num">5</span><span class="ttl">Напиши программу</span><span class="dots">●●○</span><span class="lvl">★ 2</span></h2><div class="text">Напиши функцию perimeter(a, b), которая возвращает периметр прямоугольника со сторонами a и b. Вызови её для сторон 5 и 2 и выведи результат.</div><div class="work one"><div class="box code tall">Программа</div></div><div class="answer">Результат вызова: <span></span></div></div>
+<div class="task"><h2><span class="num">6</span><span class="ttl">Объясни своими словами</span><span class="dots">●●●</span><span class="lvl">★ 3</span></h2><div class="text">Что выведет программа? Объясни результат.</div><pre class="snippet">def square_print(n):
     print(n * n)
 
 value = square_print(4)
 print(value)</pre><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div><div class="answer">Ответ: <span></span></div></div>
-<div class="task"><h2><span class="num">7</span>Задание 7</h2><div class="text">Закончи фразу: «Параметр — это ..., аргумент — это ..., а return ...». Что нужно выбрать внутри функции, если результат нужен для дальнейшего вычисления: print или return?</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
-<div class="footer">Рабочий лист предназначен для самостоятельного решения. Ключ хранится у преподавателя.</div></body></html>
+<div class="task"><h2><span class="num">7</span><span class="ttl">Объясни своими словами</span><span class="dots">●●●</span><span class="lvl">★ 3</span></h2><div class="text">Закончи фразу: «Параметр — это ..., аргумент — это ..., а return ...». Что нужно выбрать внутри функции, если результат нужен для дальнейшего вычисления: print или return?</div><div class="work one"><div class="ruled">Запиши ответ своими словами</div></div></div>
+<div class="footer">Уровень задания: ● — базовый, ●● — средний, ●●● — повышенный. Рабочий лист предназначен для самостоятельного решения. Ключ хранится у преподавателя.</div></body></html>
