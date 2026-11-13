@@ -1,0 +1,95 @@
+filters:
+  and:
+    - type == "physics-formula"
+    - file.inFolder("Физика/Формулы физики")
+    - file.ext == "md"
+formulas:
+  card: link(file.path, file.basename)
+properties:
+  formula.card:
+    displayName: Название
+  grade:
+    displayName: Класс
+  section:
+    displayName: Раздел
+  formula:
+    displayName: Формула
+  result_unit:
+    displayName: Единица
+  status:
+    displayName: Статус
+  lessons:
+    displayName: Уроки
+views:
+  - type: table
+    name: Все формулы
+    order:
+      - formula.card
+      - grade
+      - section
+      - note.formula
+      - result_unit
+  - type: table
+    name: 7 класс
+    filters:
+      and:
+        - grade.contains(7)
+    groupBy:
+      property: section
+      direction: ASC
+    order:
+      - formula.card
+      - note.formula
+      - result_unit
+  - type: table
+    name: 8 класс
+    filters:
+      and:
+        - grade.contains(8)
+    groupBy:
+      property: section
+      direction: ASC
+    order:
+      - formula.card
+      - note.formula
+      - result_unit
+  - type: table
+    name: 9 класс
+    filters:
+      and:
+        - grade.contains(9)
+    groupBy:
+      property: section
+      direction: ASC
+    order:
+      - formula.card
+      - note.formula
+      - result_unit
+  - type: table
+    name: По разделам
+    groupBy:
+      property: section
+      direction: ASC
+    order:
+      - formula.card
+      - grade
+      - note.formula
+  - type: table
+    name: Связаны с уроками
+    filters:
+      and:
+        - lessons.length > 0
+    order:
+      - formula.card
+      - grade
+      - lessons
+  - type: table
+    name: С практикой
+    filters:
+      and:
+        - practice == true
+    order:
+      - formula.card
+      - grade
+      - section
+      - note.formula
