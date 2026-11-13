@@ -216,11 +216,11 @@ internal static class Program
         }
         editor.Close();
 
-        if (lessonList.Items.Count != 13)
+        if (lessonList.Items.Count != 17)
         {
-            throw new InvalidOperationException($"В разделе физики ожидалось 13 уроков, найдено {lessonList.Items.Count}.");
+            throw new InvalidOperationException($"В разделе физики ожидалось 17 уроков, найдено {lessonList.Items.Count}.");
         }
-        lessonList.SelectedIndex = lessonList.Items.Count - 6;
+        lessonList.SelectedIndex = 7;
         window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
         var freeFallTitle = Descendants<TextBlock>(window).FirstOrDefault(textBlock => textBlock.Name == "LessonTitle");
         var freeFallSteps = Descendants<Border>(window).Count(border => Equals(border.Tag, "StepSolution"));
@@ -237,11 +237,11 @@ internal static class Program
 
         foreach (var (index, expectedTitle, expectedFormula, expectedMessage) in new[]
         {
-            (lessonList.Items.Count - 5, "Урок 09. Прямолинейное и криволинейное движение", "по касательной", "Урок 09 о криволинейном движении не отобразился полностью или потерял правило о касательной."),
-            (lessonList.Items.Count - 4, "Урок 10. Движение тела по окружности с постоянной по модулю скоростью", "v²/R", "Урок 10 о движении по окружности не отобразился полностью или потерял формулу a=v²/R."),
-            (lessonList.Items.Count - 3, "Урок 11. Деформация, сила упругости и закон Гука", "Δl", "Урок 11 о силе упругости не отобразился полностью или потерял удлинение Δl."),
-            (lessonList.Items.Count - 2, "Урок 12. Три закона Ньютона", "разным телам", "Урок 12 о трёх законах Ньютона не отобразился полностью или потерял правило о разных телах."),
-            (lessonList.Items.Count - 1, "Урок 13. Бросок вверх и невесомость", "невесомост", "Урок 13 о броске вверх и невесомости не отобразился полностью или потерял объяснение невесомости.")
+            (8, "Урок 09. Прямолинейное и криволинейное движение", "по касательной", "Урок 09 о криволинейном движении не отобразился полностью или потерял правило о касательной."),
+            (9, "Урок 10. Движение тела по окружности с постоянной по модулю скоростью", "v²/R", "Урок 10 о движении по окружности не отобразился полностью или потерял формулу a=v²/R."),
+            (10, "Урок 11. Деформация, сила упругости и закон Гука", "Δl", "Урок 11 о силе упругости не отобразился полностью или потерял удлинение Δl."),
+            (11, "Урок 12. Три закона Ньютона", "разным телам", "Урок 12 о трёх законах Ньютона не отобразился полностью или потерял правило о разных телах."),
+            (12, "Урок 13. Бросок вверх и невесомость", "невесомост", "Урок 13 о броске вверх и невесомости не отобразился полностью или потерял объяснение невесомости.")
         })
         {
             lessonList.SelectedIndex = index;
@@ -262,11 +262,11 @@ internal static class Program
 
         subjectList.SelectedItem = "Химия";
         window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
-        if (lessonList.Items.Count != 6)
+        if (lessonList.Items.Count != 7)
         {
-            throw new InvalidOperationException($"В разделе химии ожидалось 6 уроков с подготовительным, найдено {lessonList.Items.Count}.");
+            throw new InvalidOperationException($"В разделе химии ожидалось 7 уроков с подготовительным, найдено {lessonList.Items.Count}.");
         }
-        lessonList.SelectedIndex = lessonList.Items.Count - 1;
+        lessonList.SelectedIndex = lessonList.Items.Count - 2;
         window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
         window.UpdateLayout();
         var redoxTitle = Descendants<TextBlock>(window).FirstOrDefault(textBlock => textBlock.Name == "LessonTitle");
@@ -298,7 +298,7 @@ internal static class Program
 
         subjectList.SelectedItem = "Информатика";
         window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
-        lessonList.SelectedIndex = lessonList.Items.Count - 1;
+        lessonList.SelectedIndex = lessonList.Items.Count - 2;
         window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
         window.UpdateLayout();
         var tableTitle = Descendants<TextBlock>(window).FirstOrDefault(textBlock => textBlock.Name == "LessonTitle");

@@ -1,4 +1,4 @@
-"""Build the reviewed student edition from twenty-six explicit lesson notes.
+"""Build the reviewed student edition from explicitly listed lesson notes.
 
 No vault-wide copy: only reviewed sections and fresh templates enter the ZIP.
 Existing student work and local settings are never overwritten by this builder.
@@ -15,11 +15,17 @@ import zipfile
 
 HERE = Path(__file__).resolve().parent
 TEMPLATES = HERE.parent / 'student-template'
-DAY = '2026-10-15'
+DAY = '2026-11-12'
 VAULT_NAME = '9 класс — ученик'
 
 # Explicit allowlist: never discover additional teacher notes automatically.
 SPECS = [
+    ('Информатика', 8, 'Вторая четверть — повторение алгоритмов и графов', ['__prebuilt__']),
+    ('Химия', 6, 'Вторая четверть — повторение реакций и ОВР', ['__prebuilt__']),
+    ('Физика', 14, 'Вторая четверть — повторение механики', ['__prebuilt__']),
+    ('Физика', 15, 'Закон всемирного тяготения', ['__prebuilt__']),
+    ('Физика', 16, 'Невесомость', ['__prebuilt__']),
+    ('Физика', 17, 'Практикум по динамике', ['__prebuilt__']),
     ('Физика', 1, 'Материальная точка и система отсчета', [2, 3, 4]),
     ('Физика', 2, 'Путь, перемещение и координата', [2, 3]),
     ('Физика', 3, 'Равномерное прямолинейное движение', [2, 3, 6]),
@@ -57,6 +63,12 @@ DIAGRAMS_PER_LESSON = {
 }
 
 PREBUILT_STEPS = {
+    ('Физика', 17): 8,
+    ('Физика', 16): 12,
+    ('Физика', 15): 12,
+    ('Информатика', 8): 12,
+    ('Химия', 6): 12,
+    ('Физика', 14): 12,
     ('Физика', 5): 10,
     ('Физика', 6): 7,
     ('Физика', 7): 7,
@@ -601,7 +613,7 @@ def make_payload(source_root: Path) -> tuple[dict[str, str], dict[str, str], dic
 
 Здесь собраны базовые и дополнительные проверенные уроки физики, химии и информатики. Выбери предмет, начни с урока 01 и двигайся дальше после обсуждения с преподавателем.
 
-''' + table + '\nПодготовка при затруднениях с формулами: ' + wiki(lesson_path(*prep[:3]), 'Химия 00 — язык химии') + '''.
+''' + '## Начало второй четверти\n\n' + '\n'.join('- ' + wiki(lesson_path(*s[:3]), s[0] + ' — повторение первой четверти') for s in SPECS if 'Вторая четверть' in s[2]) + '\n\n' + table + '\nПодготовка при затруднениях с формулами: ' + wiki(lesson_path(*prep[:3]), 'Химия 00 — язык химии') + '''.
 
 ## Дополнительные уроки
 
