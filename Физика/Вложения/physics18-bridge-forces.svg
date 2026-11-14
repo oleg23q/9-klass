@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="245" viewBox="0 0 560 245" font-family="Arial, sans-serif">
+<title>Скорость, ускорение и силы на вершине моста</title>
+<rect width="560" height="245" rx="12" fill="#f8fafc"/>
+<g fill="#0f172a" font-size="17" font-weight="bold" text-anchor="middle"><text x="140" y="33">Скорость и ускорение</text><text x="420" y="33">Силы на автомобиль</text></g>
+<path d="M280 47 V215" stroke="#cbd5e1" stroke-width="2"/>
+<g font-size="19" font-weight="bold">
+<path d="M140 112 H224" stroke="#1d4ed8" stroke-width="4"/><path d="M224 106 L236 112 L224 118Z" fill="#1d4ed8"/><text x="206" y="99" fill="#1d4ed8">v</text>
+<path d="M140 112 V183" stroke="#6d28d9" stroke-width="4"/><path d="M134 183 L140 195 L146 183Z" fill="#6d28d9"/><text x="155" y="178" fill="#6d28d9">a</text>
+<path d="M420 112 V72" stroke="#047857" stroke-width="4"/><path d="M414 72 L420 60 L426 72Z" fill="#047857"/><text x="434" y="79" fill="#047857">N</text>
+<path d="M420 112 V192" stroke="#b91c1c" stroke-width="4"/><path d="M414 192 L420 204 L426 192Z" fill="#b91c1c"/><text x="434" y="184" fill="#b91c1c">mg</text>
+</g>
+<g fill="#0f172a"><circle cx="140" cy="112" r="5"/><circle cx="420" cy="112" r="5"/></g>
+<text x="140" y="224" text-anchor="middle" fill="#334155" font-size="14">Ускорение направлено к центру кривизны</text>
+</svg>

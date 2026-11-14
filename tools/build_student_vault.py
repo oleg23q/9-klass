@@ -26,6 +26,7 @@ SPECS = [
     ('Физика', 15, 'Закон всемирного тяготения', ['__prebuilt__']),
     ('Физика', 16, 'Невесомость', ['__prebuilt__']),
     ('Физика', 17, 'Практикум по динамике', ['__prebuilt__']),
+    ('Физика', 18, 'Искусственные спутники Земли и первая космическая скорость', ['__prebuilt__']),
     ('Физика', 1, 'Материальная точка и система отсчета', [2, 3, 4]),
     ('Физика', 2, 'Путь, перемещение и координата', [2, 3]),
     ('Физика', 3, 'Равномерное прямолинейное движение', [2, 3, 6]),
@@ -64,6 +65,7 @@ DIAGRAMS_PER_LESSON = {
 
 PREBUILT_STEPS = {
     ('Физика', 17): 8,
+    ('Физика', 18): 8,
     ('Физика', 16): 12,
     ('Физика', 15): 12,
     ('Информатика', 8): 12,
@@ -598,6 +600,8 @@ def make_payload(source_root: Path) -> tuple[dict[str, str], dict[str, str], dic
         sources[f'{subject}/{source.name}'] = sha(source.read_bytes())
     graph_source = source_root / 'Физика' / 'Вложения' / 'physics03-meeting-graph.svg'
     managed['Занятия/Вложения/physics03-meeting-graph.svg'] = graph_source.read_text(encoding='utf-8-sig')
+    orbit_diagram = HERE.parent / 'Grade9Trainer' / 'Content' / 'Lessons' / 'Вложения' / 'physics18-earth-orbit.svg'
+    managed['Занятия/Вложения/physics18-earth-orbit.svg'] = orbit_diagram.read_text(encoding='utf-8-sig')
     sources['Физика/physics03-meeting-graph.svg'] = sha(graph_source.read_bytes())
     table = '| Урок | Физика | Химия | Информатика |\n|---|---|---|---|\n'
     for n in range(1, 5):

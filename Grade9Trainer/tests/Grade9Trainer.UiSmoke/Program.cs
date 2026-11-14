@@ -216,9 +216,9 @@ internal static class Program
         }
         editor.Close();
 
-        if (lessonList.Items.Count != 17)
+        if (lessonList.Items.Count != 18)
         {
-            throw new InvalidOperationException($"В разделе физики ожидалось 17 уроков, найдено {lessonList.Items.Count}.");
+            throw new InvalidOperationException($"В разделе физики ожидалось 18 уроков, найдено {lessonList.Items.Count}.");
         }
         lessonList.SelectedIndex = 7;
         window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="250" viewBox="0 0 520 250" font-family="Arial, sans-serif"><rect width="520" height="250" rx="12" fill="#f8fafc"/><title>Автомобиль на вершине выпуклого моста</title><path d="M 38,185 Q 260,-5 482,185" fill="none" stroke="#475569" stroke-width="6"/>
+<path d="M 260,94 V 222" stroke="#64748b" stroke-width="2" stroke-dasharray="6 5"/>
+<circle cx="260" cy="222" r="4" fill="#334155"/>
+<text x="274" y="227" fill="#334155" font-size="15">O — центр кривизны</text>
+<text x="274" y="169" fill="#334155" font-size="17">R</text><g stroke="#0f172a" stroke-width="2"><path d="M225 81 L225 69 Q225 64 233 63 L241 52 H276 L289 64 Q296 65 296 72 V81 Z" fill="#93c5fd"/><circle cx="239" cy="84" r="6" fill="#334155"/><circle cx="281" cy="84" r="6" fill="#334155"/></g></svg>
