@@ -262,11 +262,11 @@ internal static class Program
 
         subjectList.SelectedItem = "Химия";
         window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
-        if (lessonList.Items.Count != 7)
+        if (lessonList.Items.Count != 9)
         {
-            throw new InvalidOperationException($"В разделе химии ожидалось 7 уроков с подготовительным, найдено {lessonList.Items.Count}.");
+            throw new InvalidOperationException($"В разделе химии ожидалось 9 уроков с подготовительным, найдено {lessonList.Items.Count}.");
         }
-        lessonList.SelectedIndex = lessonList.Items.Count - 2;
+        lessonList.SelectedIndex = 5;
         window.Dispatcher.Invoke(() => { }, DispatcherPriority.ApplicationIdle);
         window.UpdateLayout();
         var redoxTitle = Descendants<TextBlock>(window).FirstOrDefault(textBlock => textBlock.Name == "LessonTitle");
